@@ -4,59 +4,60 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AL BAIK - Print QR cards</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d0d0d'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='%23ffcc00' font-family='Arial' font-weight='bold'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0908'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='%23ffcc00' font-family='Arial' font-weight='bold'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <style>
-  .tools{max-width:820px;margin:0 auto;padding:18px 16px}
-  .tools label{display:inline-block;margin-right:16px;font-size:14px;color:var(--muted)}
-  .tools input,.tools select{padding:8px 10px;border-radius:10px;background:var(--panel-2);border:1px solid #333;margin-left:6px}
-  .tools button{padding:10px 16px;border-radius:10px;border:none;background:var(--gold);color:#1a1200;font-weight:700;margin-top:12px}
+  .tools{max-width:820px;margin:0 auto;padding:20px 16px}
+  .tools h1{font-family:var(--display);font-weight:400;text-transform:uppercase;color:var(--gold-bright);margin:0 0 6px}
+  .tools label{display:inline-block;margin:0 16px 10px 0;font-size:14px;color:var(--muted)}
+  .tools input,.tools select{padding:9px 11px;border-radius:10px;background:var(--surface-2);border:1px solid var(--hair);margin-left:6px}
+  .tools button{padding:11px 18px;border-radius:11px;border:none;background:linear-gradient(135deg,var(--gold-bright),var(--orange));color:#171000;font-weight:700;margin-right:8px}
 
-  .sheet-print{max-width:820px;margin:0 auto;padding:0 16px 40px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .sheet-print{max-width:820px;margin:0 auto;padding:0 16px 40px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .qcard{
-    background:#0d0d0d;color:#fff;border:2px solid #ffc31f;border-radius:14px;
-    padding:16px 12px;text-align:center;break-inside:avoid;page-break-inside:avoid;
+    background:#0d0b09;color:#fff;border:2px solid var(--gold);border-radius:16px;
+    padding:20px 14px;text-align:center;break-inside:avoid;page-break-inside:avoid;
   }
-  .qcard .q-brand{font-size:22px;font-weight:800;color:#ffd400;letter-spacing:.06em}
-  .qcard .q-sub{font-size:9px;letter-spacing:.3em;color:#f5a01c;margin-bottom:8px}
-  .qcard .q-line{font-size:13px;color:#fff;margin:6px 0 8px;font-weight:600;letter-spacing:.04em}
-  .qcard img{width:78%;max-width:230px;background:#fff;padding:8px;border-radius:8px;display:block;margin:0 auto}
-  .qcard .q-table{font-size:26px;font-weight:800;color:#ffd400;margin-top:10px}
-  .qcard .q-foot{font-size:10px;color:#bbb;margin-top:6px}
+  .qcard .q-logo{width:62%;max-width:190px;margin:0 auto 10px}
+  .qcard .q-line{
+    font-family:var(--display);font-weight:400;font-size:19px;letter-spacing:.03em;
+    color:var(--gold-bright);margin:4px 0 12px;text-transform:uppercase;
+  }
+  .qcard img.qr{width:74%;max-width:220px;background:#fff;padding:9px;border-radius:10px;margin:0 auto}
+  .qcard .q-foot{font-size:11px;color:#bdb5a6;margin-top:11px;letter-spacing:.04em}
 
   @media print{
     body{background:#fff;padding:0}
-    .topbar,.tools,.foot{display:none!important}
-    .sheet-print{max-width:none;padding:0;grid-template-columns:1fr 1fr;gap:6mm}
+    .tools{display:none!important}
+    .sheet-print{max-width:none;padding:0;gap:8mm}
     .qcard{border-color:#000;background:#fff;color:#000}
-    .qcard .q-brand{color:#000}
-    .qcard .q-sub,.qcard .q-foot{color:#444}
-    .qcard .q-table{color:#000}
-    @page{size:A4;margin:10mm}
+    .qcard .q-logo{filter:none}
+    .qcard .q-line{color:#000}
+    .qcard .q-foot{color:#444}
+    @page{size:A4;margin:12mm}
   }
 </style>
 </head>
 <body>
 
-<header class="topbar">
-  <div class="brand"><span class="brand-name">AL BAIK</span><span class="brand-sub">QR CARDS</span></div>
-</header>
-
 <div class="tools">
-  <p class="foot-note" style="text-align:left;margin:0 0 12px">
-    Run <code>python tools/make_qr.py --base &lt;your site url&gt;</code> first, then print this page (Ctrl+P) on card stock.
+  <h1>QR cards</h1>
+  <p class="foot-note" style="text-align:left;margin:0 0 14px">
+    Run <code>python tools/make_qr.py --base &lt;your site url&gt;</code> first, then print this page
+    (Ctrl+P) on card stock. Four cards per A4 sheet.
   </p>
-  <label>Cards
+  <label>Card
     <select id="kind">
-      <option value="table">Table menu QR</option>
+      <option value="menu">Menu QR (table cards)</option>
       <option value="review">Google review QR</option>
+      <option value="both">One of each</option>
     </select>
   </label>
-  <label>From <input type="number" id="from" value="1" min="1" style="width:70px"></label>
-  <label>To <input type="number" id="to" value="20" min="1" style="width:70px"></label>
-  <label>Copies <input type="number" id="copies" value="1" min="1" style="width:70px"></label>
-  <br><button id="go">Build cards</button>
-  <button id="printBtn">Print</button>
+  <label>How many <input type="number" id="copies" value="8" min="1" max="60" style="width:80px"></label>
+  <br><button id="go">Build cards</button><button id="printBtn">Print</button>
 </div>
 
 <div class="sheet-print" id="sheet"></div>
@@ -65,35 +66,26 @@
 (function () {
   var sheet = document.getElementById("sheet");
 
-  function card(imgSrc, line, big, foot) {
+  function card(src, line, foot) {
     return '<div class="qcard">' +
-      '<div class="q-brand">AL BAIK</div>' +
-      '<div class="q-sub">CHICKEN N PIZZA</div>' +
+      '<img class="q-logo" src="assets/img/logo.webp" alt="AL BAIK">' +
       '<div class="q-line">' + line + "</div>" +
-      '<img src="' + imgSrc + '" alt="QR code">' +
-      (big ? '<div class="q-table">' + big + "</div>" : "") +
+      '<img class="qr" src="' + src + '" alt="QR code">' +
       '<div class="q-foot">' + foot + "</div>" +
     "</div>";
   }
 
+  var MENU = ["qr/menu.png", "Scan for our menu", "Point your camera at the code"];
+  var REVIEW = ["qr/review.png", "Enjoyed your meal?", "Scan to leave us a Google review"];
+
   function build() {
     var kind = document.getElementById("kind").value;
-    var from = +document.getElementById("from").value;
-    var to = +document.getElementById("to").value;
-    var copies = +document.getElementById("copies").value;
+    var n = Math.max(1, Math.min(60, +document.getElementById("copies").value || 1));
     var out = "";
-
-    if (kind === "review") {
-      for (var c = 0; c < copies; c++) {
-        out += card("qr/review.png", "ENJOYED YOUR MEAL?", "", "Scan to leave us a Google review");
-      }
-    } else {
-      for (var n = from; n <= to; n++) {
-        var pad = ("0" + n).slice(-2);
-        for (var k = 0; k < copies; k++) {
-          out += card("qr/table-" + pad + ".png", "SCAN FOR THE MENU", "Table " + n, "Browse, pick your food, call the waiter");
-        }
-      }
+    for (var i = 0; i < n; i++) {
+      if (kind === "menu") out += card.apply(null, MENU);
+      else if (kind === "review") out += card.apply(null, REVIEW);
+      else out += card.apply(null, MENU) + card.apply(null, REVIEW);
     }
     sheet.innerHTML = out;
   }

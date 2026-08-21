@@ -1,28 +1,23 @@
-/* AL BAIK — site configuration.
-   Everything the restaurant needs to change lives in this one file. */
+/* AL BAIK - site settings. This is the only file the restaurant needs to touch. */
 window.ALBAIK_CONFIG = {
   brand: "AL BAIK",
   tagline: "CHICKEN N PIZZA",
 
-  // Currency shown next to every price.
+  // Symbol shown next to every price.
   currency: "$",
 
-  // Phone number the "Send order" button messages on WhatsApp.
-  // International format, digits only, no + and no spaces.  e.g. Pakistan 03123456789 -> "923123456789"
-  whatsapp: "923123456789",
-
-  // Phone number shown on the page / tap-to-call.
+  // Number shown on the "Call us" button (tap to dial).
   phoneDisplay: "0312 345 6789",
 
-  // Google review link.  Two ways to set it:
-  //   1) paste the short link Google gives you (Business Profile -> Ask for reviews), or
-  //   2) put the Place ID below and leave reviewUrl empty.
+  // Optional: WhatsApp number for the "Message us" button on the review page.
+  // International format, digits only, no + and no spaces. Leave empty to hide the button.
+  whatsapp: "",
+
+  // Google review link. Either paste the link from your Google Business Profile
+  // (Read reviews -> Get more reviews -> Share review form), or set placeId instead.
   reviewUrl: "",
   placeId: "",
 
-  // Address line shown on the review page (optional).
-  address: "",
-
-  // Table numbers to print QR codes for.
-  tables: 20
+  // Optional address line shown on the review page.
+  address: ""
 };
