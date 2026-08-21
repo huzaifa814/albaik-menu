@@ -41,6 +41,12 @@ That writes `qr/table-01.png` ... `qr/table-20.png`, `qr/menu.png` and `qr/revie
 Then open `print.html` in a browser, pick **Table menu QR** or **Google review QR**, and print on
 card stock. Four cards per A4 page.
 
+## Photography
+
+The food photos in `assets/img/` were cut out of the printed menu board
+(`rest (2).png`) and re-encoded as WebP - the restaurant's own imagery, no stock photos.
+`tools/extract_images.py` regenerates them if the board artwork changes.
+
 ## Files
 
 ```
@@ -51,7 +57,9 @@ assets/js/config.js restaurant settings  <- edit this
 assets/js/menu-data.js  the menu         <- edit prices here
 assets/js/app.js    menu rendering, cart, WhatsApp handoff
 assets/css/style.css
+assets/img/         food photos + logo, cut from the menu board
 tools/make_qr.py    QR generator
+tools/extract_images.py  re-cuts the photos out of the board artwork
 qr/                 generated QR codes
 ```
 

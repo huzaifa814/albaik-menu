@@ -81,9 +81,12 @@
       });
       if (!items.length) return;
 
-      html += '<section class="section" id="sec-' + section.id + '">';
-      html += '<div class="section-head">' + esc(section.name) + "</div>";
-      if (section.note) html += '<p class="section-note">' + esc(section.note) + "</p>";
+      html += '<section class="section" id="sec-' + section.id + '" data-section="' + section.id + '">';
+      html += '<div class="banner reveal">' +
+        '<img src="assets/img/' + section.id + '.webp" alt="" loading="lazy" decoding="async">' +
+        '<div class="banner-txt"><h2>' + esc(section.name) + "</h2>" +
+        (section.note ? '<p class="banner-note">' + esc(section.note) + "</p>" : "") +
+      "</div></div>";
 
       if (section.sizes) {
         html += '<div class="sizes">' + section.sizes.map(function (s) {
@@ -99,7 +102,7 @@
           priceHtml = '<span class="price">' + money(section.sizes[0].price) +
             '<span class="from">from</span></span>';
         }
-        html += '<button class="card" type="button" data-item="' + it.id + '">' +
+        html += '<button class="card reveal" type="button" data-item="' + it.id + '">' +
           '<span class="dot"></span>' +
           '<span class="body">' +
             '<span class="name">' + esc(it.name) + (it.spicy ? '<span class="spicy">HOT</span>' : "") + "</span>" +
@@ -114,6 +117,49 @@
     });
 
     $("#menu").innerHTML = html || '<p class="empty">Nothing matches that search.</p>';
+    observeReveal();
+    observeSpy();
+  }
+
+  /* ---------------- scroll behaviour ---------------- */
+
+  var revealObserver = null, spyObserver = null;
+
+  function observeReveal() {
+    var els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) {
+      Array.prototype.forEach.call(els, function (el) { el.classList.add("in"); });
+      return;
+    }
+    if (revealObserver) revealObserver.disconnect();
+    revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("in");
+        revealObserver.unobserve(e.target);
+      });
+    }, { rootMargin: "0px 0px -6% 0px" });
+    Array.prototype.forEach.call(els, function (el) { revealObserver.observe(el); });
+  }
+
+  function observeSpy() {
+    if (!("IntersectionObserver" in window)) return;
+    if (spyObserver) spyObserver.disconnect();
+    spyObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) setActiveNav(e.target.dataset.section);
+      });
+    }, { rootMargin: "-12% 0px -72% 0px" });
+    Array.prototype.forEach.call(document.querySelectorAll(".section"), function (el) { spyObserver.observe(el); });
+  }
+
+  function setActiveNav(id) {
+    var nav = $("#catnav");
+    Array.prototype.forEach.call(nav.querySelectorAll("button"), function (b) {
+      var on = b.dataset.jump === id;
+      b.classList.toggle("active", on);
+      if (on) nav.scrollTo({ left: b.offsetLeft - nav.clientWidth / 2 + b.clientWidth / 2, behavior: "smooth" });
+    });
   }
 
   /* ---------------- item sheet ---------------- */
@@ -125,6 +171,10 @@
 
     draft = { id: id, qty: 1, size: null, opts: {}, notes: "" };
     if (section.sizes) draft.size = section.sizes[0].label;
+
+    var hero = $("#itemHeroImg");
+    hero.src = "assets/img/" + section.id + ".webp";
+    hero.alt = section.name;
 
     $("#itemTitle").textContent = item.name;
     $("#itemDesc").textContent = item.desc || "";

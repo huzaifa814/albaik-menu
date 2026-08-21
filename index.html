@@ -5,18 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AL BAIK - Chicken N Pizza | Menu</title>
 <meta name="description" content="AL BAIK Chicken N Pizza - full menu. Scan, browse and order from your table.">
-<meta name="theme-color" content="#0d0d0d">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d0d0d'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='%23ffcc00' font-family='Arial' font-weight='bold'%3EA%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0a0908">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0908'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='%23ffcc00' font-family='Arial' font-weight='bold'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/img/hero.webp">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<header class="topbar">
-  <div class="brand">
-    <span class="brand-name">AL BAIK</span>
-    <span class="brand-sub">CHICKEN N PIZZA</span>
+<header class="hero">
+  <div class="hero-bg" style="background-image:url('assets/img/hero.webp')"></div>
+  <div class="hero-inner">
+    <img class="hero-logo" src="assets/img/logo.webp" alt="AL BAIK - Chicken N Pizza" width="900" height="256">
+    <p class="hero-tag">Fried Chicken &middot; Stone-baked Pizza &middot; Kabob</p>
+    <div class="hero-chips">
+      <span id="tableChip" hidden></span>
+      <a href="review.html">&#9733; Leave a review</a>
+      <a id="callBtn" href="#">Call us</a>
+    </div>
   </div>
-  <div class="table-chip" id="tableChip" hidden></div>
 </header>
 
 <div class="searchwrap">
@@ -28,9 +37,9 @@
 <main id="menu"></main>
 
 <footer class="foot">
-  <a class="foot-btn" id="callBtn" href="#">Call us</a>
-  <a class="foot-btn" href="review.html">Leave a Google review</a>
-  <p class="foot-note">Prices include applicable taxes unless stated otherwise.</p>
+  <img class="foot-logo" src="assets/img/logo.webp" alt="" width="900" height="256" loading="lazy">
+  <a class="foot-btn" href="review.html">Leave us a Google review</a>
+  <p class="foot-note">Tap any dish to add it to your order, then send it to the waiter.<br>You pay at the table as usual.</p>
 </footer>
 
 <!-- floating cart bar -->
@@ -44,21 +53,24 @@
 <div class="sheet-backdrop" id="itemBackdrop" hidden>
   <section class="sheet" id="itemSheet" role="dialog" aria-modal="true" aria-labelledby="itemTitle">
     <button class="sheet-close" data-close-item aria-label="Close">&times;</button>
-    <h2 id="itemTitle"></h2>
-    <p class="sheet-desc" id="itemDesc"></p>
-    <div id="itemOptions"></div>
-    <div class="qtyrow">
-      <span>Quantity</span>
-      <div class="qty">
-        <button type="button" id="qtyMinus" aria-label="Less">-</button>
-        <span id="qtyVal">1</span>
-        <button type="button" id="qtyPlus" aria-label="More">+</button>
+    <div class="sheet-hero" id="itemHero"><img id="itemHeroImg" src="" alt=""></div>
+    <div class="sheet-pad">
+      <h2 id="itemTitle"></h2>
+      <p class="sheet-desc" id="itemDesc"></p>
+      <div id="itemOptions"></div>
+      <div class="qtyrow">
+        <span>Quantity</span>
+        <div class="qty">
+          <button type="button" id="qtyMinus" aria-label="Less">-</button>
+          <span id="qtyVal">1</span>
+          <button type="button" id="qtyPlus" aria-label="More">+</button>
+        </div>
       </div>
+      <label class="notes">Notes for the kitchen (optional)
+        <input type="text" id="itemNotes" maxlength="120" placeholder="e.g. no onions">
+      </label>
+      <button class="primary" id="addToOrder">Add to order</button>
     </div>
-    <label class="notes">Notes for the kitchen (optional)
-      <input type="text" id="itemNotes" maxlength="120" placeholder="e.g. no onions">
-    </label>
-    <button class="primary" id="addToOrder">Add to order</button>
   </section>
 </div>
 
@@ -66,18 +78,20 @@
 <div class="sheet-backdrop" id="orderBackdrop" hidden>
   <section class="sheet" id="orderSheet" role="dialog" aria-modal="true" aria-labelledby="orderTitle">
     <button class="sheet-close" data-close-order aria-label="Close">&times;</button>
-    <h2 id="orderTitle">Your order</h2>
-    <div id="orderLines"></div>
-    <div class="totalrow"><span>Total</span><strong id="orderTotal"></strong></div>
+    <div class="sheet-pad" style="padding-top:22px">
+      <h2 id="orderTitle">Your order</h2>
+      <div id="orderLines"></div>
+      <div class="totalrow"><span>Total</span><strong id="orderTotal"></strong></div>
 
-    <label class="notes">Table number
-      <input type="text" id="tableInput" inputmode="numeric" maxlength="6" placeholder="e.g. 7">
-    </label>
+      <label class="notes">Table number
+        <input type="text" id="tableInput" inputmode="numeric" maxlength="6" placeholder="e.g. 7">
+      </label>
 
-    <button class="primary" id="sendWhatsApp">Send order on WhatsApp</button>
-    <button class="ghost" id="showWaiter">Show this order to the waiter</button>
-    <button class="ghost danger" id="clearOrder">Clear order</button>
-    <p class="foot-note">Sending on WhatsApp opens your WhatsApp with the order typed out. Nothing is charged online - you pay at the table.</p>
+      <button class="primary" id="sendWhatsApp">Send order on WhatsApp</button>
+      <button class="ghost" id="showWaiter">Show this order to the waiter</button>
+      <button class="ghost danger" id="clearOrder">Clear order</button>
+      <p class="foot-note">WhatsApp opens with your order already typed out. Nothing is charged online - you pay at the table.</p>
+    </div>
   </section>
 </div>
 
@@ -86,6 +100,7 @@
   <section class="ticket" role="dialog" aria-modal="true" aria-labelledby="ticketTitle">
     <button class="sheet-close" data-close-ticket aria-label="Close">&times;</button>
     <h2 id="ticketTitle">AL BAIK</h2>
+    <p class="ticket-sub">Chicken N Pizza</p>
     <p class="ticket-table" id="ticketTable"></p>
     <div id="ticketLines"></div>
     <div class="totalrow"><span>Total</span><strong id="ticketTotal"></strong></div>

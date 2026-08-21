@@ -7,10 +7,23 @@
 <meta name="description" content="Enjoyed your meal at AL BAIK? Leave us a Google review.">
 <meta name="theme-color" content="#0d0d0d">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d0d0d'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='%23ffcc00' font-family='Arial' font-weight='bold'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <style>
-  .review-wrap{max-width:520px;margin:0 auto;padding:34px 20px 40px;text-align:center}
-  .review-wrap .brand{align-items:center;margin-bottom:8px}
+  .rv-bg{
+    position:fixed;inset:0;z-index:-2;
+    background:url('assets/img/pizza.webp') center 30%/cover no-repeat;
+    transform:scale(1.05);
+  }
+  .rv-bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,9,8,.72) 0%,rgba(10,9,8,.94) 42%,var(--bg) 78%);
+  }
+  .review-wrap{max-width:520px;margin:0 auto;padding:44px 20px 40px;text-align:center}
+  .rv-logo{width:min(270px,70vw);margin:0 auto;filter:drop-shadow(0 8px 24px rgba(0,0,0,.85))}
+  .review-wrap h1{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.01em}
   .stars{font-size:34px;letter-spacing:6px;color:var(--gold-bright);margin:18px 0 6px}
   .review-wrap h1{font-size:24px;margin:14px 0 6px}
   .review-wrap p{color:var(--muted);margin:0 0 6px}
@@ -29,13 +42,11 @@
 </head>
 <body>
 
+<div class="rv-bg"></div>
 <div class="review-wrap">
-  <div class="brand">
-    <span class="brand-name">AL BAIK</span>
-    <span class="brand-sub">CHICKEN N PIZZA</span>
-  </div>
+  <img class="rv-logo" src="assets/img/logo.webp" alt="AL BAIK - Chicken N Pizza">
 
-  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
   <h1>How was your meal?</h1>
   <p>Your review takes 30 seconds and helps our small team a lot.</p>
 
