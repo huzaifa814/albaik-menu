@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AL BAIK - Chicken N Pizza | Menu</title>
+<meta name="description" content="AL BAIK Chicken N Pizza - full menu. Scan, browse and order from your table.">
+<meta name="theme-color" content="#0d0d0d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d0d0d'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='%23ffcc00' font-family='Arial' font-weight='bold'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-name">AL BAIK</span>
+    <span class="brand-sub">CHICKEN N PIZZA</span>
+  </div>
+  <div class="table-chip" id="tableChip" hidden></div>
+</header>
+
+<div class="searchwrap">
+  <input type="search" id="search" placeholder="Search the menu..." autocomplete="off" aria-label="Search the menu">
+</div>
+
+<nav class="catnav" id="catnav" aria-label="Menu sections"></nav>
+
+<main id="menu"></main>
+
+<footer class="foot">
+  <a class="foot-btn" id="callBtn" href="#">Call us</a>
+  <a class="foot-btn" href="review.html">Leave a Google review</a>
+  <p class="foot-note">Prices include applicable taxes unless stated otherwise.</p>
+</footer>
+
+<!-- floating cart bar -->
+<button class="cartbar" id="cartbar" hidden>
+  <span class="cartbar-count" id="cartCount">0</span>
+  <span class="cartbar-label">View order</span>
+  <span class="cartbar-total" id="cartTotal"></span>
+</button>
+
+<!-- item options sheet -->
+<div class="sheet-backdrop" id="itemBackdrop" hidden>
+  <section class="sheet" id="itemSheet" role="dialog" aria-modal="true" aria-labelledby="itemTitle">
+    <button class="sheet-close" data-close-item aria-label="Close">&times;</button>
+    <h2 id="itemTitle"></h2>
+    <p class="sheet-desc" id="itemDesc"></p>
+    <div id="itemOptions"></div>
+    <div class="qtyrow">
+      <span>Quantity</span>
+      <div class="qty">
+        <button type="button" id="qtyMinus" aria-label="Less">-</button>
+        <span id="qtyVal">1</span>
+        <button type="button" id="qtyPlus" aria-label="More">+</button>
+      </div>
+    </div>
+    <label class="notes">Notes for the kitchen (optional)
+      <input type="text" id="itemNotes" maxlength="120" placeholder="e.g. no onions">
+    </label>
+    <button class="primary" id="addToOrder">Add to order</button>
+  </section>
+</div>
+
+<!-- order sheet -->
+<div class="sheet-backdrop" id="orderBackdrop" hidden>
+  <section class="sheet" id="orderSheet" role="dialog" aria-modal="true" aria-labelledby="orderTitle">
+    <button class="sheet-close" data-close-order aria-label="Close">&times;</button>
+    <h2 id="orderTitle">Your order</h2>
+    <div id="orderLines"></div>
+    <div class="totalrow"><span>Total</span><strong id="orderTotal"></strong></div>
+
+    <label class="notes">Table number
+      <input type="text" id="tableInput" inputmode="numeric" maxlength="6" placeholder="e.g. 7">
+    </label>
+
+    <button class="primary" id="sendWhatsApp">Send order on WhatsApp</button>
+    <button class="ghost" id="showWaiter">Show this order to the waiter</button>
+    <button class="ghost danger" id="clearOrder">Clear order</button>
+    <p class="foot-note">Sending on WhatsApp opens your WhatsApp with the order typed out. Nothing is charged online - you pay at the table.</p>
+  </section>
+</div>
+
+<!-- waiter ticket -->
+<div class="sheet-backdrop ticket-backdrop" id="ticketBackdrop" hidden>
+  <section class="ticket" role="dialog" aria-modal="true" aria-labelledby="ticketTitle">
+    <button class="sheet-close" data-close-ticket aria-label="Close">&times;</button>
+    <h2 id="ticketTitle">AL BAIK</h2>
+    <p class="ticket-table" id="ticketTable"></p>
+    <div id="ticketLines"></div>
+    <div class="totalrow"><span>Total</span><strong id="ticketTotal"></strong></div>
+    <p class="foot-note">Show this screen to your waiter.</p>
+  </section>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/menu-data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
