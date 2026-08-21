@@ -3,7 +3,7 @@
 A static site. No server, no database, no monthly cost. It runs on GitHub Pages, so the link
 works for anyone, anywhere - it is not tied to the restaurant's wifi or to any one computer.
 
-Live URL: `https://huzaifa814.github.io/albaik-menu/`
+Live URL: **https://albaik.dpdns.org/**  (the GitHub Pages address `huzaifa814.github.io/albaik-menu` redirects here)
 
 ## What it does
 
@@ -32,7 +32,7 @@ Prices and dishes live in [`assets/js/menu-data.js`](assets/js/menu-data.js) - o
 
 ```bash
 pip install qrcode pillow
-python tools/make_qr.py --base https://huzaifa814.github.io/albaik-menu/
+python tools/make_qr.py --base https://albaik.dpdns.org/
 ```
 
 That writes `qr/menu.png` and `qr/review.png`. Then open `print.html`, choose which card to print
