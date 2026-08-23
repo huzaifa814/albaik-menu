@@ -204,6 +204,15 @@
     call.hidden = true;
   }
 
+  var map = $("#mapBtn");
+  if (CFG.address) {
+    map.textContent = CFG.address;
+    map.href = "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent((CFG.brand ? CFG.brand + " " : "") + CFG.address);
+  } else {
+    map.hidden = true;
+  }
+
   renderNav();
   renderMenu("");
 })();

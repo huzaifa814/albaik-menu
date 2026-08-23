@@ -7,7 +7,7 @@ window.ALBAIK_CONFIG = {
   currency: "$",
 
   // Number shown on the "Call us" button (tap to dial).
-  phoneDisplay: "0312 345 6789",
+  phoneDisplay: "(916) 680-6803",
 
   // Optional: WhatsApp number for the "Message us" button on the review page.
   // International format, digits only, no + and no spaces. Leave empty to hide the button.
@@ -19,5 +19,5 @@ window.ALBAIK_CONFIG = {
   placeId: "",
 
   // Optional address line shown on the review page.
-  address: ""
+  address: "6680 Stockton Blvd, Sacramento, CA"
 };
