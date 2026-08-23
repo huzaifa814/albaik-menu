@@ -12,7 +12,7 @@ logo can sit on top of a photo.
 import argparse
 import os
 
-from PIL import Image
+from PIL import Image, ImageFilter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "assets", "img")
@@ -35,8 +35,8 @@ REGIONS = {
     "wraps":          ((9090, 1490, 10160, 2040), 900),
 }
 
-LOGO_BOX = (7930, 2470, 9720, 2980)
-LOGO_WIDTH = 900
+LOGO_BOX = (7810, 2380, 9900, 3080)   # generous - the alpha bounding box trims it exactly
+LOGO_WIDTH = 1400                     # ~3x the largest on-screen size, so it stays crisp on retina
 
 
 def resized(img: Image.Image, width: int) -> Image.Image:
@@ -46,33 +46,74 @@ def resized(img: Image.Image, width: int) -> Image.Image:
 
 
 def cut_logo(board: Image.Image) -> None:
+    """Lift the wordmark off the black board into a tight, transparent PNG-style WebP.
+
+    The board behind the logo is near-black but noisy, so the matte is built from luminance
+    with a black point above that noise; the ramp keeps the bevel edges and glow soft rather
+    than cutting them into jaggies. The result is then trimmed to its own alpha bounding box,
+    which matters visually: with the empty margin gone, the same CSS width renders a bigger
+    wordmark.
+    """
     import numpy as np
 
-    logo = resized(board.crop(LOGO_BOX).convert("RGB"), LOGO_WIDTH)
+    logo = board.crop(LOGO_BOX).convert("RGB")
     rgb = np.asarray(logo).astype(np.float32)
-    # the board behind the logo is near black; fade it out by luminance so the edges stay soft
-    alpha = np.clip((rgb.max(axis=2) - 18) / 55.0, 0, 1)
+    alpha = np.clip((rgb.max(axis=2) - 30) / 58.0, 0, 1)
+    alpha[alpha < 0.06] = 0.0                      # drop the board's film-grain speckle
     out = Image.fromarray(np.dstack([rgb, alpha * 255]).astype(np.uint8), "RGBA")
+
+    bbox = out.getbbox()                            # trim to the artwork itself
+    if bbox:
+        pad = 6
+        out = out.crop((max(0, bbox[0] - pad), max(0, bbox[1] - pad),
+                        min(out.width, bbox[2] + pad), min(out.height, bbox[3] + pad)))
+
+    out = resized(out, LOGO_WIDTH)
+    out = out.filter(ImageFilter.UnsharpMask(radius=1.4, percent=55, threshold=3))
+
     path = os.path.join(OUT, "logo.webp")
-    out.save(path, "WEBP", quality=90, method=6, exact=True)
-    print(f"{'logo':<15} {out.width}x{out.height}  {os.path.getsize(path) // 1024} KB (transparent)")
+    out.save(path, "WEBP", quality=92, method=6, exact=True)
+    print(f"{'logo':<15} {out.width}x{out.height}  {os.path.getsize(path) // 1024} KB (transparent, trimmed)")
+
+
+def write_icons() -> None:
+    """Home-screen / tab icons, built from the trimmed logo so they stay sharp too."""
+    logo = Image.open(os.path.join(OUT, "logo.webp")).convert("RGBA")
+    for size in (180, 192, 512):
+        bg = Image.new("RGBA", (size, size), (13, 11, 9, 255))
+        w = int(size * 0.88)
+        lg = logo.resize((w, max(1, round(logo.height * w / logo.width))), Image.LANCZOS)
+        bg.alpha_composite(lg, ((size - lg.width) // 2, (size - lg.height) // 2))
+        name = "apple-touch-icon.png" if size == 180 else f"icon-{size}.png"
+        bg.convert("RGB").save(os.path.join(OUT, name), "PNG", optimize=True)
+        print(f"{name:<15} {size}x{size}")
+
+
+# Sections that now use the restaurant's own photos instead of the board artwork.
+# Re-running this script must not silently overwrite them - pass --force if you really mean to.
+REAL_PHOTOS = {"hero", "fried-chicken", "pizza", "cheezy-pizza"}
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--board", required=True, help="path to the menu board PNG")
+    ap.add_argument("--force", action="store_true", help="also overwrite sections using real photos")
     args = ap.parse_args()
 
     board = Image.open(args.board).convert("RGB")
     os.makedirs(OUT, exist_ok=True)
 
     for name, (box, width) in REGIONS.items():
+        if name in REAL_PHOTOS and not args.force:
+            print(f"{name:<15} skipped - real photo in place (use --force to overwrite)")
+            continue
         img = resized(board.crop(box), width)
         path = os.path.join(OUT, name + ".webp")
         img.save(path, "WEBP", quality=84, method=6)
         print(f"{name:<15} {img.width}x{img.height}  {os.path.getsize(path) // 1024} KB")
 
     cut_logo(board)
+    write_icons()
 
 
 if __name__ == "__main__":
