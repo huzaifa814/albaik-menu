@@ -38,6 +38,19 @@ python tools/make_qr.py --base https://albaik.dpdns.org/
 That writes `qr/menu.png` and `qr/review.png`. Then open `print.html`, choose which card to print
 and how many, and print on card stock - four cards per A4 sheet.
 
+## The logo
+
+The wordmark on the printed board is a soft 3D render - its letter edges fade over ~9 pixels
+and it only exists at 1216px wide, so it could never print crisply. `tools/build_logo.py`
+rebuilds the same design as real vector art (Archivo Black for the wordmark, Montserrat 800 for
+the tagline, both converted to outlines so no font is needed at render time) and writes
+`assets/img/logo.svg`. Every page uses that SVG, so the logo is sharp at any size - phone,
+sign, or banner. Colours, slant and 3D depth are constants at the top of the script.
+
+```bash
+python tools/build_logo.py          # rewrites assets/img/logo.svg
+```
+
 ## Photography
 
 The food photos in `assets/img/` were cut out of the printed menu board artwork and re-encoded as

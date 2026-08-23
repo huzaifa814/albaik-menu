@@ -6,8 +6,8 @@ Every crop box below is in pixels of the original 10220x3523 board. If the artwo
 redrawn, re-measure the boxes - nothing else in the site needs to change, because each section
 loads `assets/img/<section id>.webp`.
 
-The logo keeps an alpha channel: the black board behind it is keyed out by luminance so the
-logo can sit on top of a photo.
+Food photography only. The wordmark is built as vector art by tools/build_logo.py - see the
+note in main().
 """
 import argparse
 import os
@@ -122,8 +122,9 @@ def main() -> None:
         img.save(path, "WEBP", quality=84, method=6)
         print(f"{name:<15} {img.width}x{img.height}  {os.path.getsize(path) // 1024} KB")
 
-    cut_logo(board)
-    write_icons()
+    # The logo is no longer lifted off the board: the board render is soft (letter edges
+    # fade over ~9px) and could never print crisply. It is rebuilt as vector art by
+    # tools/build_logo.py, which also feeds the home-screen icons.
 
 
 if __name__ == "__main__":
