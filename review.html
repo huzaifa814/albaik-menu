@@ -76,10 +76,20 @@
     btn.href = url;
     btn.target = "_blank";
   } else {
-    btn.setAttribute("aria-disabled", "true");
-    btn.style.opacity = ".5";
-    btn.addEventListener("click", function (e) { e.preventDefault(); });
-    document.getElementById("setup").hidden = false;
+    // No Google listing yet. A customer must never see a developer notice, so the page
+    // turns into a "tell us directly" card instead. ?setup=1 shows the wiring instructions.
+    document.querySelector(".review-wrap h1").textContent = "How did we do?";
+    document.querySelector(".review-wrap p").textContent =
+      "Our Google page is being set up. Until it is live, tell us straight - we read every word.";
+    if (CFG.phoneDisplay) {
+      btn.textContent = "Call " + CFG.phoneDisplay;
+      btn.href = "tel:" + CFG.phoneDisplay.replace(/[^0-9+]/g, "");
+    } else {
+      btn.hidden = true;
+    }
+    if (new URLSearchParams(location.search).has("setup")) {
+      document.getElementById("setup").hidden = false;
+    }
   }
 
   var wa = document.getElementById("waBtn");
