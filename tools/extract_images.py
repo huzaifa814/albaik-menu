@@ -46,34 +46,44 @@ def resized(img: Image.Image, width: int) -> Image.Image:
 
 
 def cut_logo(board: Image.Image) -> None:
-    """Lift the wordmark off the black board into a tight, transparent PNG-style WebP.
+    """Lift the wordmark off the black board into a tight, transparent WebP + a print PNG.
 
-    The board behind the logo is near-black but noisy, so the matte is built from luminance
-    with a black point above that noise; the ramp keeps the bevel edges and glow soft rather
-    than cutting them into jaggies. The result is then trimmed to its own alpha bounding box,
-    which matters visually: with the empty margin gone, the same CSS width renders a bigger
-    wordmark.
+    The board art has a soft dark-red drop shadow behind the letters. Keyed with a low black
+    point it survives as ~124/255 alpha pixels of RGB(55,16,3): invisible on the site's black
+    background, but on white paper it composites into a maroon halo that reads as both
+    "bloody" and "blurry". So the black point sits well above the shadow, and the alpha ramp
+    is then tightened with a smoothstep so edges land crisp instead of feathered.
     """
     import numpy as np
 
     logo = board.crop(LOGO_BOX).convert("RGB")
     rgb = np.asarray(logo).astype(np.float32)
-    alpha = np.clip((rgb.max(axis=2) - 30) / 58.0, 0, 1)
-    alpha[alpha < 0.06] = 0.0                      # drop the board's film-grain speckle
+    lum = rgb.max(axis=2)
+
+    alpha = np.clip((lum - 95) / 55.0, 0, 1)     # above the drop shadow, below the letters
+    alpha[alpha < 0.06] = 0.0                     # board film-grain speckle
+    alpha = np.clip((alpha - 0.30) / 0.45, 0, 1)  # tighten the ramp
+    alpha = alpha * alpha * (3 - 2 * alpha)       # smoothstep, so it is tight but not jagged
+
     out = Image.fromarray(np.dstack([rgb, alpha * 255]).astype(np.uint8), "RGBA")
 
-    bbox = out.getbbox()                            # trim to the artwork itself
+    bbox = out.getbbox()                          # trim to the artwork itself
     if bbox:
         pad = 6
         out = out.crop((max(0, bbox[0] - pad), max(0, bbox[1] - pad),
                         min(out.width, bbox[2] + pad), min(out.height, bbox[3] + pad)))
 
     out = resized(out, LOGO_WIDTH)
-    out = out.filter(ImageFilter.UnsharpMask(radius=1.4, percent=55, threshold=3))
+    out = out.filter(ImageFilter.UnsharpMask(radius=0.8, percent=30, threshold=2))
 
     path = os.path.join(OUT, "logo.webp")
     out.save(path, "WEBP", quality=92, method=6, exact=True)
-    print(f"{'logo':<15} {out.width}x{out.height}  {os.path.getsize(path) // 1024} KB (transparent, trimmed)")
+    print(f"{'logo':<15} {out.width}x{out.height}  {os.path.getsize(path) // 1024} KB (screen)")
+
+    # print gets lossless - WebP's lossy pass softens the bevel gradients
+    ppath = os.path.join(OUT, "logo-print.png")
+    out.save(ppath, "PNG", optimize=True)
+    print(f"{'logo-print':<15} {out.width}x{out.height}  {os.path.getsize(ppath) // 1024} KB (print, lossless)")
 
 
 def write_icons() -> None:
