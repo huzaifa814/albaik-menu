@@ -64,6 +64,37 @@ button{cursor:pointer}
   margin:0;color:var(--gold);
   font-size:10px;letter-spacing:.16em;text-transform:uppercase;
 }
+.halal{
+  display:inline-flex;align-items:center;gap:6px;
+  margin:11px auto 0;padding:5px 13px 5px 6px;
+  border:1px solid rgba(93,196,124,.5);border-radius:999px;
+  background:rgba(16,36,24,.72);
+  backdrop-filter:blur(6px);
+  color:#8ee0a6;font-size:11px;font-weight:700;letter-spacing:.16em;
+}
+.halal span{
+  background:#3f9e5e;color:#04120a;
+  padding:3px 7px;border-radius:999px;font-size:10px;letter-spacing:.04em;
+}
+
+.deals-wrap{max-width:820px;margin:20px auto 0;padding:0 14px}
+.deals-head{
+  margin:0 0 10px;font-family:var(--display);font-weight:400;
+  font-size:22px;letter-spacing:.02em;text-transform:uppercase;color:var(--gold-bright);
+}
+.deal{
+  display:flex;align-items:center;gap:12px;
+  padding:14px;margin-bottom:9px;border-radius:var(--radius);
+  border:1px solid var(--line);
+  background:linear-gradient(135deg,rgba(74,58,18,.5),var(--surface) 55%);
+}
+.deal-body{flex:1;min-width:0}
+.deal-name{display:block;font-weight:700;font-size:15px;color:var(--gold-bright)}
+.deal-items{display:block;color:var(--muted);font-size:12.5px;line-height:1.45;margin-top:3px}
+.deal-price{text-align:right;white-space:nowrap}
+.deal-price s{display:block;color:var(--muted);font-size:11.5px}
+.deal-price strong{font-size:19px;color:var(--gold);font-variant-numeric:tabular-nums}
+
 .hero-chips{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:13px}
 .hero-chips a{
   display:inline-flex;align-items:center;gap:6px;

@@ -28,6 +28,31 @@
     return null;
   }
 
+  /* ---------------- deals ---------------- */
+
+  function renderDeals() {
+    var deals = CFG.deals || [];
+    var box = $("#deals");
+    if (!deals.length) { box.hidden = true; return; }
+
+    box.hidden = false;
+    box.innerHTML = '<div class="deals-wrap">' +
+      '<h2 class="deals-head">Deals</h2>' +
+      deals.map(function (d) {
+        return '<div class="deal reveal">' +
+          '<div class="deal-body">' +
+            '<span class="deal-name">' + esc(d.name) + "</span>" +
+            '<span class="deal-items">' + esc(d.items) + "</span>" +
+          "</div>" +
+          '<div class="deal-price">' +
+            (typeof d.was === "number" ? '<s>' + money(d.was) + "</s>" : "") +
+            "<strong>" + money(d.price) + "</strong>" +
+          "</div>" +
+        "</div>";
+      }).join("") +
+    "</div>";
+  }
+
   /* ---------------- render menu ---------------- */
 
   function renderNav() {
@@ -213,6 +238,9 @@
     map.hidden = true;
   }
 
+  if (CFG.halal) $("#halalBadge").hidden = false;
+
+  renderDeals();
   renderNav();
   renderMenu("");
 })();

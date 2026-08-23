@@ -19,5 +19,17 @@ window.ALBAIK_CONFIG = {
   placeId: "",
 
   // Optional address line shown on the review page.
-  address: "6680 Stockton Blvd, Sacramento, CA"
+  address: "6680 Stockton Blvd, Sacramento, CA",
+
+  // Shows the "100% Halal" badge in the header. Set to false to hide it.
+  halal: true,
+
+  // Deals shown at the top of the menu. Empty array = no deals block at all.
+  //   name  - what the deal is called
+  //   items - what the customer gets, plain words
+  //   was   - the price of the same items bought separately (optional, shown struck through)
+  //   price - what the deal costs
+  // e.g. { name: "Family Feast", items: "12pc chicken bucket + 14\" large pizza + large fries",
+  //        was: 57.97, price: 49.99 }
+  deals: []
 };
