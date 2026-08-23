@@ -45,17 +45,17 @@
   .sign.dark{background:#0a0908;color:#f6f2ea}
 
   /* sizes, in real inches so print output is exact */
-  .sign.s-letter{width:8.5in;height:11in;padding:0.75in 0.7in}
+  .sign.s-letter{width:8.5in;height:11in;padding:0.6in 0.55in}
   .sign.s-57{width:5in;height:7in;padding:0.42in 0.38in}
   .sign.s-46{width:4in;height:6in;padding:0.34in 0.3in}
 
-  .sign > div{width:100%}
+  .sign > div:not(.sign-qr){width:100%}
   /* sized in inches, not %, so the print resolution is predictable:
      1218px of artwork / 3.6in = 338 dpi */
   .sign-logo{margin:0 auto}
-  .sign.s-letter .sign-logo{width:3.6in}
-  .sign.s-57 .sign-logo{width:2.5in}
-  .sign.s-46 .sign-logo{width:2in}
+  .sign.s-letter .sign-logo{width:2.9in}
+  .sign.s-57 .sign-logo{width:2in}
+  .sign.s-46 .sign-logo{width:1.6in}
 
   .sign-halal{
     display:inline-block;margin-top:.14in;padding:.05in .16in;
@@ -70,46 +70,63 @@
     line-height:1.02;margin:.16in 0 .04in;color:#141210;
   }
   .sign.dark .sign-head{color:var(--gold-bright)}
-  .s-letter .sign-head{font-size:44pt}
-  .s-57 .sign-head{font-size:26pt;margin:.14in 0 .07in}
-  .s-46 .sign-head{font-size:20pt;margin:.12in 0 .07in}
+  .s-letter .sign-head{font-size:34pt;margin:.12in 0 0}
+  .s-57 .sign-head{font-size:21pt;margin:.1in 0 0}
+  .s-46 .sign-head{font-size:16pt;margin:.07in 0 0}
 
   .sign-sub{margin:0;color:#5f574c;line-height:1.35}
   .sign.dark .sign-sub{color:#b9b0a2}
-  .s-letter .sign-sub{font-size:15pt}
-  .s-57 .sign-sub{font-size:10.5pt}
-  .s-46 .sign-sub{font-size:8.5pt}
+  .s-letter .sign-sub{font-size:12.5pt}
+  .s-57 .sign-sub{font-size:9pt}
+  .s-46 .sign-sub{font-size:7pt}
 
   .sign-qr{
-    background:#fff;border-radius:.12in;padding:.12in;
+    width:-moz-fit-content;width:fit-content;margin:0 auto;
+    background:#fff;border-radius:.12in;padding:.11in;
     border:2px solid #141210;
   }
   .sign.dark .sign-qr{border-color:var(--gold)}
-  .s-letter .sign-qr img{width:3.9in;height:3.9in}
-  .s-57 .sign-qr img{width:2.5in;height:2.5in}
-  .s-46 .sign-qr img{width:2in;height:2in}
+  .s-letter .sign-qr img{width:2.7in;height:2.7in}
+  .s-57 .sign-qr img{width:1.9in;height:1.9in}
+  .s-46 .sign-qr img{width:1.5in;height:1.5in}
 
   .sign-url{
     font-weight:800;letter-spacing:.02em;color:#141210;margin:.1in 0 0;
   }
   .sign.dark .sign-url{color:var(--gold)}
-  .s-letter .sign-url{font-size:17pt}
+  .s-letter .sign-url{font-size:15pt}
   .s-57 .sign-url{font-size:11pt}
   .s-46 .sign-url{font-size:9pt}
 
   .sign-foot{
-    width:100%;border-top:1.5px solid #d8d0be;padding-top:.12in;
+    width:100%;border-top:1.5px solid #d8d0be;padding-top:.1in;margin-top:.12in;
     color:#5f574c;line-height:1.5;
   }
   .sign.dark .sign-foot{border-color:#3a3128;color:#b9b0a2}
-  .s-letter .sign-foot{font-size:12pt}
+  .s-letter .sign-foot{font-size:11pt}
   .s-57 .sign-foot{font-size:8.5pt}
   .s-46 .sign-foot{font-size:7pt}
 
+  .sign-strip{display:flex;gap:.14in;width:100%;justify-content:center}
+  .sign-strip img{
+    object-fit:cover;border-radius:.1in;
+    border:1.5px solid #e2dacb;
+  }
+  .sign.dark .sign-strip img{border-color:#3a3128}
+  .s-letter .sign-strip img{width:1.9in;height:1.45in}
+  .s-57 .sign-strip img{width:1.05in;height:.8in}
+  .s-46 .sign-strip img{width:.8in;height:.62in}
+
+  .rule{
+    height:.045in;width:2.2in;margin:.1in auto .12in;border-radius:999px;
+    background:linear-gradient(90deg,#f5a01c,#ffd400,#f5a01c);
+  }
+  .s-46 .rule{width:1.4in;margin:.07in auto .08in}
+
   .stars{color:#f0a500;letter-spacing:.06em}
-  .s-letter .stars{font-size:30pt}
-  .s-57 .stars{font-size:19pt}
-  .s-46 .stars{font-size:15pt}
+  .s-letter .stars{font-size:24pt}
+  .s-57 .stars{font-size:15pt}
+  .s-46 .stars{font-size:12pt}
 
   @media print{
     body{background:#fff;padding:0}
@@ -207,13 +224,19 @@
       '<div>' +
         (menu ? "" : '<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>') +
         '<h2 class="sign-head">' + (menu ? "Scan for<br>our menu" : "How was<br>your meal?") + "</h2>" +
+        '<div class="rule"></div>' +
         '<p class="sign-sub">' + (menu
-          ? "Point your phone camera at the code"
+          ? "Photos, prices and every topping &mdash; point your camera at the code"
           : "Scan to leave us a Google review &mdash; it takes 30 seconds") + "</p>" +
       "</div>" +
       '<div class="sign-qr"><img src="qr/' + (menu ? "menu" : "review") + '.png" alt=""></div>' +
       '<div>' +
         (menu ? '<p class="sign-url">' + SITE + "</p>" : "") +
+        '<div class="sign-strip">' +
+          '<img src="assets/img/print/thumb-1.jpg" alt="">' +
+          '<img src="assets/img/print/thumb-2.jpg" alt="">' +
+          '<img src="assets/img/print/thumb-3.jpg" alt="">' +
+        "</div>" +
         '<div class="sign-foot">' + foot() + "</div>" +
       "</div>" +
     "</div>";

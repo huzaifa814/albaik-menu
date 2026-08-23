@@ -17,7 +17,7 @@ OUT = os.path.join(ROOT, "qr")
 
 
 def write(url: str, path: str) -> None:
-    qr = qrcode.QRCode(version=None, error_correction=ERROR_CORRECT_H, box_size=16, border=2)
+    qr = qrcode.QRCode(version=None, error_correction=ERROR_CORRECT_H, box_size=30, border=2)
     qr.add_data(url)
     qr.make(fit=True)
     qr.make_image(fill_color="black", back_color="white").save(path)
