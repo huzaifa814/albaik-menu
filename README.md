@@ -38,6 +38,20 @@ python tools/make_qr.py --base https://albaik.dpdns.org/
 That writes `qr/menu.png` and `qr/review.png`. Then open `print.html`, choose which card to print
 and how many, and print on card stock - four cards per A4 sheet.
 
+## After any change: stamp the version
+
+GitHub Pages serves everything with `Cache-Control: max-age=600`, and phones hold assets
+longer than that in practice. Without a version stamp a price change can stay invisible for
+hours to someone who scanned the QR earlier - the worst possible failure for a menu.
+
+```bash
+python tools/stamp_version.py      # then commit
+```
+
+It hashes the CSS, the JS and the logo and rewrites the `?v=` on every reference, so the URL
+changes whenever the content does and browsers fetch the new copy. Run it after editing
+`config.js`, `menu-data.js`, `app.js` or `style.css`, before committing.
+
 ## The logo
 
 The pages use the restaurant's own logo render, from `Update/images (11).pdf` - the file the
