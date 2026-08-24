@@ -62,6 +62,8 @@
     }).join("");
   }
 
+  var PEPPER = '<svg class="chilli" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="stem" d="M13.9 4.6c.5-1.5 1.8-2.4 3.3-2.3.4 0 .7.4.6.8-.1.4-.4.7-.8.6-.8 0-1.4.4-1.7 1.2"/><path class="pod" d="M14 5.1c2.6.6 4 2.8 4 5.4 0 4.9-4 9.2-9 9.9-1.5.2-2.7-.2-3.4-1-.4-.5-.2-1.2.4-1.4 3.8-1.2 6-3.6 6.7-7.2.3-1.5.2-2.9-.2-4.2-.2-.8.5-1.6 1.5-1.5z"/></svg>';
+
   function renderMenu(filter) {
     var q = (filter || "").trim().toLowerCase();
     var html = "";
@@ -95,7 +97,7 @@
         html += '<button class="card reveal" type="button" data-item="' + it.id + '">' +
           '<span class="dot"></span>' +
           '<span class="body">' +
-            '<span class="name">' + esc(it.name) + (it.spicy ? '<span class="spicy">HOT</span>' : "") + "</span>" +
+            '<span class="name">' + esc(it.name) + (it.spicy ? '<span class="spicy" title="Spicy" role="img" aria-label="Spicy">' + PEPPER + "</span>" : "") + "</span>" +
             (it.desc ? '<span class="desc">' + esc(it.desc) + "</span>" : "") +
           "</span>" +
           priceHtml +
@@ -183,7 +185,7 @@
       "</div></div>";
     });
 
-    if (item.spicy) body += '<p class="hotline">Served spicy.</p>';
+    if (item.spicy) body += '<p class="hotline">' + PEPPER + " Served spicy.</p>";
 
     $("#itemBody").innerHTML = body;
 
