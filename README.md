@@ -52,6 +52,19 @@ It hashes the CSS, the JS and the logo and rewrites the `?v=` on every reference
 changes whenever the content does and browsers fetch the new copy. Run it after editing
 `config.js`, `menu-data.js`, `app.js` or `style.css`, before committing.
 
+## Menu images for Google
+
+Google's listing wants menu photos. Do NOT photograph the printed board for this - the board
+carries whatever prices were current when it was printed, and stale prices on a Google listing
+are hard to get taken down. `tools/menu-sheets.html` renders the menu from `menu-data.js`
+instead, so the images always match the site.
+
+Open it, then save each `.sheet` element as an image (1200px wide is plenty - it stays readable
+zoomed). Sections are packed across two columns, the last sheet trims to its content so there is
+no half-black page, and the header carries the address, phone and hours from `config.js`.
+
+Re-run it after any price change and re-upload.
+
 ## The logo
 
 The pages use the restaurant's own logo render, from `Update/images (11).pdf` - the file the
