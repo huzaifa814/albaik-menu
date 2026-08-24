@@ -98,9 +98,14 @@ carries whatever prices were current when it was printed, and stale prices on a 
 are hard to get taken down. `tools/menu-sheets.html` renders the menu from `menu-data.js`
 instead, so the images always match the site.
 
-Open it, then save each `.sheet` element as an image (1200px wide is plenty - it stays readable
-zoomed). Sections are packed across two columns, the last sheet trims to its content so there is
-no half-black page, and the header carries the address, phone and hours from `config.js`.
+Open it with `?only=1`, `?only=2` and so on - one sheet at a time, flush to the top-left, which is
+the only reliable way to screenshot it. Grabbing one element out of the full page came back offset
+and clipped, and on a display whose devicePixelRatio is below 1 the sheet is drawn into fewer real
+pixels than its CSS size, so `?only=` also scales by 1/dpr to get one CSS pixel onto one real pixel.
+Crop the capture to `rect.width * devicePixelRatio` by `rect.height * devicePixelRatio`.
+
+Sections are packed across two columns, the last sheet trims to its content so there is no
+half-black page, and the header carries the address, phone and hours from `config.js`.
 
 Re-run it after any price change and re-upload.
 

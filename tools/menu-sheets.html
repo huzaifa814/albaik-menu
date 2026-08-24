@@ -215,6 +215,34 @@
     s.id = "sheet-" + (i + 1);
   });
   window.SHEETS = sheets.length;
+
+  // ?only=2 shows just that sheet, flush to the top-left corner, so a plain
+  // full-page screenshot captures it exactly - grabbing one element out of a
+  // scrolled page came back offset and clipped
+  var only = new URLSearchParams(location.search).get("only");
+  if (only) {
+    sheets.forEach(function (s, i) {
+      if (i + 1 !== Number(only)) s.remove();
+      else s.style.margin = "0";
+    });
+    document.body.style.margin = "0";
+    document.documentElement.style.background = "#000";
+
+    // On a screen whose devicePixelRatio is below 1, a 1200px sheet is drawn into
+    // fewer real pixels than that, and the saved image comes out padded and soft.
+    // Scaling by 1/dpr makes one CSS pixel land on one real pixel. transform does
+    // not affect layout, so the packing above is untouched.
+    var k = 1 / (window.devicePixelRatio || 1);
+    if (Math.abs(k - 1) > 0.01) {
+      var el = document.querySelector(".sheet");
+      var w = el.offsetWidth, h = el.offsetHeight;
+      el.style.transform = "scale(" + k + ")";
+      el.style.transformOrigin = "top left";
+      document.body.style.width = (w * k) + "px";
+      document.body.style.height = (h * k) + "px";
+      document.body.style.overflow = "hidden";
+    }
+  }
 })();
 </script>
 </body>
