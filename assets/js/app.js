@@ -62,7 +62,7 @@
     }).join("");
   }
 
-  var PEPPER = '<svg class="chilli" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="stem" d="M13.9 4.6c.5-1.5 1.8-2.4 3.3-2.3.4 0 .7.4.6.8-.1.4-.4.7-.8.6-.8 0-1.4.4-1.7 1.2"/><path class="pod" d="M14 5.1c2.6.6 4 2.8 4 5.4 0 4.9-4 9.2-9 9.9-1.5.2-2.7-.2-3.4-1-.4-.5-.2-1.2.4-1.4 3.8-1.2 6-3.6 6.7-7.2.3-1.5.2-2.9-.2-4.2-.2-.8.5-1.6 1.5-1.5z"/></svg>';
+  var PEPPER = '<svg class="chilli" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="stem" d="M18.6 8.4c1-2.6 3-4.2 5.6-4.6"/><path class="cap" d="M13.6 7.9c2.4-1.1 5-1 7.2.4.8.5.7 1.7-.2 2l-6.3 2.2c-1.1.4-2.1-.7-1.6-1.7z"/><path class="pod" d="M13.9 10.4c-4.3 4.5-5.2 12.3-2 18.6.4.9 1.6 1 2.3.3 5.5-5.3 8.2-12.6 7-19.1-.2-1.3-1.9-1.7-2.8-.8z"/></svg>';
 
   function renderMenu(filter) {
     var q = (filter || "").trim().toLowerCase();
@@ -185,7 +185,7 @@
       "</div></div>";
     });
 
-    if (item.spicy) body += '<p class="hotline">' + PEPPER + " Served spicy.</p>";
+    if (item.spicy) body += '<p class="hotline"><span class="spicy">' + PEPPER + "</span> Served spicy.</p>";
 
     $("#itemBody").innerHTML = body;
 
