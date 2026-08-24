@@ -19,7 +19,7 @@ window.ALBAIK_CONFIG = {
   placeId: "",
 
   // Optional address line shown on the review page.
-  address: "6680 Stockton Blvd Ste 4, Sacramento, CA 95823",
+  address: "6692 Stockton Blvd, Sacramento, CA 95823",
 
   // Shows the "100% Halal" badge in the header. Set to false to hide it.
   halal: true,
