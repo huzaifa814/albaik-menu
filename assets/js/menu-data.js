@@ -16,12 +16,12 @@ window.ALBAIK_MENU = [
   {
     id: "wings",
     name: "Chicken Wings",
-    note: "Flavors: BBQ, Buffalo, Mango Habanero, Haryali, Hot & Spicy, Garlic Parmesan, Lemon Pepper",
+    note: "Flavors: BBQ, Buffalo, Haryali, Hot Honey Garlic, Lemon Pepper - comes with your choice of dipping sauce",
     items: [
-      { id: "w1", name: "6pcs Wings", price: 9.99, options: [{ name: "Flavor", choices: ["BBQ", "Buffalo", "Mango Habanero", "Haryali", "Hot & Spicy", "Garlic Parmesan", "Lemon Pepper"] }] },
-      { id: "w2", name: "12pcs Wings", price: 14.99, options: [{ name: "Flavor", choices: ["BBQ", "Buffalo", "Mango Habanero", "Haryali", "Hot & Spicy", "Garlic Parmesan", "Lemon Pepper"] }] },
-      { id: "w3", name: "14pcs Wings", price: 16.99, options: [{ name: "Flavor", choices: ["BBQ", "Buffalo", "Mango Habanero", "Haryali", "Hot & Spicy", "Garlic Parmesan", "Lemon Pepper"] }] },
-      { id: "w4", name: "20pcs Wings", price: 22.99, options: [{ name: "Flavor", choices: ["BBQ", "Buffalo", "Mango Habanero", "Haryali", "Hot & Spicy", "Garlic Parmesan", "Lemon Pepper"] }] }
+      { id: "w1", name: "6pcs Wings", price: 9.99, options: [{ name: "Flavor", choices: ["BBQ", "Buffalo", "Haryali", "Hot Honey Garlic", "Lemon Pepper"] }] },
+      { id: "w2", name: "12pcs Wings", price: 14.99, options: [{ name: "Flavor", choices: ["BBQ", "Buffalo", "Haryali", "Hot Honey Garlic", "Lemon Pepper"] }] },
+      { id: "w3", name: "14pcs Wings", price: 15.99, options: [{ name: "Flavor", choices: ["BBQ", "Buffalo", "Haryali", "Hot Honey Garlic", "Lemon Pepper"] }] },
+      { id: "w4", name: "20pcs Wings", price: 22.99, options: [{ name: "Flavor", choices: ["BBQ", "Buffalo", "Haryali", "Hot Honey Garlic", "Lemon Pepper"] }] }
     ]
   },
   {
@@ -29,15 +29,14 @@ window.ALBAIK_MENU = [
     name: "Pizza",
     note: "Every pizza comes in four sizes",
     sizes: [
-      { label: "10\" Small", price: 11.99 },
-      { label: "12\" Medium", price: 17.99 },
-      { label: "14\" Large", price: 22.99 },
-      { label: "16\" Extra Large", price: 28.99 }
+      { label: "10\" Small", price: 12.99 },
+      { label: "12\" Medium", price: 19.99 },
+      { label: "14\" Large", price: 23.99 },
+      { label: "16\" Extra Large", price: 29.99 }
     ],
     items: [
       { id: "p1", name: "Beef Supreme", desc: "Beef pepperoni, mushrooms, onions, peppers & Italian sausage." },
       { id: "p2", name: "Beef Pepperoni", desc: "Red sauce, mozzarella cheese, sliced beef pepperoni." },
-      { id: "p3", name: "Beef Salami", desc: "Red sauce, mozzarella cheese, sliced beef salami." },
       { id: "p4", name: "Beef Pizza", desc: "Red sauce, mozzarella cheese, ground beef, peppers & onions." },
       { id: "p5", name: "Meat Lovers", desc: "Red sauce, mozzarella cheese, beef pepperoni, ground beef, beef salami & beef bacon." },
       { id: "p6", name: "Beef Combination", desc: "Red sauce, mozzarella cheese, beef pepperoni, Italian sausage, mushrooms, red onion, black olive & bell peppers." },
@@ -84,7 +83,7 @@ window.ALBAIK_MENU = [
     note: "Comes with fries",
     items: [
       { id: "bg1", name: "Chicken Zinger Burger", price: 9.99 },
-      { id: "bg2", name: "Spicy Chicken Zinger", price: 9.99, spicy: true },
+      { id: "bg2", name: "Nashville Hot Chicken Zinger", price: 9.99, spicy: true },
       { id: "bg3", name: "Beef Burger", price: 9.99 },
       { id: "bg4", name: "Double Patty Beef Burger", price: 12.99 }
     ]
@@ -117,10 +116,11 @@ window.ALBAIK_MENU = [
   },
   {
     id: "roast",
-    name: "Whole Roast Chicken",
+    name: "Roast Chicken",
+    soon: true,
     items: [
-      { id: "r1", name: "Whole Roast Chicken", price: 25.99, desc: "Includes sauces." },
-      { id: "r2", name: "Whole Roast Chicken with 1/2 Sheet tray Rice plate", price: 35.99, desc: "Includes coleslaw, chutney and yogurt raita." }
+      { id: "r1", name: "Roast Chicken", price: 25.99, desc: "Includes sauces." },
+      { id: "r2", name: "Roast Chicken with 1/2 Sheet tray Rice plate", price: 35.99, desc: "Includes coleslaw, chutney and yogurt raita." }
     ]
   },
   {

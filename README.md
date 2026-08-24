@@ -40,16 +40,24 @@ and how many, and print on card stock - four cards per A4 sheet.
 
 ## The logo
 
-The wordmark on the printed board is a soft 3D render - its letter edges fade over ~9 pixels
-and it only exists at 1216px wide, so it could never print crisply. `tools/build_logo.py`
-rebuilds the same design as real vector art (Archivo Black for the wordmark, Montserrat 800 for
-the tagline, both converted to outlines so no font is needed at render time) and writes
-`assets/img/logo.svg`. Every page uses that SVG, so the logo is sharp at any size - phone,
-sign, or banner. Colours, slant and 3D depth are constants at the top of the script.
+The pages use the restaurant's own logo render, from `Update/images (11).pdf` - the file the
+designer produced, not the copy printed on the board. The board copy is a soft photograph of a
+sign (edges fading over ~9 pixels, only 1216px wide) and could never print crisply; the designer's
+render has 2-3 pixel edges.
+
+That render sits on black with a warm glow. On the black site the glow is invisible, but on white
+sign stock it prints as a muddy haze, so `tools/build_logo_from_original.py` keys it out by
+luminance and writes `assets/img/logo.png` (full res, transparent, used by the print sheet at
+about 425 dpi) and `assets/img/logo.webp` (sized for the largest the site ever shows it).
 
 ```bash
-python tools/build_logo.py          # rewrites assets/img/logo.svg
+python tools/build_logo_from_original.py    # rewrites assets/img/logo.png + logo.webp
 ```
+
+`tools/build_logo.py` is the earlier fallback: it traces the same design as real vector art
+(Archivo Black for the wordmark, Montserrat 800 for the tagline, both converted to outlines so no
+font is needed) into `assets/img/logo.svg`. It is close but not the designer's exact letterforms,
+so it is only worth reaching for at sizes past what the raster covers - a storefront banner, say.
 
 ## Photography
 

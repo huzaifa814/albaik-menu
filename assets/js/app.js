@@ -57,7 +57,8 @@
 
   function renderNav() {
     $("#catnav").innerHTML = MENU.map(function (s) {
-      return '<button type="button" data-jump="' + s.id + '">' + esc(s.name) + "</button>";
+      return '<button type="button" data-jump="' + s.id + '">' + esc(s.name) +
+        (s.soon ? '<span class="nav-soon">soon</span>' : "") + "</button>";
     }).join("");
   }
 
@@ -72,10 +73,11 @@
       });
       if (!items.length) return;
 
-      html += '<section class="section" id="sec-' + section.id + '" data-section="' + section.id + '">';
+      html += '<section class="section' + (section.soon ? " soon" : "") + '" id="sec-' + section.id + '" data-section="' + section.id + '">';
       html += '<div class="banner reveal">' +
         '<img src="assets/img/' + section.id + '.webp" alt="" loading="lazy" decoding="async">' +
-        '<div class="banner-txt"><h2>' + esc(section.name) + "</h2>" +
+        '<div class="banner-txt"><h2>' + esc(section.name) +
+          (section.soon ? '<span class="soon-tag">Coming soon</span>' : "") + "</h2>" +
         (section.note ? '<p class="banner-note">' + esc(section.note) + "</p>" : "") +
       "</div></div>";
 
@@ -160,7 +162,7 @@
     hero.src = "assets/img/" + section.id + ".webp";
     hero.alt = section.name;
 
-    $("#itemKicker").textContent = section.name;
+    $("#itemKicker").textContent = section.name + (section.soon ? "  -  Coming soon" : "");
     $("#itemTitle").textContent = item.name;
     $("#itemDesc").textContent = item.desc || "";
     $("#itemDesc").hidden = !item.desc;
