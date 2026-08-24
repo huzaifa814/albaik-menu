@@ -190,10 +190,13 @@
           ? '<span class="price">' + money(it.price) + "</span>"
           : '<span class="price">' + money(section.sizes[0].price) + '<span class="from">from</span></span>';
 
-        html += '<button class="card reveal" type="button" data-item="' + it.id + '">' +
+        html += '<button class="card reveal' + (it.soldout ? " soldout" : "") +
+          '" type="button" data-item="' + it.id + '">' +
           '<span class="dot"></span>' +
           '<span class="body">' +
-            '<span class="name">' + esc(it.name) + (it.spicy ? '<span class="spicy" title="Spicy" role="img" aria-label="Spicy">' + PEPPER + "</span>" : "") + "</span>" +
+            '<span class="name">' + esc(it.name) +
+              (it.spicy ? '<span class="spicy" title="Spicy" role="img" aria-label="Spicy">' + PEPPER + "</span>" : "") +
+              (it.soldout ? '<span class="sold">Sold out</span>' : "") + "</span>" +
             (it.desc ? '<span class="desc">' + esc(it.desc) + "</span>" : "") +
           "</span>" +
           priceHtml +

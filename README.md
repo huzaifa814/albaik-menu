@@ -38,6 +38,45 @@ python tools/make_qr.py --base https://albaik.dpdns.org/
 That writes `qr/menu.png` and `qr/review.png`. Then open `print.html`, choose which card to print
 and how many, and print on card stock - four cards per A4 sheet.
 
+## The admin dashboard
+
+`admin.html` lets the restaurant change prices themselves without touching code or waiting on
+anyone. It is at **albaik.dpdns.org/admin.html** - noindex, not linked from the menu.
+
+They can change any price, mark a dish **Sold out**, flag a section **Coming soon**, and edit the
+opening hours. They cannot add or remove dishes or edit descriptions - that keeps the blast radius
+small, and those changes are rare enough to do by hand.
+
+### How it is secured
+
+There is no server, so there is nothing that can check a Google password. What actually publishes
+a change is a GitHub token, and that token is never stored in the clear: it is encrypted with
+AES-GCM under a key derived from the restaurant's password (PBKDF2-SHA256, 600k rounds) and kept
+in `localStorage`. Signing in decrypts it. A wrong password fails to decrypt - it cannot be
+bypassed by editing the page, because the ciphertext genuinely will not open.
+
+The email is the username; the password is the protection. Use a fine-grained token limited to
+**this repository only**, with **Contents: Read and write** and nothing else - then the worst a
+leak can do is edit this menu, and revoking it on GitHub kills access instantly.
+
+Setup is per device: open `admin.html`, paste the token, choose the password. After that the
+restaurant only ever types a password.
+
+### What happens on publish
+
+One commit containing every changed file, so the site is never live half-updated:
+
+- `assets/js/menu-data.js` regenerated from the edited menu
+- `assets/js/config.js` if the hours changed
+- **the `?v=` stamps in the HTML**, recomputed from the new file hashes
+
+That last one is the part that is easy to miss. Without it the pages keep pointing at the old
+asset URL, phones serve the copy they already have, and the new prices stay invisible for hours.
+The dashboard computes the same SHA-1 stamp that `tools/stamp_version.py` does, so the two agree.
+
+The commit message lists every change with its old and new price, so the git history doubles as
+a price log and anything can be reverted.
+
 ## After any change: stamp the version
 
 GitHub Pages serves everything with `Cache-Control: max-age=600`, and phones hold assets
