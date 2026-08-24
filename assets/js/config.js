@@ -24,6 +24,22 @@ window.ALBAIK_CONFIG = {
   // Shows the "100% Halal" badge in the header. Set to false to hide it.
   halal: true,
 
+  // Opening hours. 24-hour clock, ["open", "close"] per day, or null for a day
+  // you are closed. The site works out "Open now" or "Closed" from these and
+  // shows it in the header - so keep them right, and set them here only once.
+  // A close time before the open time means you shut after midnight,
+  // e.g. ["17:00", "01:00"] is 5pm until 1am.
+  timezone: "America/Los_Angeles",
+  hours: {
+    mon: ["11:00", "22:00"],
+    tue: ["11:00", "22:00"],
+    wed: ["11:00", "22:00"],
+    thu: ["11:00", "22:00"],
+    fri: ["11:00", "22:00"],
+    sat: ["11:00", "22:00"],
+    sun: ["11:00", "22:00"]
+  },
+
   // Deals shown at the top of the menu. Empty array = no deals block at all.
   //   name  - what the deal is called
   //   items - what the customer gets, plain words

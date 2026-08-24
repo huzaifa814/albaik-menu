@@ -9,6 +9,102 @@
 
   var $ = function (sel) { return document.querySelector(sel); };
 
+
+  /* ---------------- opening hours ----------------
+     Worked out in the restaurant's own timezone, never the phone's. A customer
+     whose phone is set to another zone - travelling, or just wrong - must still
+     be told whether the kitchen on Stockton Blvd is open right now. */
+
+  var DAYS = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+  var DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  function localNow() {
+    var tz = CFG.timezone;
+    if (!tz) return new Date();
+    try {
+      // read the wall clock in tz, then rebuild a Date carrying those numbers
+      var p = new Intl.DateTimeFormat("en-US", {
+        timeZone: tz, weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false
+      }).formatToParts(new Date());
+      var got = {};
+      p.forEach(function (x) { got[x.type] = x.value; });
+      var hh = parseInt(got.hour, 10) % 24;
+      return { day: DAYS.indexOf(got.weekday.toLowerCase().slice(0, 3)), mins: hh * 60 + parseInt(got.minute, 10) };
+    } catch (e) {
+      var d = new Date();
+      return { day: d.getDay(), mins: d.getHours() * 60 + d.getMinutes() };
+    }
+  }
+
+  function toMins(hhmm) {
+    var b = String(hhmm).split(":");
+    return parseInt(b[0], 10) * 60 + parseInt(b[1] || "0", 10);
+  }
+
+  function pretty(hhmm) {
+    var m = toMins(hhmm), h = Math.floor(m / 60) % 24, mi = m % 60;
+    var ap = h >= 12 ? "PM" : "AM", h12 = h % 12 === 0 ? 12 : h % 12;
+    return h12 + (mi ? ":" + (mi < 10 ? "0" : "") + mi : "") + " " + ap;
+  }
+
+  /* Returns {open:bool, until:"8 PM"} or {open:false, next:"10 AM", nextDay:"tomorrow"}. */
+  function openState() {
+    var H = CFG.hours;
+    if (!H) return null;
+    var now = localNow();
+    if (now.day < 0) return null;
+
+    // a shift that started yesterday and runs past midnight still counts as open
+    var yest = H[DAYS[(now.day + 6) % 7]];
+    if (yest && toMins(yest[1]) <= toMins(yest[0]) && now.mins < toMins(yest[1])) {
+      return { open: true, until: pretty(yest[1]) };
+    }
+
+    var today = H[DAYS[now.day]];
+    if (today) {
+      var a = toMins(today[0]), b = toMins(today[1]);
+      var end = b <= a ? b + 1440 : b;             // closes after midnight
+      if (now.mins >= a && now.mins < end) return { open: true, until: pretty(today[1]) };
+      if (now.mins < a) return { open: false, next: pretty(today[0]), nextDay: "today" };
+    }
+
+    // find the next day that has hours
+    for (var i = 1; i <= 7; i++) {
+      var d = (now.day + i) % 7, hrs = H[DAYS[d]];
+      if (hrs) {
+        return { open: false, next: pretty(hrs[0]),
+                 nextDay: i === 1 ? "tomorrow" : DAY_NAMES[d] };
+      }
+    }
+    return null;
+  }
+
+  function renderOpen() {
+    var el = $("#openBadge");
+    if (!el) return;
+    var st = openState();
+    if (!st) { el.hidden = true; return; }
+
+    el.hidden = false;
+    el.className = "openbadge " + (st.open ? "is-open" : "is-shut");
+    el.innerHTML = st.open
+      ? '<b>Open now</b><span>until ' + esc(st.until) + "</span>"
+      : '<b>Closed</b><span>opens ' + esc(st.next) +
+        (st.nextDay === "today" ? "" : " " + esc(st.nextDay)) + "</span>";
+  }
+
+  function renderHoursList() {
+    var el = $("#hoursList");
+    if (!el || !CFG.hours) return;
+    var today = localNow().day;
+    el.innerHTML = DAYS.map(function (k, i) {
+      var h = CFG.hours[k];
+      return '<div' + (i === today ? ' class="is-today"' : "") + ">" +
+        "<span>" + DAY_NAMES[i] + "</span><span>" +
+        (h ? pretty(h[0]) + " - " + pretty(h[1]) : "Closed") + "</span></div>";
+    }).join("");
+  }
+
   /* ---------------- helpers ---------------- */
 
   function money(n) { return CUR + n.toFixed(2); }
@@ -247,4 +343,9 @@
   renderDeals();
   renderNav();
   renderMenu("");
+  renderOpen();
+  renderHoursList();
+
+  // the badge has to stay honest while the page sits open on a table
+  setInterval(renderOpen, 60000);
 })();
