@@ -134,16 +134,6 @@ window.ALBAIK_MENU = [
     ]
   },
   {
-    id: "spaghetti",
-    name: "Spaghetti",
-    items: [
-      { id: "s1", name: "Regular Spaghetti", price: 35.00 },
-      { id: "s2", name: "Chicken Spaghetti", price: 45.00 },
-      { id: "s3", name: "Beef Spaghetti", price: 45.00 },
-      { id: "s4", name: "Special Spaghetti", price: 65.00 }
-    ]
-  },
-  {
     id: "fries",
     name: "Fries",
     note: "Original, Peri peri or Lemon Pepper",
