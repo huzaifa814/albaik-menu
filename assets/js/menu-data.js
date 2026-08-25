@@ -124,16 +124,6 @@ window.ALBAIK_MENU = [
     ]
   },
   {
-    id: "noodles",
-    name: "Noodles",
-    items: [
-      { id: "n1", name: "Regular Noodles", price: 35.00 },
-      { id: "n2", name: "Chicken Noodles", price: 45.00 },
-      { id: "n3", name: "Beef Noodles", price: 45.00 },
-      { id: "n4", name: "Special Noodles", price: 65.00 }
-    ]
-  },
-  {
     id: "fries",
     name: "Fries",
     note: "Original, Peri peri or Lemon Pepper",
