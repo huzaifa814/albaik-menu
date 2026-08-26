@@ -115,6 +115,24 @@
     });
   }
 
+
+  /* What goes into a dish, as separate things rather than a sentence, so a
+     customer can see at a glance what to ask the kitchen to leave out.
+     Split on commas only: "gyro lamb & beef" is one ingredient, and splitting
+     on "&" would cut it in half. */
+  function ingredientsOf(item) {
+    if (item.ingredients) return item.ingredients;
+    if (!item.desc) return null;
+    var parts = item.desc.replace(/\.\s*$/, "").split(/\s*,\s*/)
+      .map(function (t) {
+        return t.trim()
+          .replace(/^(drizzled|garnished|topped|served)\s+with\s+/i, "")
+          .replace(/^with\s+/i, "");
+      })
+      .filter(Boolean);
+    return parts.length > 1 ? parts : null;
+  }
+
   function findItem(id) {
     for (var i = 0; i < MENU.length; i++) {
       for (var j = 0; j < MENU[i].items.length; j++) {
@@ -265,8 +283,9 @@
 
     $("#itemKicker").textContent = section.name + (section.soon ? "  -  Coming soon" : "");
     $("#itemTitle").textContent = item.name;
-    $("#itemDesc").textContent = item.desc || "";
-    $("#itemDesc").hidden = !item.desc;
+    var asChips = !!ingredientsOf(item);
+    $("#itemDesc").textContent = asChips ? "" : (item.desc || "");
+    $("#itemDesc").hidden = asChips || !item.desc;
 
     var body = "";
 
@@ -276,6 +295,15 @@
       body += '<div class="optgroup"><h3>Sizes</h3>' + section.sizes.map(function (s) {
         return '<div class="priceline"><span>' + esc(s.label) + "</span><strong>" + money(s.price) + "</strong></div>";
       }).join("") + "</div>";
+    }
+
+    var ing = ingredientsOf(item);
+    if (ing) {
+      body += '<div class="optgroup"><h3>What&rsquo;s in it</h3><div class="chips ing">' +
+        ing.map(function (c) { return '<span class="chip">' + esc(c) + "</span>"; }).join("") +
+      "</div>" +
+      '<p class="leaveout">Don&rsquo;t want something? Ask your server to leave it out.</p>' +
+      "</div>";
     }
 
     (item.options || []).forEach(function (g) {

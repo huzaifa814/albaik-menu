@@ -408,3 +408,15 @@ main{padding:18px 14px 0;max-width:820px;margin:0 auto}
   color:var(--muted);font-size:9px;font-weight:700;
   letter-spacing:.1em;text-transform:uppercase;vertical-align:2px;
 }
+
+/* ---------- what's in it ---------- */
+.chips.ing .chip{
+  background:rgba(255,175,20,.09);
+  border-color:rgba(255,175,20,.28);
+  color:#f0e2c4;
+}
+.leaveout{
+  margin:11px 0 0;padding:9px 11px;border-radius:10px;
+  background:rgba(93,196,124,.09);border:1px solid rgba(93,196,124,.3);
+  color:#9fe0b4;font-size:12px;line-height:1.45;
+}
