@@ -371,6 +371,13 @@
 
   if (CFG.halal) $("#halalBadge").hidden = false;
 
+  // Ordering is Toast's job - this only hands the customer over to it.
+  if (CFG.orderUrl) {
+    $("#orderBtn").href = CFG.orderUrl;
+    $("#orderBar").hidden = false;
+    document.body.classList.add("has-order");
+  }
+
   renderDeals();
   renderNav();
   renderMenu("");

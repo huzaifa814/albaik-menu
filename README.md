@@ -38,6 +38,24 @@ python tools/make_qr.py --base https://albaik.dpdns.org/
 That writes `qr/menu.png` and `qr/review.png`. Then open `print.html`, choose which card to print
 and how many, and print on card stock - four cards per A4 sheet.
 
+## Ordering, and why it is Toast's job
+
+`config.orderUrl` puts an "Order & Pay" bar on the menu that hands the customer to Toast's own
+ordering page. Empty by default, which is correct while the waiter takes every order.
+
+The tempting alternative - a cart on this site that injects orders into Toast over the Partner
+API - is not worth it for one restaurant. That API is gated behind an eight-stage partner process
+with compliance, privacy, security and legal sign-off, a signed agreement, an assigned Toast rep
+and a certification call before production, plus a revenue share. It exists for software companies
+shipping to hundreds of locations. It would also mean a backend, card handling and a second menu
+to keep in sync with this one.
+
+Toast already generates an ordering site and a QR code for every live restaurant, takes the
+payment, and drops the order into the POS with the menu kept in sync. So this site stays the front
+door - photos, halal badge, hours, Google reviews - and Toast is the till.
+
+Find the URL in Toast Web: Takeout & delivery -> Toast order sources -> Restaurant info.
+
 ## The admin dashboard
 
 `admin.html` lets the restaurant change prices themselves without touching code or waiting on

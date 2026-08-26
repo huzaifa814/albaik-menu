@@ -18,6 +18,12 @@ window.ALBAIK_CONFIG = {
   reviewUrl: "",
   placeId: "",
 
+  // Toast online ordering link. Once Toast is live, find it in Toast Web under
+  // Takeout & delivery -> Toast order sources -> Restaurant info. Paste it here and
+  // an "Order & Pay" bar appears on the menu; leave it empty and nothing shows,
+  // which is the right state while the waiter still takes every order.
+  orderUrl: "",
+
   // Optional address line shown on the review page.
   address: "6680 Stockton Blvd Ste 4, Sacramento, CA 95823",
 
