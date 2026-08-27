@@ -15,7 +15,7 @@ window.ALBAIK_CONFIG = {
 
   // Google review link. Either paste the link from your Google Business Profile
   // (Read reviews -> Get more reviews -> Share review form), or set placeId instead.
-  reviewUrl: "",
+  reviewUrl: "https://g.page/r/Cdc7o9kfFrf2EBM/review",
   placeId: "",
 
   // ----- Ordering from the table -----
