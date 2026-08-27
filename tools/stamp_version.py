@@ -15,9 +15,11 @@ Run before committing any change to the CSS, the menu data, the config or the ap
 import hashlib
 import os
 import re
+import subprocess
+import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGES = ("index.html", "print.html", "review.html")
+PAGES = ("index.html", "print.html", "review.html", "staff.html")
 ASSETS = ("assets/css/style.css", "assets/js/config.js",
           "assets/js/menu-data.js", "assets/js/app.js",
           "assets/img/logo.webp", "assets/img/logo.png")
@@ -30,7 +32,25 @@ def digest(rel):
     return hashlib.sha1(open(path, "rb").read()).hexdigest()[:8]
 
 
+def build_menu_json() -> None:
+    """Keep assets/data/menu.json in step with menu-data.js.
+
+    The order worker prices every order from the JSON copy. If it goes stale the
+    worker starts rejecting dishes the site still lists, so it is rebuilt here
+    rather than left to anyone's memory.
+    """
+    script = os.path.join(ROOT, "tools", "build_menu_json.js")
+    try:
+        out = subprocess.run(["node", script], cwd=ROOT, capture_output=True, text=True)
+    except FileNotFoundError:
+        sys.exit("node is not on PATH - it is needed to rebuild assets/data/menu.json")
+    if out.returncode:
+        sys.exit((out.stderr or out.stdout).strip() or "menu.json build failed")
+    print(out.stdout.strip())
+
+
 def main() -> None:
+    build_menu_json()
     stamps = {rel: digest(rel) for rel in ASSETS}
     changed = 0
 
