@@ -38,23 +38,65 @@ python tools/make_qr.py --base https://albaik.dpdns.org/
 That writes `qr/menu.png` and `qr/review.png`. Then open `print.html`, choose which card to print
 and how many, and print on card stock - four cards per A4 sheet.
 
-## Ordering, and why it is Toast's job
+## Ordering from the table
 
-`config.orderUrl` puts an "Order & Pay" bar on the menu that hands the customer to Toast's own
-ordering page. Empty by default, which is correct while the waiter takes every order.
+A customer scans the QR, builds an order, and taps Place order. They get a number. The number and
+the order appear on `staff.html` at the register, the cashier repeats it back, takes the money on
+whatever till the restaurant uses, and taps **Paid -> kitchen**. No card is ever touched by this
+site, which is deliberate: taking payment here would pull PCI scope onto a static menu.
 
-The tempting alternative - a cart on this site that injects orders into Toast over the Partner
-API - is not worth it for one restaurant. That API is gated behind an eight-stage partner process
-with compliance, privacy, security and legal sign-off, a signed agreement, an assigned Toast rep
-and a certification call before production, plus a revenue share. It exists for software companies
-shipping to hundreds of locations. It would also mean a backend, card handling and a second menu
-to keep in sync with this one.
+Turn the whole thing off with `config.ordering = false` and the site is a menu you only read.
 
-Toast already generates an ordering site and a QR code for every live restaurant, takes the
-payment, and drops the order into the POS with the menu kept in sync. So this site stays the front
-door - photos, halal badge, hours, Google reviews - and Toast is the till.
+### Where the orders live
 
-Find the URL in Toast Web: Takeout & delivery -> Toast order sources -> Restaurant info.
+`orders/` is a Cloudflare Worker on a D1 database, deployed to the Cloudflare account under
+`huzaifaa4@gmail.com`. It runs inside the Workers plan that account already pays for.
+
+```
+cd orders
+npx wrangler deploy                       # push a code change
+npx wrangler d1 execute albaik-orders --remote --command "SELECT num, status FROM orders"
+npx wrangler secret put STAFF_PIN         # change the cashier's code
+npx wrangler secret put ADMIN_PIN         # change the manager's code
+```
+
+Three secrets, never in the repo: `STAFF_PIN`, `ADMIN_PIN`, `AUTH_SECRET`.
+
+### The phone does not decide the price
+
+The customer's phone sends dish ids, sizes and choices. It never sends money. The worker looks
+every line up in `assets/data/menu.json`, prices it itself, and rejects anything that is not a real
+dish, a real size on that dish, a listed option or a listed ingredient. A phone that posts
+`{"id":"fc3","price":0.01}` gets charged the full $29.99. That check is the reason `menu.json`
+exists at all - Cloudflare blocks running fetched code, so the worker cannot read `menu-data.js`.
+`tools/stamp_version.py` regenerates the JSON on every run, and the admin dashboard commits it
+alongside `menu-data.js`, so the two cannot drift.
+
+Also enforced: six orders per phone per five minutes, twenty of any one dish, forty dishes per
+order, and nothing at all from a section marked coming soon or an item marked sold out.
+
+### The order screen
+
+`staff.html`, unlinked and `noindex`. Sign in with the cashier code or the manager code; the token
+lasts one shift, then it asks again - a board left signed in overnight is how they get spammed.
+
+Three columns: **Just placed** (money not taken yet), **In the kitchen**, **Ready to hand over**.
+New orders chime and pulse. It polls every five seconds and asks for the screen wake lock so a
+register tablet stops dimming. The manager code additionally gets **Void** and the day's takings.
+
+**Pause orders** in the top bar stops the QR taking any more - the switch to hit when the kitchen
+is buried. It hides the cart on every phone, not just new ones.
+
+### Toast, if they go that way
+
+If the restaurant would rather Toast ran ordering, put their Toast URL in `config.orderUrl`
+(Toast Web -> Takeout & delivery -> Toast order sources -> Restaurant info). That replaces the
+built-in cart with a bar that hands the customer to Toast, and Toast takes the payment too.
+
+The Toast *Partner API* - injecting orders from this site into their POS - is not worth it for one
+restaurant: eight stages of compliance, privacy, security and legal sign-off, a signed agreement,
+an assigned rep, a certification call, and a revenue share. It is built for vendors shipping to
+hundreds of locations.
 
 ## The admin dashboard
 
@@ -161,13 +203,18 @@ index.html          the menu
 review.html         Google review landing page
 print.html          printable QR cards
 manifest.webmanifest  lets the menu be added to a phone home screen
+staff.html          order screen for the register (unlinked, PIN)
+admin.html          price + hours dashboard (unlinked, GitHub token)
 assets/js/config.js   restaurant settings  <- edit this
 assets/js/menu-data.js  the menu           <- edit prices here
-assets/js/app.js    rendering, search, category rail, dish detail
+assets/data/menu.json   generated copy the order worker prices from
+assets/js/app.js    rendering, search, dish detail, cart, order ticket
 assets/css/style.css
 assets/img/         food photos + logo, cut from the menu board
 tools/make_qr.py    QR generator
+tools/build_menu_json.js  menu-data.js -> assets/data/menu.json
 tools/extract_images.py  re-cuts the photos out of the board artwork
+orders/             the Cloudflare worker that holds the orders
 qr/                 generated QR codes
 ```
 

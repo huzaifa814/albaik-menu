@@ -52,7 +52,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/img/hero.webp">
-<link rel="stylesheet" href="assets/css/style.css?v=de344d25">
+<link rel="stylesheet" href="assets/css/style.css?v=b8ac8a1f">
 </head>
 <body>
 
@@ -92,10 +92,24 @@
   <a class="foot-btn" id="mapBtn" href="#" target="_blank" rel="noopener"></a>
   <a class="foot-btn" href="review.html">Leave us a Google review</a>
   <div class="hours" id="hoursList"></div>
-  <p class="foot-note">Tap any dish to see it bigger.<br>Ready to order? Your waiter will take it at the table.</p>
+  <p class="foot-note" id="foodNote">Tap any dish to see it bigger.<br>Ready to order? Your waiter will take it at the table.</p>
 </footer>
 
-<!-- dish detail, read only -->
+<!-- a number is out with the kitchen: keep it one tap away -->
+<button class="ticketbar" id="ticketBar" type="button" hidden>
+  <span class="tb-num" id="ticketBarNum"></span>
+  <span class="tb-txt">Your order<b id="ticketBarState"></b></span>
+  <span class="tb-go">View</span>
+</button>
+
+<!-- what is in the order so far -->
+<button class="cartbar" id="cartBar" type="button" hidden>
+  <span class="cb-n" id="cartCount"></span>
+  <span class="cb-go">View order</span>
+  <span class="cb-total" id="cartTotal"></span>
+</button>
+
+<!-- dish detail -->
 <div class="sheet-backdrop" id="itemBackdrop" hidden>
   <section class="sheet" role="dialog" aria-modal="true" aria-labelledby="itemTitle">
     <button class="sheet-close" data-close-item aria-label="Close">&times;</button>
@@ -105,13 +119,82 @@
       <h2 id="itemTitle"></h2>
       <p class="sheet-desc" id="itemDesc"></p>
       <div id="itemBody"></div>
-      <button class="ghost" data-close-item>Close</button>
+      <div class="sheet-foot" id="itemFoot"></div>
     </div>
   </section>
 </div>
 
-<script src="assets/js/config.js?v=34822390"></script>
+<!-- the order, before it is placed -->
+<div class="sheet-backdrop" id="cartBackdrop" hidden>
+  <section class="sheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <button class="sheet-close" data-close-cart aria-label="Close">&times;</button>
+    <div class="sheet-pad">
+      <p class="sheet-kicker">Your order</p>
+      <h2 id="cartTitle">Check it over</h2>
+
+      <div id="cartLines"></div>
+
+      <div class="optgroup" id="cartKindRow">
+        <h3>Where are you eating?</h3>
+        <div class="picks" id="cartKind">
+          <button type="button" class="pick on" data-val="dinein"><span>Eating in</span></button>
+          <button type="button" class="pick" data-val="pickup"><span>Taking out</span></button>
+        </div>
+      </div>
+
+      <div class="optgroup" id="seatRow" hidden>
+        <h3>Table number</h3>
+        <input class="fld" id="cartSeat" type="text" maxlength="10" inputmode="numeric"
+               placeholder="The number on your table" autocomplete="off">
+      </div>
+
+      <div class="optgroup">
+        <h3>Name for the order</h3>
+        <input class="fld" id="cartWho" type="text" maxlength="40"
+               placeholder="So we know who to call" autocomplete="name">
+      </div>
+
+      <div class="optgroup">
+        <h3>Anything for the kitchen?</h3>
+        <input class="fld" id="cartNote" type="text" maxlength="200"
+               placeholder="e.g. no cutlery, allergy to nuts" autocomplete="off">
+      </div>
+
+      <div class="totalbox">
+        <span>Subtotal</span><strong id="cartSubtotal"></strong>
+      </div>
+      <p class="taxnote" id="taxNote"></p>
+
+      <p class="cartmsg" id="cartMsg" hidden></p>
+      <button type="button" class="primary big" id="placeBtn">Place order</button>
+      <p class="paynote">You pay at the register - nothing is charged on your phone.</p>
+      <button type="button" class="ghost" data-close-cart>Add something else</button>
+    </div>
+  </section>
+</div>
+
+<!-- the number, after it is placed -->
+<div class="sheet-backdrop" id="ticketBackdrop" hidden>
+  <section class="sheet" role="dialog" aria-modal="true" aria-labelledby="ticketHead">
+    <button class="sheet-close" data-close-ticket aria-label="Close">&times;</button>
+    <div class="sheet-pad">
+      <p class="sheet-kicker">Your number</p>
+      <p class="bignum" id="ticketNum"></p>
+      <p class="tstate" id="ticketState"></p>
+      <h2 id="ticketHead" class="tnote" ><span id="ticketNote"></span></h2>
+
+      <div id="ticketLines"></div>
+      <div class="totalbox"><span>Subtotal</span><strong id="ticketTotal"></strong></div>
+      <p class="taxnote">Tax is added at the register.</p>
+
+      <button type="button" class="ghost" data-close-ticket>Back to the menu</button>
+      <button type="button" class="link wide" id="ticketDone">Start a new order</button>
+    </div>
+  </section>
+</div>
+
+<script src="assets/js/config.js?v=409956ff"></script>
 <script src="assets/js/menu-data.js?v=1dc7a275"></script>
-<script src="assets/js/app.js?v=921595ce"></script>
+<script src="assets/js/app.js?v=a119a715"></script>
 </body>
 </html>

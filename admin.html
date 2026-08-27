@@ -769,6 +769,13 @@
 
     var menuJs = menuToJs(MENU);
     var files = [{ path: "assets/js/menu-data.js", content: menuJs }];
+
+    /* The order screen's worker cannot load a .js file - Cloudflare blocks
+       running code it fetches - so it prices every order from this JSON copy.
+       It ships in the same commit, or the till would go on charging the old
+       price for up to a week without anyone noticing. */
+    files.push({ path: "assets/data/menu.json", content: JSON.stringify(MENU, null, 2) + "
+" });
     var cfgJs = null;
     var hoursChanged = list.some(function (c) { return c.hours; });
 
@@ -788,7 +795,7 @@
       var stamps = { "assets/js/menu-data.js": hashes[0].slice(0, 8) };
       if (hashes[1]) stamps["assets/js/config.js"] = hashes[1].slice(0, 8);
 
-      return Promise.all(["index.html", "print.html", "review.html"].map(function (p) {
+      return Promise.all(["index.html", "print.html", "review.html", "staff.html"].map(function (p) {
         return readFile(p).then(function (src) {
           var out = src;
           Object.keys(stamps).forEach(function (asset) {

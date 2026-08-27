@@ -1,3 +1,7 @@
 .DS_Store
 Thumbs.db
 photos-inbox/
+
+# wrangler build output
+orders/.wrangler/
+orders/node_modules/

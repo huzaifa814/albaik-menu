@@ -18,10 +18,29 @@ window.ALBAIK_CONFIG = {
   reviewUrl: "",
   placeId: "",
 
+  // ----- Ordering from the table -----
+  // The customer builds their order on their phone, taps Place order, and gets a
+  // number. No card is taken on the phone - the number goes up on the cashier's
+  // screen and they pay at the register, the way they would at McDonald's.
+  // Set this to false and the site goes back to being a menu you only read.
+  ordering: true,
+
+  // Where the orders go. This is the Cloudflare worker in the orders/ folder.
+  orderApi: "https://albaik-orders.huzaifaa4.workers.dev",
+
+  // "ask"    - the customer says whether they are eating in or taking out
+  // "dinein" - always eating in, and is asked for a table number
+  // "pickup" - always taking out
+  orderMode: "ask",
+
+  // Sales tax is added at the register, so the phone shows a subtotal only and
+  // says so. Nothing here should ever disagree with the till.
+  taxNote: "Tax is added at the register.",
+
   // Toast online ordering link. Once Toast is live, find it in Toast Web under
-  // Takeout & delivery -> Toast order sources -> Restaurant info. Paste it here and
-  // an "Order & Pay" bar appears on the menu; leave it empty and nothing shows,
-  // which is the right state while the waiter still takes every order.
+  // Takeout & delivery -> Toast order sources -> Restaurant info. Paste it here
+  // and an "Order & Pay" bar appears instead of the built-in cart, handing the
+  // whole job to Toast. Leave it empty to keep the cart above.
   orderUrl: "",
 
   // Optional address line shown on the review page.

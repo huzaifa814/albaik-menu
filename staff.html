@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AL BAIK - Order screen</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0908">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="AL BAIK Orders">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0908; --surface:#141210; --surface-2:#1c1917;
+  --hair:#2a241c; --line:#4a3a12;
+  --gold:#ffc31f; --gold-bright:#ffd94a;
+  --text:#f6f2ea; --muted:#9e978b;
+  --new:#ffc31f; --making:#7fa8ff; --ready:#5dc47c; --bad:#ff6a4d;
+  --display:"Anton","Arial Narrow",Impact,sans-serif;
+  --body:"Inter","Segoe UI",Roboto,system-ui,-apple-system,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--body);
+  font-size:16px;line-height:1.45;-webkit-tap-highlight-color:transparent;
+}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+
+/* ---------- sign in ---------- */
+.gate{min-height:100dvh;display:grid;place-items:center;padding:24px}
+.gate-box{width:100%;max-width:340px;text-align:center}
+.gate-box img{width:150px;margin:0 auto 18px}
+.gate-box h1{
+  font-family:var(--display);font-weight:400;font-size:22px;
+  text-transform:uppercase;letter-spacing:.03em;color:var(--gold-bright);margin:0 0 6px;
+}
+.gate-box p{color:var(--muted);font-size:13.5px;margin:0 0 22px}
+.pinbox{
+  width:100%;padding:16px;border-radius:14px;text-align:center;
+  background:var(--surface-2);border:1px solid var(--hair);color:var(--text);
+  font-size:26px;letter-spacing:.5em;text-indent:.5em;font-variant-numeric:tabular-nums;
+}
+.pinbox:focus{outline:none;border-color:var(--line);box-shadow:0 0 0 3px rgba(255,195,31,.14)}
+.go{
+  width:100%;margin-top:14px;padding:16px;border:0;border-radius:14px;
+  background:linear-gradient(180deg,var(--gold-bright),var(--gold));
+  color:#1a1207;font-weight:700;font-size:16px;
+}
+.go:disabled{opacity:.5}
+.err{margin-top:14px;color:#ffb4a0;font-size:13.5px;min-height:20px}
+
+/* ---------- top bar ---------- */
+.bar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px 14px calc(10px);
+  background:rgba(10,9,8,.94);border-bottom:1px solid var(--hair);
+  backdrop-filter:blur(8px);
+}
+.bar h1{
+  font-family:var(--display);font-weight:400;font-size:17px;margin:0;
+  text-transform:uppercase;letter-spacing:.04em;color:var(--gold-bright);
+}
+.bar .spacer{flex:1}
+.pill{
+  padding:6px 11px;border-radius:99px;font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--hair);background:var(--surface-2);color:var(--muted);
+  white-space:nowrap;
+}
+.pill.live{border-color:rgba(93,196,124,.45);background:rgba(93,196,124,.12);color:#8ee0a6}
+.pill.paused{border-color:rgba(255,106,77,.45);background:rgba(255,106,77,.12);color:#ffb4a0}
+.tool{
+  padding:8px 13px;border-radius:11px;font-size:13px;font-weight:600;
+  background:var(--surface-2);border:1px solid var(--hair);color:var(--text);
+}
+.tool.warn{border-color:rgba(255,106,77,.4);color:#ffb4a0}
+
+/* ---------- board ---------- */
+.board{
+  display:grid;gap:14px;padding:14px;
+  grid-template-columns:1fr;
+  align-items:start;
+}
+@media (min-width:820px){ .board{grid-template-columns:repeat(3,1fr)} }
+.col{background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:12px}
+.col > h2{
+  display:flex;align-items:center;gap:8px;margin:2px 4px 12px;
+  font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+}
+.col > h2 i{width:9px;height:9px;border-radius:50%;font-style:normal}
+.col.c-new    > h2 i{background:var(--new)}
+.col.c-making > h2 i{background:var(--making)}
+.col.c-ready  > h2 i{background:var(--ready)}
+.col > h2 b{margin-left:auto;color:var(--text);font-variant-numeric:tabular-nums}
+.none{color:#57514a;font-size:13px;text-align:center;padding:26px 0}
+
+.tick{
+  background:var(--surface-2);border:1px solid var(--hair);
+  border-left:4px solid var(--hair);
+  border-radius:13px;padding:12px 13px;margin-bottom:10px;
+}
+.c-new    .tick{border-left-color:var(--new)}
+.c-making .tick{border-left-color:var(--making)}
+.c-ready  .tick{border-left-color:var(--ready)}
+.tick.fresh{animation:pop 1.1s ease-out 2}
+@keyframes pop{0%,100%{box-shadow:0 0 0 0 rgba(255,195,31,0)}45%{box-shadow:0 0 0 5px rgba(255,195,31,.22)}}
+
+.thead{display:flex;align-items:baseline;gap:10px}
+.tnum{
+  font-family:var(--display);font-weight:400;font-size:38px;line-height:1;
+  color:var(--gold-bright);font-variant-numeric:tabular-nums;
+}
+.twho{flex:1;min-width:0;font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.twho b{display:block;color:var(--text);font-size:14px;font-weight:600}
+.tage{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tage.late{color:#ffb4a0;font-weight:700}
+
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.tag{
+  padding:3px 8px;border-radius:7px;font-size:10.5px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  background:rgba(255,255,255,.06);border:1px solid var(--hair);color:var(--muted);
+}
+.tag.eat{background:rgba(127,168,255,.13);border-color:rgba(127,168,255,.36);color:#a9c8ff}
+
+.lines{margin:11px 0 0;padding:0;list-style:none}
+.lines li{padding:7px 0;border-top:1px solid rgba(255,255,255,.06);font-size:14.5px}
+.lines li:first-child{border-top:0}
+.qn{
+  display:inline-block;min-width:26px;margin-right:6px;padding:1px 5px;border-radius:6px;
+  background:rgba(255,195,31,.15);color:var(--gold-bright);
+  font-weight:800;font-size:13px;text-align:center;font-variant-numeric:tabular-nums;
+}
+.lines .opt{margin:3px 0 0 32px;color:var(--muted);font-size:12.5px}
+.lines .no{
+  margin:4px 0 0 32px;padding:3px 8px;border-radius:6px;display:inline-block;
+  background:rgba(255,106,77,.14);border:1px solid rgba(255,106,77,.4);
+  color:#ffb4a0;font-size:12.5px;font-weight:700;
+}
+.lines .say{margin:4px 0 0 32px;color:#e2c98a;font-size:12.5px;font-style:italic}
+.kitchen{
+  margin:10px 0 0;padding:8px 10px;border-radius:9px;
+  background:rgba(255,195,31,.1);border:1px solid rgba(255,195,31,.32);
+  color:#f0dda8;font-size:12.5px;
+}
+
+.tfoot{display:flex;align-items:center;gap:8px;margin-top:12px}
+.money{
+  font-family:var(--display);font-weight:400;font-size:22px;color:var(--gold);
+  font-variant-numeric:tabular-nums;margin-right:auto;
+}
+.act{
+  padding:11px 15px;border:0;border-radius:11px;font-size:13.5px;font-weight:700;
+  background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#1a1207;
+}
+.act.calm{background:var(--surface);border:1px solid var(--hair);color:var(--muted);font-weight:600;padding:11px 12px}
+.act.kill{background:none;border:1px solid rgba(255,106,77,.42);color:#ffb4a0;font-weight:600}
+
+.done-strip{padding:0 14px 30px}
+.done-strip h2{
+  font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin:6px 4px 10px;
+}
+.done-row{
+  display:flex;align-items:center;gap:12px;padding:9px 12px;margin-bottom:7px;
+  background:var(--surface);border:1px solid var(--hair);border-radius:11px;font-size:13.5px;
+}
+.done-row b{font-family:var(--display);font-weight:400;font-size:20px;color:var(--muted);min-width:44px}
+.done-row .spacer{flex:1}
+.done-row.voided b,.done-row.voided span{color:#8c6f68;text-decoration:line-through}
+
+.tally{
+  display:flex;gap:14px;flex-wrap:wrap;margin:0 14px 16px;padding:14px 16px;
+  border-radius:14px;border:1px solid var(--line);
+  background:linear-gradient(180deg,var(--surface-2),#131110);
+}
+.tally div{display:flex;flex-direction:column}
+.tally span{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.tally strong{font-size:22px;color:var(--gold);font-variant-numeric:tabular-nums}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ---------- sign in ---------- -->
+<div class="gate" id="gate">
+  <div class="gate-box">
+    <img src="assets/img/logo.webp?v=791d2388" alt="AL BAIK" width="1234" height="669">
+    <h1>Order screen</h1>
+    <p>Enter your code to see today&rsquo;s orders.</p>
+    <input class="pinbox" id="pin" type="password" inputmode="numeric" autocomplete="off"
+           maxlength="12" placeholder="&middot;&middot;&middot;&middot;&middot;&middot;" aria-label="Staff code">
+    <button class="go" id="goBtn" type="button">Sign in</button>
+    <p class="err" id="gateErr"></p>
+  </div>
+</div>
+
+<!-- ---------- the board ---------- -->
+<div id="app" hidden>
+  <div class="bar">
+    <h1>Orders</h1>
+    <span class="pill" id="acceptPill"></span>
+    <span class="pill" id="clockPill"></span>
+    <span class="spacer"></span>
+    <button class="tool" id="soundBtn" type="button">Sound on</button>
+    <button class="tool" id="acceptBtn" type="button"></button>
+    <button class="tool warn" id="outBtn" type="button">Sign out</button>
+  </div>
+
+  <div class="tally" id="tally" hidden></div>
+
+  <div class="board">
+    <section class="col c-new"><h2><i></i>Just placed &mdash; take payment <b id="nNew">0</b></h2><div id="colNew"></div></section>
+    <section class="col c-making"><h2><i></i>In the kitchen <b id="nMaking">0</b></h2><div id="colMaking"></div></section>
+    <section class="col c-ready"><h2><i></i>Ready to hand over <b id="nReady">0</b></h2><div id="colReady"></div></section>
+  </div>
+
+  <div class="done-strip">
+    <h2>Finished today</h2>
+    <div id="colDone"><p class="none">Nothing yet.</p></div>
+  </div>
+</div>
+
+<script src="assets/js/config.js?v=409956ff"></script>
+<script>
+/* AL BAIK order screen.
+ *
+ * Runs on whatever tablet or phone sits by the register. It holds a signed
+ * token for one shift, then makes whoever is on the till type the code again -
+ * a screen left logged in overnight is how order boards get spammed.
+ */
+(function () {
+  "use strict";
+
+  var CFG = window.ALBAIK_CONFIG || {};
+  var API = CFG.orderApi;
+  var CUR = CFG.currency || "$";
+  var KEY = "albaik.staff.v1";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var auth = null;              // {token, role}
+  var seen = {};                // id -> order, so polls can be deltas
+  var known = {};               // ids already on screen, to spot genuinely new ones
+  var lastChange = 0;
+  var lastFull = 0;
+  var accepting = true;
+  var sound = true;
+  var timer = null;
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function money(n) { return CUR + Number(n || 0).toFixed(2); }
+
+  function api(path, opts) {
+    opts = opts || {};
+    opts.headers = Object.assign({ "content-type": "application/json" }, opts.headers || {});
+    if (auth) opts.headers.authorization = "Bearer " + auth.token;
+    return fetch(API + path, opts).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (b) {
+        if (r.status === 401) { signOut(); throw new Error(b.error || "Signed out."); }
+        if (!r.ok) throw new Error(b.error || "Something went wrong.");
+        return b;
+      });
+    });
+  }
+
+  /* ---------- a noise the kitchen can hear ----------
+     Synthesised rather than loaded, so the board still chimes when the wifi is
+     having a bad day. Unlocked by the tap on Sign in, which browsers require. */
+  var actx = null;
+  function chime() {
+    if (!sound) return;
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      if (actx.state === "suspended") actx.resume();
+      [0, 0.16].forEach(function (at, i) {
+        var o = actx.createOscillator(), g = actx.createGain();
+        o.type = "sine";
+        o.frequency.value = i ? 1180 : 880;
+        g.gain.setValueAtTime(0.0001, actx.currentTime + at);
+        g.gain.exponentialRampToValueAtTime(0.32, actx.currentTime + at + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + at + 0.30);
+        o.connect(g); g.connect(actx.destination);
+        o.start(actx.currentTime + at); o.stop(actx.currentTime + at + 0.32);
+      });
+    } catch (e) { /* muted device, nothing to do */ }
+    if (navigator.vibrate) navigator.vibrate([90, 60, 90]);
+  }
+
+  /* ---------- sign in ---------- */
+
+  function signIn() {
+    var pin = $("#pin").value.trim();
+    if (!pin) return;
+    $("#goBtn").disabled = true;
+    $("#gateErr").textContent = "";
+    chime();                                   // also unlocks audio for later
+    fetch(API + "/api/login", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ pin: pin })
+    }).then(function (r) {
+      return r.json().then(function (b) {
+        if (!r.ok) throw new Error(b.error || "Could not sign in.");
+        return b;
+      });
+    }).then(function (b) {
+      auth = b;
+      try { localStorage.setItem(KEY, JSON.stringify(b)); } catch (e) {}
+      start();
+    }).catch(function (e) {
+      $("#gateErr").textContent = e.message;
+      $("#pin").value = "";
+    }).then(function () {
+      $("#goBtn").disabled = false;
+    });
+  }
+
+  function signOut() {
+    auth = null;
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    if (timer) clearInterval(timer);
+    $("#app").hidden = true;
+    $("#gate").hidden = false;
+    $("#pin").value = "";
+  }
+
+  /* ---------- the board ---------- */
+
+  function ago(ms) {
+    var m = Math.floor((Date.now() - ms) / 60000);
+    if (m < 1) return "just now";
+    if (m < 60) return m + " min";
+    return Math.floor(m / 60) + "h " + (m % 60) + "m";
+  }
+
+  function ticket(o, fresh) {
+    var lines = (o.lines || []).map(function (l) {
+      var opts = [];
+      if (l.size) opts.push(l.size);
+      (l.options || []).forEach(function (x) { opts.push(x.name + ": " + x.choice); });
+      return "<li>" +
+        '<span class="qn">' + l.qty + "&times;</span>" + esc(l.name) +
+        (opts.length ? '<p class="opt">' + esc(opts.join("  ·  ")) + "</p>" : "") +
+        (l.leaveOut && l.leaveOut.length ? '<p class="no">NO ' + esc(l.leaveOut.join(", ").toUpperCase()) + "</p>" : "") +
+        (l.note ? '<p class="say">&ldquo;' + esc(l.note) + "&rdquo;</p>" : "") +
+      "</li>";
+    }).join("");
+
+    var mins = Math.floor((Date.now() - o.placedAt) / 60000);
+
+    var act = o.status === "new"
+      ? '<button class="act" data-to="preparing" data-id="' + o.id + '">Paid &rarr; kitchen</button>'
+      : o.status === "preparing"
+        ? '<button class="act" data-to="ready" data-id="' + o.id + '">Ready</button>'
+        : '<button class="act" data-to="done" data-id="' + o.id + '">Handed over</button>';
+
+    var back = o.status === "new" ? ""
+      : '<button class="act calm" data-to="' + (o.status === "preparing" ? "new" : "preparing") + '" data-id="' + o.id + '">Back</button>';
+
+    return '<article class="tick' + (fresh ? " fresh" : "") + '" data-tick="' + o.id + '">' +
+      '<div class="thead">' +
+        '<span class="tnum">' + o.num + "</span>" +
+        '<span class="twho">' + (o.who ? "<b>" + esc(o.who) + "</b>" : "<b>No name</b>") + "</span>" +
+        '<span class="tage' + (mins >= 15 ? " late" : "") + '">' + ago(o.placedAt) + "</span>" +
+      "</div>" +
+      '<div class="tags">' +
+        '<span class="tag eat">' + (o.kind === "pickup" ? "Take out" : "Eat in") + "</span>" +
+        (o.seat ? '<span class="tag">Table ' + esc(o.seat) + "</span>" : "") +
+      "</div>" +
+      '<ul class="lines">' + lines + "</ul>" +
+      (o.note ? '<p class="kitchen">' + esc(o.note) + "</p>" : "") +
+      '<div class="tfoot">' +
+        '<span class="money">' + money(o.subtotal) + "</span>" +
+        back + act +
+        (auth && auth.role === "admin"
+          ? '<button class="act kill" data-to="void" data-id="' + o.id + '">Void</button>' : "") +
+      "</div>" +
+    "</article>";
+  }
+
+  function draw() {
+    var all = Object.keys(seen).map(function (k) { return seen[k]; })
+      .sort(function (a, b) { return a.num - b.num; });
+
+    var buckets = { "new": [], preparing: [], ready: [], finished: [] };
+    all.forEach(function (o) {
+      if (o.status === "done" || o.status === "void") buckets.finished.push(o);
+      else if (buckets[o.status]) buckets[o.status].push(o);
+    });
+
+    var fresh = [];
+    ["new", "preparing", "ready"].forEach(function (st) {
+      buckets[st].forEach(function (o) { if (!known[o.id]) fresh.push(o.id); });
+    });
+    all.forEach(function (o) { known[o.id] = true; });
+
+    function fill(el, list) {
+      $(el).innerHTML = list.length
+        ? list.map(function (o) { return ticket(o, fresh.indexOf(o.id) !== -1); }).join("")
+        : '<p class="none">Nothing here.</p>';
+    }
+    fill("#colNew", buckets["new"]);
+    fill("#colMaking", buckets.preparing);
+    fill("#colReady", buckets.ready);
+
+    $("#nNew").textContent = buckets["new"].length;
+    $("#nMaking").textContent = buckets.preparing.length;
+    $("#nReady").textContent = buckets.ready.length;
+
+    $("#colDone").innerHTML = buckets.finished.length
+      ? buckets.finished.slice().reverse().map(function (o) {
+          return '<div class="done-row' + (o.status === "void" ? " voided" : "") + '">' +
+            "<b>" + o.num + "</b>" +
+            "<span>" + (o.who ? esc(o.who) : "No name") + "</span>" +
+            '<span class="spacer"></span>' +
+            "<span>" + (o.status === "void" ? "Voided" : money(o.subtotal)) + "</span>" +
+          "</div>";
+        }).join("")
+      : '<p class="none">Nothing yet.</p>';
+
+    var live = all.filter(function (o) { return o.status !== "void"; });
+    $("#tally").hidden = false;
+    $("#tally").innerHTML =
+      '<div><span>Orders today</span><strong>' + live.length + "</strong></div>" +
+      '<div><span>Subtotal today</span><strong>' +
+        money(live.reduce(function (n, o) { return n + o.subtotal; }, 0)) + "</strong></div>" +
+      '<div><span>Waiting</span><strong>' + (buckets["new"].length + buckets.preparing.length) + "</strong></div>";
+
+    return fresh.length;
+  }
+
+  function poll() {
+    // a full sweep now and then keeps the board honest across a day rollover
+    var full = Date.now() - lastFull > 60000;
+    var since = full ? 0 : lastChange;
+
+    api("/api/board?since=" + since).then(function (b) {
+      if (full) { seen = {}; lastFull = Date.now(); }
+
+      var arrivals = 0;
+      (b.orders || []).forEach(function (o) {
+        if (!known[o.id] && o.status === "new") arrivals++;
+        seen[o.id] = o;
+        if (o.changedAt > lastChange) lastChange = o.changedAt;
+      });
+
+      accepting = b.accepting;
+      paintSwitch();
+      draw();
+      if (arrivals) chime();
+    }).catch(function () { /* one dropped poll changes nothing */ });
+  }
+
+  function paintSwitch() {
+    $("#acceptPill").className = "pill " + (accepting ? "live" : "paused");
+    $("#acceptPill").textContent = accepting ? "Taking orders" : "Paused";
+    $("#acceptBtn").textContent = accepting ? "Pause orders" : "Start taking orders";
+  }
+
+  function tick() {
+    var d = new Date();
+    var h = d.getHours(), m = d.getMinutes();
+    $("#clockPill").textContent =
+      (h % 12 === 0 ? 12 : h % 12) + ":" + (m < 10 ? "0" : "") + m + " " + (h >= 12 ? "PM" : "AM");
+  }
+
+  function start() {
+    $("#gate").hidden = true;
+    $("#app").hidden = false;
+    seen = {}; known = {}; lastChange = 0; lastFull = 0;
+    tick();
+    poll();
+    if (timer) clearInterval(timer);
+    timer = setInterval(function () { poll(); tick(); }, 5000);
+
+    // a register screen that keeps dimming is a register screen nobody uses
+    if (navigator.wakeLock) navigator.wakeLock.request("screen").catch(function () {});
+  }
+
+  /* ---------- events ---------- */
+
+  $("#goBtn").addEventListener("click", signIn);
+  $("#pin").addEventListener("keydown", function (e) { if (e.key === "Enter") signIn(); });
+  $("#outBtn").addEventListener("click", signOut);
+
+  $("#soundBtn").addEventListener("click", function () {
+    sound = !sound;
+    this.textContent = sound ? "Sound on" : "Sound off";
+    if (sound) chime();
+  });
+
+  $("#acceptBtn").addEventListener("click", function () {
+    var want = !accepting;
+    if (!want && !confirm("Stop taking orders from the table QR codes?")) return;
+    api("/api/accepting", { method: "POST", body: JSON.stringify({ accepting: want }) })
+      .then(function (r) { accepting = r.accepting; paintSwitch(); })
+      .catch(function (e) { alert(e.message); });
+  });
+
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-to]");
+    if (!b) return;
+    if (b.dataset.to === "void" && !confirm("Void this order? It disappears from the kitchen.")) return;
+
+    b.disabled = true;
+    api("/api/status", { method: "POST", body: JSON.stringify({ id: b.dataset.id, status: b.dataset.to }) })
+      .then(function () {
+        var o = seen[b.dataset.id];
+        if (o) { o.status = b.dataset.to; draw(); }
+        poll();
+      })
+      .catch(function (err) { alert(err.message); b.disabled = false; });
+  });
+
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden && auth) poll();
+  });
+
+  /* ---------- boot ---------- */
+
+  if (!API) {
+    $("#gateErr").textContent = "No order desk is configured on this site.";
+    $("#goBtn").disabled = true;
+  } else {
+    try { auth = JSON.parse(localStorage.getItem(KEY)); } catch (e) { auth = null; }
+    if (auth && auth.token) start();
+  }
+})();
+</script>
+</body>
+</html>

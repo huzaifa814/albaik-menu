@@ -1,0 +1,21 @@
+name = "albaik-orders"
+main = "src/worker.js"
+compatibility_date = "2026-08-01"
+
+# Kept off the public workers.dev URL is not an option here - the customer's
+# phone has to reach it from albaik.dpdns.org - so the protection is CORS plus
+# per-phone rate limiting inside the worker, not obscurity.
+workers_dev = true
+
+[observability]
+enabled = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "albaik-orders"
+database_id = "fd004943-2ea8-4379-b11b-a258244814e9"
+
+# Secrets, set with `wrangler secret put <NAME>` - never in this file:
+#   STAFF_PIN     the code the cashier types
+#   ADMIN_PIN     the manager's code; can void orders and see the day's total
+#   AUTH_SECRET   random string used to sign sign-in tokens
