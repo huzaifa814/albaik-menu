@@ -293,7 +293,8 @@
         if (!q) return true;
         return (it.name + " " + (it.desc || "") + " " + section.name).toLowerCase().indexOf(q) !== -1;
       });
-      if (!items.length) return;
+      // A section that is coming soon may have nothing on it yet - still show the banner
+      if (!items.length && !(section.soon && !q)) return;
 
       html += '<section class="section' + (section.soon ? " soon" : "") + '" id="sec-' + section.id + '" data-section="' + section.id + '">';
       html += '<div class="banner reveal">' +

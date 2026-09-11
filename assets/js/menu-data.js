@@ -1,4 +1,4 @@
-/* AL BAIK menu - transcribed from the printed menu board.
+/* AL BAIK menu - transcribed from the printed menu board (2026-09-11 revision).
    To change a price, edit the number here. Nothing else needs to change. */
 window.ALBAIK_MENU = [
   {
@@ -25,6 +25,16 @@ window.ALBAIK_MENU = [
     ]
   },
   {
+    id: "kids-meal",
+    name: "Kids Meal",
+    note: "Comes with fries",
+    items: [
+      { id: "km1", name: "2 pcs Chicken Tenders with Fries", price: 7.99 },
+      { id: "km2", name: "Cheez Burger with Fries", price: 7.99 },
+      { id: "km3", name: "1 pc Drumstick with Fries", price: 6.99 }
+    ]
+  },
+  {
     id: "pizza",
     name: "Pizza",
     note: "Every pizza comes in four sizes",
@@ -38,7 +48,7 @@ window.ALBAIK_MENU = [
       { id: "p1", name: "Beef Supreme", desc: "Beef pepperoni, mushrooms, onions, peppers & Italian sausage." },
       { id: "p2", name: "Beef Pepperoni", desc: "Red sauce, mozzarella cheese, sliced beef pepperoni." },
       { id: "p4", name: "Beef Pizza", desc: "Red sauce, mozzarella cheese, ground beef, peppers & onions." },
-      { id: "p5", name: "Meat Lovers", desc: "Red sauce, mozzarella cheese, beef pepperoni, ground beef, beef salami & beef bacon." },
+      { id: "p5", name: "Meat Lovers", desc: "Red sauce, mozzarella cheese, beef pepperoni, ground beef, beef bacon." },
       { id: "p6", name: "Beef Combination", desc: "Red sauce, mozzarella cheese, beef pepperoni, Italian sausage, mushrooms, red onion, black olive & bell peppers." },
       { id: "p7", name: "Hawaiian", desc: "Red sauce, mozzarella cheese, crunchy beef bacon & pineapple." },
       { id: "p8", name: "Veggie Lovers", desc: "Red sauce, fresh mozzarella cheese, fresh mushrooms, sliced red onions, fresh peppers, sliced black olives, juicy tomatoes." },
@@ -83,44 +93,9 @@ window.ALBAIK_MENU = [
     note: "Comes with fries",
     items: [
       { id: "bg1", name: "Chicken Zinger Burger", price: 9.99 },
-      { id: "bg2", name: "Nashville Hot Chicken Zinger", price: 9.99, spicy: true },
+      { id: "bg2", name: "Nashville Hot Zinger Burger", price: 9.99, spicy: true },
       { id: "bg3", name: "Beef Burger", price: 9.99 },
       { id: "bg4", name: "Double Patty Beef Burger", price: 12.99 }
-    ]
-  },
-  {
-    id: "kabob",
-    name: "Kabob",
-    items: [
-      { id: "k1", name: "Beef Skewers", price: 6.99 },
-      { id: "k2", name: "Chicken Tandoori Skewers", price: 9.99 },
-      { id: "k3", name: "Chicken Tikka Skewers", price: 9.99 },
-      { id: "k4", name: "Chicken Tandoori Kabob Leg Plate", price: 11.99 },
-      { id: "k5", name: "Chicken Tandoori Skewers Kabob Plate", price: 11.99 },
-      { id: "k6", name: "Chicken Tikka Skewers Kabob Plate", price: 11.99 },
-      { id: "k7", name: "Beef Skewers Kabob Plate", price: 9.99 },
-      { id: "k8", name: "Gyro Beef & Lamb Plate", price: 9.99 },
-      { id: "k9", name: "Shawarma Plate", price: 9.99 }
-    ]
-  },
-  {
-    id: "wraps",
-    name: "Wraps",
-    items: [
-      { id: "wr1", name: "Beef Kabob Wrap", price: 9.99 },
-      { id: "wr2", name: "Chicken Tandoori Kabob Wrap", price: 9.99 },
-      { id: "wr3", name: "Chicken Tikka Kabob Wrap", price: 9.99 },
-      { id: "wr4", name: "Gyro Beef & Lamb Wrap", price: 9.99 },
-      { id: "wr5", name: "Haryali Chicken Kabob Wrap", price: 9.99 }
-    ]
-  },
-  {
-    id: "roast",
-    name: "Roast Chicken",
-    soon: true,
-    items: [
-      { id: "r1", name: "Roast Chicken", price: 25.99, desc: "Includes sauces." },
-      { id: "r2", name: "Roast Chicken with 1/2 Sheet tray Rice plate", price: 35.99, desc: "Includes coleslaw, chutney and yogurt raita." }
     ]
   },
   {
@@ -142,5 +117,48 @@ window.ALBAIK_MENU = [
       { id: "sl3", name: "Garden Salad", price: 6.99 },
       { id: "sl4", name: "Chicken Caesar Salad", price: 6.99 }
     ]
+  },
+  {
+    id: "kabob",
+    name: "Kabob",
+    soon: true,
+    items: [
+      { id: "k1", name: "Beef Skewers", price: 6.99 },
+      { id: "k2", name: "Chicken Tandoori Skewers", price: 9.99 },
+      { id: "k3", name: "Chicken Tikka Skewers", price: 9.99 },
+      { id: "k4", name: "Chicken Tandoori Kabob Leg Plate", price: 11.99 },
+      { id: "k5", name: "Chicken Tandoori Skewers Kabob Plate", price: 11.99 },
+      { id: "k6", name: "Chicken Tikka Skewers Kabob Plate", price: 11.99 },
+      { id: "k7", name: "Beef Skewers Kabob Plate", price: 9.99 },
+      { id: "k8", name: "Gyro Beef & Lamb Plate", price: 9.99 },
+      { id: "k9", name: "Shawarma Plate", price: 9.99 }
+    ]
+  },
+  {
+    id: "wraps",
+    name: "Wraps",
+    soon: true,
+    items: [
+      { id: "wr1", name: "Beef Kabob Wrap", price: 9.99 },
+      { id: "wr2", name: "Chicken Tandoori Kabob Wrap", price: 9.99 },
+      { id: "wr3", name: "Chicken Tikka Kabob Wrap", price: 9.99 },
+      { id: "wr4", name: "Gyro Beef & Lamb Wrap", price: 9.99 },
+      { id: "wr5", name: "Haryali Chicken Kabob Wrap", price: 9.99 }
+    ]
+  },
+  {
+    id: "roast",
+    name: "Roast Chicken",
+    soon: true,
+    items: [
+      { id: "r1", name: "Roast Chicken", price: 25.99, desc: "Includes sauces." },
+      { id: "r2", name: "Roast Chicken with 1/2 Sheet tray Rice plate", price: 35.99, desc: "Includes coleslaw, chutney and yogurt raita." }
+    ]
+  },
+  {
+    id: "bbq",
+    name: "BBQ",
+    soon: true,
+    items: []
   }
 ];
