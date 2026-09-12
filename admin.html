@@ -511,6 +511,7 @@
       var t = "  {\n    id: " + q(s.id) + ",\n    name: " + q(s.name) + ",\n";
       if (s.note) t += "    note: " + q(s.note) + ",\n";
       if (s.soon) t += "    soon: true,\n";
+      if (s.info) t += "    info: " + q(s.info) + ",\n";
       if (s.sizes) {
         t += "    sizes: [\n" + s.sizes.map(function (z) {
           return "      { label: " + q(z.label) + ", price: " + z.price.toFixed(2) + " }";

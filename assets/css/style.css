@@ -590,3 +590,10 @@ body.has-ticketbar .foot{padding-bottom:96px}
 .tline b{float:right;color:var(--gold);font-variant-numeric:tabular-nums}
 .tline p{margin:3px 0 0;color:var(--muted);font-size:12.5px}
 .tline p.tno{color:#ff9a7d;font-weight:600}
+
+/* information-only section (build your own pizza) */
+.sec-info{
+  margin:0 0 12px;padding:14px 16px;border-radius:var(--radius);
+  background:var(--surface);border:1px solid var(--hair);
+  color:var(--text);font-size:14px;line-height:1.55;
+}

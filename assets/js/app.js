@@ -293,8 +293,9 @@
         if (!q) return true;
         return (it.name + " " + (it.desc || "") + " " + section.name).toLowerCase().indexOf(q) !== -1;
       });
-      // A section that is coming soon may have nothing on it yet - still show the banner
-      if (!items.length && !(section.soon && !q)) return;
+      // A section that is coming soon, or that is only information (build your own pizza),
+      // may have nothing orderable on it - still show the banner
+      if (!items.length && !((section.soon || section.info) && !q)) return;
 
       html += '<section class="section' + (section.soon ? " soon" : "") + '" id="sec-' + section.id + '" data-section="' + section.id + '">';
       html += '<div class="banner reveal">' +
@@ -303,6 +304,10 @@
           (section.soon ? '<span class="soon-tag">Coming soon</span>' : "") + "</h2>" +
         (section.note ? '<p class="banner-note">' + esc(section.note) + "</p>" : "") +
       "</div></div>";
+
+      if (section.info) {
+        html += '<p class="sec-info reveal">' + esc(section.info) + "</p>";
+      }
 
       if (section.sizes) {
         html += '<div class="sizes">' + section.sizes.map(function (s) {

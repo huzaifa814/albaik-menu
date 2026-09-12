@@ -2,13 +2,20 @@
   {
     "id": "fried-chicken",
     "name": "Crispy Fried Chicken",
-    "note": "Side options: Fries or Coleslaw",
+    "note": "Regular or Nashville Hot. Side options: Fries or Coleslaw",
     "items": [
       {
         "id": "fc1",
         "name": "4pcs Chicken with 1 side",
         "price": 12.99,
         "options": [
+          {
+            "name": "Style",
+            "choices": [
+              "Regular",
+              "Nashville Hot"
+            ]
+          },
           {
             "name": "Side",
             "choices": [
@@ -24,6 +31,13 @@
         "price": 24.99,
         "options": [
           {
+            "name": "Style",
+            "choices": [
+              "Regular",
+              "Nashville Hot"
+            ]
+          },
+          {
             "name": "Side",
             "choices": [
               "Fries",
@@ -38,6 +52,13 @@
         "price": 29.99,
         "options": [
           {
+            "name": "Style",
+            "choices": [
+              "Regular",
+              "Nashville Hot"
+            ]
+          },
+          {
             "name": "Side",
             "choices": [
               "Fries",
@@ -51,6 +72,13 @@
         "name": "20pcs Chicken Bucket with 2 sides",
         "price": 45.99,
         "options": [
+          {
+            "name": "Style",
+            "choices": [
+              "Regular",
+              "Nashville Hot"
+            ]
+          },
           {
             "name": "Side 1",
             "choices": [
@@ -72,6 +100,13 @@
         "name": "3pcs Chicken Tenders with 1 side",
         "price": 9.99,
         "options": [
+          {
+            "name": "Style",
+            "choices": [
+              "Regular",
+              "Nashville Hot"
+            ]
+          },
           {
             "name": "Side",
             "choices": [
@@ -125,7 +160,7 @@
       {
         "id": "w3",
         "name": "14pcs Wings",
-        "price": 15.99,
+        "price": 16.99,
         "options": [
           {
             "name": "Flavor",
@@ -206,89 +241,75 @@
       {
         "id": "p1",
         "name": "Beef Supreme",
-        "desc": "Beef pepperoni, mushrooms, onions, peppers & Italian sausage."
+        "desc": "Tomato sauce, mozzarella cheese, beef pepperoni, mushrooms, onions, peppers, Italian sausage."
       },
       {
         "id": "p2",
         "name": "Beef Pepperoni",
-        "desc": "Red sauce, mozzarella cheese, sliced beef pepperoni."
-      },
-      {
-        "id": "p4",
-        "name": "Beef Pizza",
-        "desc": "Red sauce, mozzarella cheese, ground beef, peppers & onions."
+        "desc": "Tomato sauce, mozzarella cheese, beef pepperoni."
       },
       {
         "id": "p5",
         "name": "Meat Lovers",
-        "desc": "Red sauce, mozzarella cheese, beef pepperoni, ground beef, beef bacon."
+        "desc": "Tomato sauce, mozzarella cheese, beef pepperoni, ground beef, beef bacon."
       },
       {
         "id": "p6",
         "name": "Beef Combination",
-        "desc": "Red sauce, mozzarella cheese, beef pepperoni, Italian sausage, mushrooms, red onion, black olive & bell peppers."
+        "desc": "Tomato sauce, mozzarella cheese, beef pepperoni, Italian sausage, mushrooms, onions, olives, bell peppers."
       },
       {
         "id": "p7",
         "name": "Hawaiian",
-        "desc": "Red sauce, mozzarella cheese, crunchy beef bacon & pineapple."
+        "desc": "Tomato sauce, mozzarella cheese, beef bacon, pineapple."
       },
       {
         "id": "p8",
         "name": "Veggie Lovers",
-        "desc": "Red sauce, fresh mozzarella cheese, fresh mushrooms, sliced red onions, fresh peppers, sliced black olives, juicy tomatoes."
+        "desc": "Tomato sauce, mozzarella cheese, fresh mushrooms, sliced red onions, peppers, olives, tomatoes, pickles."
       },
       {
         "id": "p9",
-        "name": "Gyro Lamb & Beef",
-        "desc": "White sauce, mozzarella cheese, gyro lamb & beef, red onion, jalapeno, pineapple, garlic & cilantro."
-      },
-      {
-        "id": "p10",
-        "name": "Shrimp",
-        "desc": "White sauce, mozzarella cheese, spinach, red onion, garlic, shrimp & green onion."
+        "name": "Gyro Lamb",
+        "desc": "White sauce, mozzarella cheese, gyro lamb, onions, jalapeno, pineapple, garlic, cilantro."
       },
       {
         "id": "p11",
         "name": "Chicken Supreme",
-        "desc": "Red sauce, mozzarella cheese, mushrooms, onions, peppers & grilled chicken."
+        "desc": "Tomato sauce, mozzarella cheese, mushrooms, onions, peppers, grilled chicken."
       },
       {
         "id": "p12",
         "name": "BBQ Chicken",
-        "desc": "BBQ sauce, mozzarella cheese, red onions, tomatoes & BBQ chicken breast."
+        "desc": "BBQ sauce, mozzarella cheese, onions, tomatoes, BBQ chicken, beef bacon."
       },
       {
         "id": "p13",
         "name": "Buffalo Chicken",
-        "desc": "Garlic sauce, mozzarella cheese, red onion, jalapenos & buffalo chicken.",
+        "desc": "Garlic sauce, mozzarella cheese, onions, jalapenos, buffalo chicken.",
         "spicy": true
       },
       {
         "id": "p14",
         "name": "Triple Chicken",
-        "desc": "Garlic sauce, mozzarella cheese, BBQ chicken, buffalo chicken & mango habanero chicken, drizzled with garlic sauce."
+        "desc": "Garlic sauce, mozzarella cheese, BBQ chicken, buffalo chicken, spicy chicken.",
+        "spicy": true
       },
       {
         "id": "p15",
         "name": "Achari Chicken",
-        "desc": "Garlic sauce, mozzarella cheese, red onions, achari jalapenos, achari chicken, garnished with green onions.",
+        "desc": "Garlic sauce, mozzarella cheese, onions, jalapenos, achari chicken.",
         "spicy": true
-      },
-      {
-        "id": "p16",
-        "name": "Tandoori Chicken",
-        "desc": "Tandoori sauce, tandoori chicken, mozzarella cheese, mushrooms, red onions, garlic, garnished with cilantro."
       },
       {
         "id": "p17",
         "name": "Tikka Chicken",
-        "desc": "Tikka masala sauce, tikka masala chicken, mozzarella cheese, mushrooms, red onions, bell peppers, garlic, garnished with cilantro."
+        "desc": "Tikka masala sauce, tandoori chicken, mozzarella cheese, mushrooms, onions, bell peppers, garlic, garnished with cilantro."
       },
       {
         "id": "p18",
         "name": "Butter Chicken",
-        "desc": "Butter sauce, mozzarella cheese, red onions, tomatoes, garlic and butter chicken, garnished with cilantro."
+        "desc": "Butter sauce, mozzarella cheese, onions, tomatoes, garlic, butter chicken, garnished with cilantro."
       }
     ]
   },
@@ -322,6 +343,12 @@
     ]
   },
   {
+    "id": "byo-pizza",
+    "name": "Build Your Own Pizza",
+    "info": "Regular or thin crust. Mozzarella cheese $2.50. Sauces $1.50 each: tomato, garlic, tandoori, tikka, burger. Protein toppings $2.50 each: beef pepperoni, gyro lamb, beef salami, beef bacon bits, garlic chicken, grilled chicken, crispy fried chicken bites, chicken tandoori, chicken tikka. Veggie toppings $1.50 each: red onion, white onion, bell peppers, olives, green onion, pineapple bits, tomatoes, jalapenos, green chillies, red chilli flakes, dill pickles, sumac onion. Order at the counter.",
+    "items": []
+  },
+  {
     "id": "breadsticks",
     "name": "Breadsticks",
     "items": [
@@ -337,7 +364,7 @@
       },
       {
         "id": "b3",
-        "name": "Gyro Beef & Lamb Breadsticks",
+        "name": "Gyro Lamb Breadsticks",
         "price": 10.99
       },
       {
@@ -433,74 +460,34 @@
     "items": [
       {
         "id": "sl1",
-        "name": "Coleslaw 8oz",
+        "name": "Coleslaw Regular",
         "price": 3.99
       },
       {
         "id": "sl2",
-        "name": "Coleslaw 16oz",
+        "name": "Coleslaw Medium",
         "price": 5.99
-      },
-      {
-        "id": "sl3",
-        "name": "Garden Salad",
-        "price": 6.99
       },
       {
         "id": "sl4",
         "name": "Chicken Caesar Salad",
-        "price": 6.99
+        "price": 8.99
       }
     ]
   },
   {
     "id": "kabob",
-    "name": "Kabob",
-    "soon": true,
+    "name": "Kabab",
+    "note": "1 stick",
     "items": [
       {
-        "id": "k1",
-        "name": "Beef Skewers",
-        "price": 6.99
-      },
-      {
-        "id": "k2",
-        "name": "Chicken Tandoori Skewers",
+        "id": "k10",
+        "name": "Chicken Seekh Kabab",
         "price": 9.99
       },
       {
-        "id": "k3",
-        "name": "Chicken Tikka Skewers",
-        "price": 9.99
-      },
-      {
-        "id": "k4",
-        "name": "Chicken Tandoori Kabob Leg Plate",
-        "price": 11.99
-      },
-      {
-        "id": "k5",
-        "name": "Chicken Tandoori Skewers Kabob Plate",
-        "price": 11.99
-      },
-      {
-        "id": "k6",
-        "name": "Chicken Tikka Skewers Kabob Plate",
-        "price": 11.99
-      },
-      {
-        "id": "k7",
-        "name": "Beef Skewers Kabob Plate",
-        "price": 9.99
-      },
-      {
-        "id": "k8",
-        "name": "Gyro Beef & Lamb Plate",
-        "price": 9.99
-      },
-      {
-        "id": "k9",
-        "name": "Shawarma Plate",
+        "id": "k11",
+        "name": "Beef Seekh Kabab",
         "price": 9.99
       }
     ]
@@ -508,7 +495,6 @@
   {
     "id": "wraps",
     "name": "Wraps",
-    "soon": true,
     "items": [
       {
         "id": "wr1",
@@ -527,7 +513,7 @@
       },
       {
         "id": "wr4",
-        "name": "Gyro Beef & Lamb Wrap",
+        "name": "Gyro & Lamb Wrap",
         "price": 9.99
       },
       {
