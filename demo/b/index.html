@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AL BAIK Chicken N Pizza</title>
+<meta name="description" content="Crispy halal fried chicken, hand-tossed pizza, seekh kabab and wraps at 6680 Stockton Blvd, Sacramento. Dine in, take out or order online.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#fff7ea">
+<link rel="icon" href="../img/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fff7ea; --paper2:#ffedcf; --white:#fffdf9; --ink:#1c1512; --ink2:#5b4d44; --muted:#8a7a6e;
+  --red:#d1202d; --red-deep:#a4121c; --gold:#ffb703; --gold2:#ffd166; --green:#1f8a4c; --hair:rgba(28,21,18,.1);
+  --shadow:0 10px 30px rgba(120,70,20,.10),0 2px 6px rgba(120,70,20,.06);
+  --radius:22px; --wrap:1220px; --gutter:clamp(16px,4vw,48px);
+  --display:"Bricolage Grotesque","Arial Black",system-ui,sans-serif; --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.02;text-wrap:balance}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 12px;border-radius:8px;z-index:99}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+.eyebrow{display:inline-block;font:700 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;font:700 15px/1 var(--body);border:2px solid transparent;transition:transform .15s ease,background .2s,border-color .2s,box-shadow .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 8px 20px rgba(209,32,45,.25)}
+.btn-red:hover{background:var(--red-deep)}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold2)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-line{border-color:var(--ink);color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:#fff}
+.btn-white{background:#fff;color:var(--ink)}
+
+/* header */
+.top{position:sticky;top:0;z-index:50;background:rgba(255,247,234,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+.top.solid{border-bottom-color:var(--hair)}
+.top .wrap{display:flex;align-items:center;gap:28px;height:78px}
+.logo img{height:48px;width:auto}
+.nav{display:flex;gap:4px;margin-left:6px}
+.nav a{padding:9px 14px;border-radius:999px;font-weight:600;font-size:14.5px;color:var(--ink2)}
+.nav a:hover{background:var(--paper2);color:var(--ink)}
+.top .act{margin-left:auto;display:flex;gap:10px;align-items:center}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink2);margin-right:6px}
+.status i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(31,138,76,.15)}
+.status.closed i{background:var(--red);box-shadow:0 0 0 4px rgba(209,32,45,.15)}
+@media (max-width:960px){.nav,.top .act .btn-line,.status{display:none}.top .wrap{height:66px}.logo img{height:40px}}
+
+/* hero */
+.hero{padding:10px var(--gutter) 0}
+.hero-panel{position:relative;max-width:calc(var(--wrap) + 2*var(--gutter));margin:0 auto;background:var(--red);color:#fff;border-radius:34px;overflow:hidden;isolation:isolate}
+.hero-panel::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(60% 70% at 80% 60%,rgba(120,0,8,.55),transparent 70%),
+  radial-gradient(40% 40% at 10% 0%,rgba(255,255,255,.14),transparent 70%)}
+.hero-in{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:24px;padding:clamp(36px,5vw,72px) clamp(24px,5vw,72px);min-height:600px}
+.hero h1{font-size:clamp(44px,6.6vw,96px);margin:0 0 20px;font-variation-settings:"opsz" 96}
+.hero h1 mark{background:none;color:var(--gold);position:relative;white-space:nowrap}
+.hero .lede{font-size:clamp(16px,1.35vw,19px);max-width:520px;color:rgba(255,255,255,.9);margin:0 0 30px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero .stickers{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px;padding:0;list-style:none}
+.hero .stickers li{background:#fff;color:var(--ink);border-radius:999px;padding:8px 14px;font:700 13px/1 var(--body);display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 16px rgba(0,0,0,.15)}
+.hero .stickers li.g{background:var(--gold)}
+.hero .stickers li.h{background:#fff;color:var(--green)}
+.hero .stickers img{width:18px;height:18px}
+.hero-art{position:relative;display:flex;justify-content:center}
+.hero-art img{width:min(100%,580px);aspect-ratio:1;object-fit:cover;
+  -webkit-mask-image:radial-gradient(closest-side,#000 60%,transparent 100%);mask-image:radial-gradient(closest-side,#000 60%,transparent 100%)}
+.hero-art .badge{position:absolute;left:4%;bottom:10%;background:var(--gold);color:var(--ink);border-radius:50%;width:120px;height:120px;display:grid;place-items:center;text-align:center;font:800 14px/1.1 var(--display);transform:rotate(-8deg);box-shadow:0 12px 30px rgba(0,0,0,.25);padding:10px}
+.hero-art .badge b{display:block;font-size:26px}
+@media (max-width:960px){
+  .hero{padding:8px 10px 0}.hero-panel{border-radius:26px}
+  .hero-in{grid-template-columns:1fr;min-height:0;padding:28px 22px 32px;gap:6px}
+  .hero-art{order:-1}.hero-art img{width:min(76vw,360px)}
+  .hero-art .badge{width:96px;height:96px;font-size:12px;left:2%;bottom:6%}.hero-art .badge b{font-size:20px}
+}
+
+/* trust row */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.trust>div{background:var(--white);border:1px solid var(--hair);border-radius:18px;padding:18px 20px;display:flex;align-items:center;gap:14px}
+.trust p{margin:0}
+.trust img,.trust svg{width:34px;height:34px;flex:none}
+.trust b{display:block;font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-.01em}
+.trust span{font-size:13px;color:var(--muted)}
+@media (max-width:960px){.trust{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.trust{grid-template-columns:1fr 1fr;gap:10px}.trust>div{padding:14px;flex-direction:column;align-items:flex-start;gap:8px}}
+
+/* sections */
+section.block{padding:clamp(56px,7vw,100px) 0}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(36px,5vw,64px)}
+.sec-head p{margin:8px 0 0;color:var(--ink2);max-width:520px}
+
+/* deals */
+.deals{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.deal{position:relative;background:var(--white);border:2px dashed rgba(209,32,45,.45);border-radius:var(--radius);overflow:hidden;transition:transform .2s,box-shadow .2s}
+.deal:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.deal-img{padding:14px 14px 0}
+.deal-img img{aspect-ratio:1;object-fit:cover;border-radius:14px}
+.deal-b{padding:16px 18px 20px}
+.deal-n{font:700 11px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.deal-b h3{font-size:22px;margin:8px 0 2px}
+.deal-b p{margin:0;color:var(--muted);font-size:14px}
+.deal-p{font-family:var(--display);font-weight:800;font-size:32px;color:var(--ink);margin-top:10px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.deal-p.pct{font:600 13px/1.3 var(--body);color:var(--muted);margin-top:14px}
+@media (max-width:1000px){.deals{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.deals{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 calc(-1*var(--gutter));padding:0 var(--gutter) 8px;scrollbar-width:none}.deals::-webkit-scrollbar{display:none}.deal{flex:0 0 76%;scroll-snap-align:start}}
+
+/* favourites */
+#favs{background:var(--white);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.favs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.fav{display:flex;flex-direction:column;background:var(--paper);border-radius:var(--radius);overflow:hidden;transition:transform .2s,box-shadow .2s}
+.fav:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.fav .ph{padding:12px 12px 0}
+.fav .ph img{aspect-ratio:1;object-fit:cover;border-radius:16px}
+.fav .fb{padding:16px 18px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.fav-cat{font:700 11px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.fav h3{font-size:22px}
+.fav h3 small{display:block;font:500 13px/1.3 var(--body);letter-spacing:0;color:var(--muted);margin-top:4px}
+.fav p{margin:0;color:var(--ink2);font-size:14px;flex:1}
+.fav .pr{display:inline-block;align-self:flex-start;background:var(--gold);border-radius:999px;padding:7px 12px;font:800 15px/1 var(--display);margin-top:8px}
+@media (max-width:1000px){.favs{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.favs{gap:10px}.fav .fb{padding:12px 14px 16px}.fav h3{font-size:18px}.fav .ph{padding:8px 8px 0}}
+
+/* menu */
+.cats{position:sticky;top:78px;z-index:40;display:flex;gap:8px;overflow-x:auto;padding:12px 0;margin:0 0 12px;background:rgba(255,247,234,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);scrollbar-width:none;border-bottom:1px solid var(--hair)}
+.cats::-webkit-scrollbar{display:none}
+.cats a{flex:none;padding:10px 16px;border-radius:999px;border:2px solid var(--ink);font-weight:700;font-size:14px;color:var(--ink);background:transparent}
+.cats a.on{background:var(--ink);color:#fff}
+@media (max-width:960px){.cats{top:66px}}
+.cat{padding:34px 0 8px;scroll-margin-top:150px}
+.cat-head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+.cat-head h3{font-size:clamp(30px,4vw,46px)}
+.note{margin:0;color:var(--ink2);font-size:14px}
+.sub-h{font:700 20px/1.3 var(--display);letter-spacing:-.01em;margin:26px 0 12px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.sub-h .note{font-family:var(--body);font-weight:400}
+.sizebar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;list-style:none;margin:0 0 18px;padding:0}
+.sizebar li{background:var(--white);border:1px solid var(--hair);border-radius:14px;padding:12px 14px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.sizebar span{font-size:13px;color:var(--muted)}
+.sizebar b{font-family:var(--display);font-weight:800;font-size:20px}
+@media (max-width:640px){.sizebar{grid-template-columns:1fr 1fr;gap:8px}}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.cards.one{grid-template-columns:1fr}
+.card{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.card .ph{position:relative;padding:10px 10px 0}
+.card .ph img{aspect-ratio:1;object-fit:cover;border-radius:14px}
+.card .cb{padding:14px 16px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h4{font:700 16.5px/1.3 var(--display);letter-spacing:-.01em}
+.card h4 small{display:block;font:400 13px/1.3 var(--body);color:var(--muted);margin-top:2px}
+.card .d{margin:0;color:var(--ink2);font-size:13.5px;line-height:1.5}
+.card .pr{margin-top:auto;padding-top:8px;font-family:var(--display);font-weight:800;font-size:22px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.card .pr .from{font:500 12px/1 var(--body);color:var(--muted);margin-right:4px;vertical-align:middle;letter-spacing:0}
+.chip-spicy{position:absolute;left:20px;top:20px;background:var(--red);color:#fff;font:700 11px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:7px 10px;border-radius:999px}
+.card.soon .ph img{filter:saturate(.5) brightness(.85)}
+.card.soon .pr{color:var(--muted)}
+.stamp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);background:var(--gold);color:var(--ink);font:800 18px/1 var(--display);text-transform:uppercase;padding:10px 16px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.ladder{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ladder li{background:var(--paper);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:baseline}
+.ladder span{font-size:12px;color:var(--muted)}
+.ladder b{font-family:var(--display);font-weight:800;font-size:18px}
+.card.byo,.card.wide{flex-direction:row}
+.card.byo .ph,.card.wide .ph{flex:0 0 30%;padding:10px 0 10px 10px}
+.card.byo .ph img,.card.wide .ph img{height:100%;aspect-ratio:auto}
+.card.wide .ladder{grid-template-columns:repeat(4,1fr);max-width:640px}
+.card.wide .cb{justify-content:center}
+.byo-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:6px 0 10px}
+.byo-cols h5{margin:0 0 6px;font:700 12px/1.2 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+.byo-cols h5 b{color:var(--ink);letter-spacing:0;text-transform:none}
+.byo-cols ul{margin:0 0 14px;padding:0;list-style:none;font-size:14px;color:var(--ink2);line-height:1.6}
+.byo-cols ul.two{columns:2;column-gap:14px}
+.byo-cols li b{color:var(--ink)}
+@media (max-width:820px){.card.byo,.card.wide{flex-direction:column}.card.byo .ph,.card.wide .ph{flex:none;padding:10px 10px 0}.card.byo .ph img,.card.wide .ph img{aspect-ratio:16/7}.byo-cols{grid-template-columns:1fr}.card.wide .ladder{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.cards{grid-template-columns:1fr 1fr;gap:10px}.card .ph{padding:8px 8px 0}.card .cb{padding:10px 12px 14px}.card h4{font-size:14.5px}.card .pr{font-size:19px}.card .d{display:none}.card.byo .d{display:block}.chip-spicy{left:16px;top:16px}}
+
+/* about */
+#about{background:var(--paper2)}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about h2{font-size:clamp(38px,5.4vw,72px)}
+.about h2 mark{background:none;color:var(--red)}
+.about p{color:var(--ink2);font-size:17px;max-width:540px}
+.about .pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:26px}
+.about .pillars div{background:var(--white);border-radius:16px;padding:16px}
+.about .pillars b{display:block;font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em}
+.about .pillars span{font-size:13px;color:var(--muted)}
+.about .collage{position:relative;aspect-ratio:1;max-width:500px;margin-left:auto}
+.about .collage img{position:absolute;object-fit:cover;box-shadow:var(--shadow);border:6px solid var(--white)}
+.about .collage .c1{left:0;top:0;width:62%;aspect-ratio:1;border-radius:36px}
+.about .collage .c2{right:0;top:18%;width:46%;aspect-ratio:1;border-radius:50%}
+.about .collage .c3{left:18%;bottom:0;width:50%;aspect-ratio:1;border-radius:36px;transform:rotate(-4deg)}
+@media (max-width:900px){.about{grid-template-columns:1fr}.about .collage{margin:0 auto;max-width:400px}}
+@media (max-width:560px){.about .pillars{grid-template-columns:1fr}}
+
+/* visit */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--hair);min-height:380px;background:var(--white)}
+.map iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
+.vcard{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:28px}
+.vcard h3{font-size:30px;margin-bottom:8px}
+.vcard address{font-style:normal;color:var(--ink2);line-height:1.6}
+.vcard .hours{margin:20px 0;padding:0;list-style:none;border-top:1px solid var(--hair)}
+.vcard .hours li{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--hair);font-size:14px}
+.vcard .hours span{color:var(--muted)}
+.vcard .hours b{font-weight:600;font-variant-numeric:tabular-nums}
+.vcard .hours li.today{color:var(--red)}
+.vcard .hours li.today span{color:var(--red);font-weight:700}
+.vcard .cta{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:900px){.visit{grid-template-columns:1fr}}
+
+/* franchise */
+#franchise{padding:0 var(--gutter) clamp(56px,7vw,100px)}
+.fr{max-width:calc(var(--wrap) + 2*var(--gutter));margin:0 auto;background:var(--gold);border-radius:34px;padding:clamp(36px,5vw,72px);display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:32px}
+.fr h2{font-size:clamp(38px,5.4vw,72px)}
+.fr .eyebrow{color:var(--ink)}
+.fr p{font-size:17px;max-width:520px;color:var(--ink2)}
+.fr .cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+@media (max-width:900px){.fr{grid-template-columns:1fr;border-radius:26px}.fr .cta{justify-content:flex-start}}
+
+/* footer */
+footer{background:var(--ink);color:rgba(255,255,255,.7);padding:52px 0 110px;font-size:14px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+.foot img.fl{height:54px;width:auto;margin-bottom:12px}
+.foot h4{font:700 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#fff;margin-bottom:12px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.foot a:hover{color:#fff}
+.foot .halal{display:flex;align-items:center;gap:10px;margin-top:14px}
+.foot .halal img{width:34px;height:34px}
+.copy{margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;color:rgba(255,255,255,.45)}
+@media (max-width:900px){.foot{grid-template-columns:1fr 1fr}}
+@media (min-width:961px){footer{padding-bottom:52px}}
+
+/* mobile action bar */
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;padding:10px var(--gutter) calc(10px + env(safe-area-inset-bottom));background:rgba(255,247,234,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--hair)}
+.mbar .btn{flex:1;min-height:50px}
+@media (max-width:960px){.mbar{display:flex}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#menu">Skip to menu</a>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="AL BAIK Chicken N Pizza"><img src="../img/logo.svg" alt="AL BAIK Chicken N Pizza" width="180" height="98"></a>
+    <nav class="nav" aria-label="Site">
+      <a href="#menu">Menu</a><a href="#deals">Deals</a><a href="#about">About</a><a href="#visit">Visit</a><a href="#franchise">Franchise</a>
+    </nav>
+    <div class="act">
+      <span class="status" id="status"><i></i><span>Open now</span></span>
+      <a class="btn btn-line" href="tel:+19166806803">(916) 680-6803</a>
+      <a class="btn btn-red" href="https://albaikpizzaca.com" target="_blank" rel="noopener">Order online</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-panel">
+    <div class="hero-in">
+      <div class="hero-txt">
+        <ul class="stickers">
+          <li class="h"><img src="../img/halal.png" alt="" width="18" height="18">100% Halal</li>
+          <li class="g">Now open in Sacramento</li>
+          <li>Dine in · Takeout · Delivery</li>
+        </ul>
+        <h1>Crispy chicken &amp; hot pizza, <mark>the halal way.</mark></h1>
+        <p class="lede">Fried chicken buckets, hand-tossed pizzas, seekh kabab, wraps and burgers on Stockton Boulevard. Come in, take out or order online.</p>
+        <div class="cta">
+          <a class="btn btn-gold" href="https://albaikpizzaca.com" target="_blank" rel="noopener">Order online</a>
+          <a class="btn btn-white" href="#menu">See the menu</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img src="../img/fries-xl.webp" alt="AL BAIK fries bucket" width="1200" height="1200" fetchpriority="high">
+        <span class="badge" aria-hidden="true">Open daily<b>11–10</b></span>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="trust">
+      <div><img src="../img/halal.png" alt="" width="34" height="34"><p><b>100% Halal</b><span>Every item on the menu</span></p></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--red)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><p><b>Open daily</b><span>11:00 AM – 10:00 PM</span></p></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--red)"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><p><b>6680 Stockton Blvd</b><span>Suite 4, Sacramento 95823</span></p></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--red)"><path d="M4 4h16v10H4z"/><path d="M8 20h8M12 14v6"/></svg><p><b>Order online</b><span>Pickup or delivery</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="deals">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Coupons</span><h2>This week's deals</h2><p>Mention the coupon when you order or show it at the counter.</p></div>
+      <a class="btn btn-ink" href="https://albaikpizzaca.com" target="_blank" rel="noopener">Order online</a>
+    </div>
+    <div class="deals rv">
+<article class="deal">
+  <div class="deal-img"><img src="../img/deal1.webp" width="900" height="900" loading="lazy" decoding="async" alt="Coupon 1: 2 Large Pizzas + 2L soda"></div>
+  <div class="deal-b">
+    <span class="deal-n">Coupon 1</span>
+    <h3>2 Large Pizzas</h3>
+    <p>+ 2L soda</p>
+    <div class="deal-p">$34.99</div>
+  </div>
+</article>
+<article class="deal">
+  <div class="deal-img"><img src="../img/deal2.webp" width="900" height="900" loading="lazy" decoding="async" alt="Coupon 2: 2 x 8pc Crispy Chicken Buckets + 2L soda"></div>
+  <div class="deal-b">
+    <span class="deal-n">Coupon 2</span>
+    <h3>2 x 8pc Crispy Chicken Buckets</h3>
+    <p>+ 2L soda</p>
+    <div class="deal-p">$39.99</div>
+  </div>
+</article>
+<article class="deal">
+  <div class="deal-img"><img src="../img/deal3.webp" width="900" height="900" loading="lazy" decoding="async" alt="Coupon 3: 15% off your order"></div>
+  <div class="deal-b">
+    <span class="deal-n">Coupon 3</span>
+    <h3>15% off</h3>
+    <p>your order</p>
+    <div class="deal-p pct">Show this coupon</div>
+  </div>
+</article>
+<article class="deal">
+  <div class="deal-img"><img src="../img/deal4.webp" width="900" height="900" loading="lazy" decoding="async" alt="Coupon 4: 2 X-Large 1-Topping Pizzas + 2L soda"></div>
+  <div class="deal-b">
+    <span class="deal-n">Coupon 4</span>
+    <h3>2 X-Large 1-Topping Pizzas</h3>
+    <p>+ 2L soda</p>
+    <div class="deal-p">$49.99</div>
+  </div>
+</article>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="favs">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Start here</span><h2>House favourites</h2></div>
+    </div>
+    <div class="favs rv">
+<a class="fav" href="#m-chicken">
+  <div class="ph"><img src="../img/fried-chicken.webp" width="800" height="800" loading="lazy" decoding="async" alt="8pcs Chicken Bucket with 1 side"></div>
+  <div class="fb"><span class="fav-cat">Crispy Fried Chicken</span><h3>8pcs Chicken Bucket <small>with 1 side</small></h3><p>Regular or Nashville Hot. Side options: Fries or Coleslaw</p><span class="pr">$24.99</span></div>
+</a>
+<a class="fav" href="#m-pizza">
+  <div class="ph"><img src="../img/pz-tikka.webp" width="800" height="800" loading="lazy" decoding="async" alt="Tikka Chicken"></div>
+  <div class="fb"><span class="fav-cat">Pizza</span><h3>Tikka Chicken</h3><p>Tikka masala sauce, tandoori chicken, mozzarella cheese, mushrooms, onions, bell peppers, garlic, garnished with cilantro.</p><span class="pr">from $12.99</span></div>
+</a>
+<a class="fav" href="#m-kabab">
+  <div class="ph"><img src="../img/wrap-gyro.webp" width="800" height="800" loading="lazy" decoding="async" alt="Gyro &amp; Lamb Wrap"></div>
+  <div class="fb"><span class="fav-cat">Wraps</span><h3>Gyro &amp; Lamb Wrap</h3><p></p><span class="pr">$9.99</span></div>
+</a>
+<a class="fav" href="#m-burgers">
+  <div class="ph"><img src="../img/nashville-zinger.webp" width="800" height="800" loading="lazy" decoding="async" alt="Nashville Hot Zinger Burger"></div>
+  <div class="fb"><span class="fav-cat">Burgers</span><h3>Nashville Hot Zinger Burger</h3><p>Comes with fries</p><span class="pr">$9.99</span></div>
+</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="menu">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Everything we make</span><h2>The menu</h2><p>Prices before tax. Every dish is halal.</p></div>
+    </div>
+    <nav class="cats" id="cats" aria-label="Menu categories"><a href="#m-chicken">Fried Chicken</a><a href="#m-wings">Wings</a><a href="#m-pizza">Pizza</a><a href="#m-breadsticks">Breadsticks</a><a href="#m-burgers">Burgers</a><a href="#m-kabab">Kabab &amp; Wraps</a><a href="#m-sides">Sides &amp; Kids</a><a href="#m-soon">Coming Soon</a></nav>
+<section class="cat" id="m-chicken"><header class="cat-head"><h3>Fried Chicken</h3><p class="note">Regular or Nashville Hot. Side options: Fries or Coleslaw</p></header><div class="cards"><article class="card">
+  <div class="ph"><img src="../img/fried-chicken.webp" width="800" height="800" loading="lazy" decoding="async" alt="4pcs Chicken with 1 side"></div>
+  <div class="cb">
+    <h4>4pcs Chicken <small>with 1 side</small></h4>
+    
+    <p class="d opt">Regular · Nashville Hot</p>
+    
+    <div class="pr">$12.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/fried-chicken.webp" width="800" height="800" loading="lazy" decoding="async" alt="8pcs Chicken Bucket with 1 side"></div>
+  <div class="cb">
+    <h4>8pcs Chicken Bucket <small>with 1 side</small></h4>
+    
+    <p class="d opt">Regular · Nashville Hot</p>
+    
+    <div class="pr">$24.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/fried-chicken.webp" width="800" height="800" loading="lazy" decoding="async" alt="12pcs Chicken Bucket with 1 side"></div>
+  <div class="cb">
+    <h4>12pcs Chicken Bucket <small>with 1 side</small></h4>
+    
+    <p class="d opt">Regular · Nashville Hot</p>
+    
+    <div class="pr">$29.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/fried-chicken.webp" width="800" height="800" loading="lazy" decoding="async" alt="20pcs Chicken Bucket with 2 sides"></div>
+  <div class="cb">
+    <h4>20pcs Chicken Bucket <small>with 2 sides</small></h4>
+    
+    <p class="d opt">Regular · Nashville Hot</p>
+    
+    <div class="pr">$45.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/fried-chicken.webp" width="800" height="800" loading="lazy" decoding="async" alt="3pcs Chicken Tenders with 1 side"></div>
+  <div class="cb">
+    <h4>3pcs Chicken Tenders <small>with 1 side</small></h4>
+    
+    <p class="d opt">Regular · Nashville Hot</p>
+    
+    <div class="pr">$9.99</div>
+  </div>
+</article></div></section>
+<section class="cat" id="m-wings"><header class="cat-head"><h3>Wings</h3><p class="note">Flavors: BBQ, Buffalo, Haryali, Hot Honey Garlic, Lemon Pepper - comes with your choice of dipping sauce</p></header><div class="cards"><article class="card">
+  <div class="ph"><img src="../img/wings.webp" width="800" height="800" loading="lazy" decoding="async" alt="6pcs Wings"></div>
+  <div class="cb">
+    <h4>6pcs Wings</h4>
+    
+    <p class="d opt">BBQ · Buffalo · Haryali · Hot Honey Garlic · Lemon Pepper</p>
+    
+    <div class="pr">$9.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/wings.webp" width="800" height="800" loading="lazy" decoding="async" alt="12pcs Wings"></div>
+  <div class="cb">
+    <h4>12pcs Wings</h4>
+    
+    <p class="d opt">BBQ · Buffalo · Haryali · Hot Honey Garlic · Lemon Pepper</p>
+    
+    <div class="pr">$14.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/wings.webp" width="800" height="800" loading="lazy" decoding="async" alt="14pcs Wings"></div>
+  <div class="cb">
+    <h4>14pcs Wings</h4>
+    
+    <p class="d opt">BBQ · Buffalo · Haryali · Hot Honey Garlic · Lemon Pepper</p>
+    
+    <div class="pr">$16.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/wings.webp" width="800" height="800" loading="lazy" decoding="async" alt="20pcs Wings"></div>
+  <div class="cb">
+    <h4>20pcs Wings</h4>
+    
+    <p class="d opt">BBQ · Buffalo · Haryali · Hot Honey Garlic · Lemon Pepper</p>
+    
+    <div class="pr">$22.99</div>
+  </div>
+</article></div></section>
+<section class="cat" id="m-pizza"><header class="cat-head"><h3>Pizza</h3></header><p class="note">Every pizza comes in four sizes</p><ul class="sizebar"><li><span>10&quot; Small</span><b>$12.99</b></li><li><span>12&quot; Medium</span><b>$19.99</b></li><li><span>14&quot; Large</span><b>$23.99</b></li><li><span>16&quot; Extra Large</span><b>$29.99</b></li></ul><div class="cards"><article class="card">
+  <div class="ph"><img src="../img/pz-beef-supreme.webp" width="800" height="800" loading="lazy" decoding="async" alt="Beef Supreme"></div>
+  <div class="cb">
+    <h4>Beef Supreme</h4>
+    <p class="d">Tomato sauce, mozzarella cheese, beef pepperoni, mushrooms, onions, peppers, Italian sausage.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/pz-pepperoni.webp" width="800" height="800" loading="lazy" decoding="async" alt="Beef Pepperoni"></div>
+  <div class="cb">
+    <h4>Beef Pepperoni</h4>
+    <p class="d">Tomato sauce, mozzarella cheese, beef pepperoni.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/pz-meat-lovers.webp" width="800" height="800" loading="lazy" decoding="async" alt="Meat Lovers"></div>
+  <div class="cb">
+    <h4>Meat Lovers</h4>
+    <p class="d">Tomato sauce, mozzarella cheese, beef pepperoni, ground beef, beef bacon.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/pz-beef-combo.webp" width="800" height="800" loading="lazy" decoding="async" alt="Beef Combination"></div>
+  <div class="cb">
+    <h4>Beef Combination</h4>
+    <p class="d">Tomato sauce, mozzarella cheese, beef pepperoni, Italian sausage, mushrooms, onions, olives, bell peppers.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/pz-hawaiian.webp" width="800" height="800" loading="lazy" decoding="async" alt="Hawaiian"></div>
+  <div class="cb">
+    <h4>Hawaiian</h4>
+    <p class="d">Tomato sauce, mozzarella cheese, beef bacon, pineapple.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/pz-veggie.webp" width="800" height="800" loading="lazy" decoding="async" alt="Veggie Lovers"></div>
+  <div class="cb">
+    <h4>Veggie Lovers</h4>
+    <p class="d">Tomato sauce, mozzarella cheese, fresh mushrooms, sliced red onions, peppers, olives, tomatoes, pickles.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/pz-gyro-lamb.webp" width="800" height="800" loading="lazy" decoding="async" alt="Gyro Lamb"></div>
+  <div class="cb">
+    <h4>Gyro Lamb</h4>
+    <p class="d">White sauce, mozzarella cheese, gyro lamb, onions, jalapeno, pineapple, garlic, cilantro.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/pz-chicken-supreme.webp" width="800" height="800" loading="lazy" decoding="async" alt="Chicken Supreme"></div>
+  <div class="cb">
+    <h4>Chicken Supreme</h4>
+    <p class="d">Tomato sauce, mozzarella cheese, mushrooms, onions, peppers, grilled chicken.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/pz-bbq.webp" width="800" height="800" loading="lazy" decoding="async" alt="BBQ Chicken"></div>
+  <div class="cb">
+    <h4>BBQ Chicken</h4>
+    <p class="d">BBQ sauce, mozzarella cheese, onions, tomatoes, BBQ chicken, beef bacon.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card spicy">
+  <div class="ph"><img src="../img/pz-buffalo.webp" width="800" height="800" loading="lazy" decoding="async" alt="Buffalo Chicken"><span class="chip-spicy" title="Spicy">Spicy</span></div>
+  <div class="cb">
+    <h4>Buffalo Chicken</h4>
+    <p class="d">Garlic sauce, mozzarella cheese, onions, jalapenos, buffalo chicken.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card spicy">
+  <div class="ph"><img src="../img/pz-triple-chicken.webp" width="800" height="800" loading="lazy" decoding="async" alt="Triple Chicken"><span class="chip-spicy" title="Spicy">Spicy</span></div>
+  <div class="cb">
+    <h4>Triple Chicken</h4>
+    <p class="d">Garlic sauce, mozzarella cheese, BBQ chicken, buffalo chicken, spicy chicken.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card spicy">
+  <div class="ph"><img src="../img/pz-achari.webp" width="800" height="800" loading="lazy" decoding="async" alt="Achari Chicken"><span class="chip-spicy" title="Spicy">Spicy</span></div>
+  <div class="cb">
+    <h4>Achari Chicken</h4>
+    <p class="d">Garlic sauce, mozzarella cheese, onions, jalapenos, achari chicken.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/pz-tikka.webp" width="800" height="800" loading="lazy" decoding="async" alt="Tikka Chicken"></div>
+  <div class="cb">
+    <h4>Tikka Chicken</h4>
+    <p class="d">Tikka masala sauce, tandoori chicken, mozzarella cheese, mushrooms, onions, bell peppers, garlic, garnished with cilantro.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/pz-butter-chicken.webp" width="800" height="800" loading="lazy" decoding="async" alt="Butter Chicken"></div>
+  <div class="cb">
+    <h4>Butter Chicken</h4>
+    <p class="d">Butter sauce, mozzarella cheese, onions, tomatoes, garlic, butter chicken, garnished with cilantro.</p>
+    
+    
+    <div class="pr"><span class="from">from</span> $12.99</div>
+  </div>
+</article></div>
+<h3 class="sub-h">Cheezy Pizza</h3><div class="cards one"><article class="card wide">
+  <div class="ph"><img src="../img/pz-cheezy.webp" width="800" height="800" loading="lazy" decoding="async" alt="Cheezy Pizza"></div>
+  <div class="cb">
+    <h4>Cheezy Pizza</h4>
+    <p class="d">Loaded mozzarella, baked golden.</p>
+    
+    <ul class="ladder"><li><span>10&quot; Small</span><b>$9.99</b></li><li><span>12&quot; Medium</span><b>$14.99</b></li><li><span>14&quot; Large</span><b>$17.99</b></li><li><span>16&quot; Extra Large</span><b>$21.99</b></li></ul>
+    
+  </div>
+</article></div>
+<h3 class="sub-h">Build Your Own Pizza</h3><div class="cards one"><article class="card byo">
+  <div class="ph"><img src="../img/pz-veggie.webp" width="800" height="800" loading="lazy" decoding="async" alt="Build your own pizza"></div>
+  <div class="cb">
+    <h4>Build Your Own Pizza <small>Regular or thin crust</small></h4>
+    <div class="byo-cols">
+      <div><h5>Cheese</h5><ul><li>Mozzarella <b>$2.50</b></li></ul>
+           <h5>Sauces <b>$1.50 each</b></h5><ul><li>Tomato</li><li>Garlic</li><li>Tandoori</li><li>Tikka</li><li>Burger</li></ul></div>
+      <div><h5>Protein <b>$2.50 each</b></h5><ul><li>Beef pepperoni</li><li>Gyro lamb</li><li>Beef salami</li><li>Beef bacon bits</li><li>Garlic chicken</li><li>Grilled chicken</li><li>Crispy fried chicken bites</li><li>Chicken tandoori</li><li>Chicken tikka</li></ul></div>
+      <div><h5>Veggies <b>$1.50 each</b></h5><ul class="two"><li>Red onion</li><li>White onion</li><li>Bell peppers</li><li>Olives</li><li>Green onion</li><li>Pineapple bits</li><li>Tomatoes</li><li>Jalapenos</li><li>Green chillies</li><li>Red chilli flakes</li><li>Dill pickles</li><li>Sumac onion</li></ul></div>
+    </div>
+    <p class="d">Ask at the counter and we will price it up for you.</p>
+  </div>
+</article></div></section>
+<section class="cat" id="m-breadsticks"><header class="cat-head"><h3>Breadsticks</h3></header><div class="cards"><article class="card">
+  <div class="ph"><img src="../img/bs-chicken.webp" width="800" height="800" loading="lazy" decoding="async" alt="Chicken Breadsticks"></div>
+  <div class="cb">
+    <h4>Chicken Breadsticks</h4>
+    
+    
+    
+    <div class="pr">$10.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/bs-garlic.webp" width="800" height="800" loading="lazy" decoding="async" alt="Garlic Cheezy Breadsticks"></div>
+  <div class="cb">
+    <h4>Garlic Cheezy Breadsticks</h4>
+    
+    
+    
+    <div class="pr">$10.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/bs-gyro.webp" width="800" height="800" loading="lazy" decoding="async" alt="Gyro Lamb Breadsticks"></div>
+  <div class="cb">
+    <h4>Gyro Lamb Breadsticks</h4>
+    
+    
+    
+    <div class="pr">$10.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/bs-beef.webp" width="800" height="800" loading="lazy" decoding="async" alt="Beef Breadsticks"></div>
+  <div class="cb">
+    <h4>Beef Breadsticks</h4>
+    
+    
+    
+    <div class="pr">$10.99</div>
+  </div>
+</article></div></section>
+<section class="cat" id="m-burgers"><header class="cat-head"><h3>Burgers</h3><p class="note">Comes with fries</p></header><div class="cards"><article class="card">
+  <div class="ph"><img src="../img/zinger.webp" width="800" height="800" loading="lazy" decoding="async" alt="Chicken Zinger Burger"></div>
+  <div class="cb">
+    <h4>Chicken Zinger Burger</h4>
+    
+    
+    
+    <div class="pr">$9.99</div>
+  </div>
+</article>
+<article class="card spicy">
+  <div class="ph"><img src="../img/nashville-zinger.webp" width="800" height="800" loading="lazy" decoding="async" alt="Nashville Hot Zinger Burger"><span class="chip-spicy" title="Spicy">Spicy</span></div>
+  <div class="cb">
+    <h4>Nashville Hot Zinger Burger</h4>
+    
+    
+    
+    <div class="pr">$9.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/beef-burger.webp" width="800" height="800" loading="lazy" decoding="async" alt="Beef Burger"></div>
+  <div class="cb">
+    <h4>Beef Burger</h4>
+    
+    
+    
+    <div class="pr">$9.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/double-beef-burger.webp" width="800" height="800" loading="lazy" decoding="async" alt="Double Patty Beef Burger"></div>
+  <div class="cb">
+    <h4>Double Patty Beef Burger</h4>
+    
+    
+    
+    <div class="pr">$12.99</div>
+  </div>
+</article></div></section>
+<section class="cat" id="m-kabab"><header class="cat-head"><h3>Kabab &amp; Wraps</h3></header><h3 class="sub-h">Kabab <span class="note">1 stick</span></h3><div class="cards two-up"><article class="card">
+  <div class="ph"><img src="../img/kabab-chicken.webp" width="800" height="800" loading="lazy" decoding="async" alt="Chicken Seekh Kabab"></div>
+  <div class="cb">
+    <h4>Chicken Seekh Kabab</h4>
+    
+    
+    
+    <div class="pr">$9.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/kabab-beef.webp" width="800" height="800" loading="lazy" decoding="async" alt="Beef Seekh Kabab"></div>
+  <div class="cb">
+    <h4>Beef Seekh Kabab</h4>
+    
+    
+    
+    <div class="pr">$9.99</div>
+  </div>
+</article></div>
+<h3 class="sub-h">Wraps</h3><div class="cards"><article class="card">
+  <div class="ph"><img src="../img/wrap-beef.webp" width="800" height="800" loading="lazy" decoding="async" alt="Beef Kabob Wrap"></div>
+  <div class="cb">
+    <h4>Beef Kabob Wrap</h4>
+    
+    
+    
+    <div class="pr">$9.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/wrap-tandoori.webp" width="800" height="800" loading="lazy" decoding="async" alt="Chicken Tandoori Kabob Wrap"></div>
+  <div class="cb">
+    <h4>Chicken Tandoori Kabob Wrap</h4>
+    
+    
+    
+    <div class="pr">$9.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/wrap-tikka.webp" width="800" height="800" loading="lazy" decoding="async" alt="Chicken Tikka Kabob Wrap"></div>
+  <div class="cb">
+    <h4>Chicken Tikka Kabob Wrap</h4>
+    
+    
+    
+    <div class="pr">$9.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/wrap-gyro.webp" width="800" height="800" loading="lazy" decoding="async" alt="Gyro &amp; Lamb Wrap"></div>
+  <div class="cb">
+    <h4>Gyro &amp; Lamb Wrap</h4>
+    
+    
+    
+    <div class="pr">$9.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/wrap-haryali.webp" width="800" height="800" loading="lazy" decoding="async" alt="Haryali Chicken Kabob Wrap"></div>
+  <div class="cb">
+    <h4>Haryali Chicken Kabob Wrap</h4>
+    
+    
+    
+    <div class="pr">$9.99</div>
+  </div>
+</article></div></section>
+<section class="cat" id="m-sides"><header class="cat-head"><h3>Sides &amp; Kids</h3></header><h3 class="sub-h">Fries <span class="note">Original, Peri peri or Lemon Pepper</span></h3><div class="cards"><article class="card">
+  <div class="ph"><img src="../img/fries.webp" width="800" height="800" loading="lazy" decoding="async" alt="Small Fries"></div>
+  <div class="cb">
+    <h4>Small Fries</h4>
+    
+    <p class="d opt">Original · Peri peri · Lemon Pepper</p>
+    
+    <div class="pr">$2.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/fries.webp" width="800" height="800" loading="lazy" decoding="async" alt="Medium Fries"></div>
+  <div class="cb">
+    <h4>Medium Fries</h4>
+    
+    <p class="d opt">Original · Peri peri · Lemon Pepper</p>
+    
+    <div class="pr">$3.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/fries.webp" width="800" height="800" loading="lazy" decoding="async" alt="Large Fries"></div>
+  <div class="cb">
+    <h4>Large Fries</h4>
+    
+    <p class="d opt">Original · Peri peri · Lemon Pepper</p>
+    
+    <div class="pr">$4.99</div>
+  </div>
+</article></div>
+<h3 class="sub-h">Salads</h3><div class="cards"><article class="card">
+  <div class="ph"><img src="../img/salads.webp" width="800" height="800" loading="lazy" decoding="async" alt="Coleslaw Regular"></div>
+  <div class="cb">
+    <h4>Coleslaw Regular</h4>
+    
+    
+    
+    <div class="pr">$3.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/salads.webp" width="800" height="800" loading="lazy" decoding="async" alt="Coleslaw Medium"></div>
+  <div class="cb">
+    <h4>Coleslaw Medium</h4>
+    
+    
+    
+    <div class="pr">$5.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/salads.webp" width="800" height="800" loading="lazy" decoding="async" alt="Chicken Caesar Salad"></div>
+  <div class="cb">
+    <h4>Chicken Caesar Salad</h4>
+    
+    
+    
+    <div class="pr">$8.99</div>
+  </div>
+</article></div>
+<h3 class="sub-h">Kids Meal <span class="note">Comes with fries</span></h3><div class="cards"><article class="card">
+  <div class="ph"><img src="../img/kids.webp" width="800" height="800" loading="lazy" decoding="async" alt="2 pcs Chicken Tenders with Fries"></div>
+  <div class="cb">
+    <h4>2 pcs Chicken Tenders <small>with Fries</small></h4>
+    
+    
+    
+    <div class="pr">$7.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/kids.webp" width="800" height="800" loading="lazy" decoding="async" alt="Cheez Burger with Fries"></div>
+  <div class="cb">
+    <h4>Cheez Burger <small>with Fries</small></h4>
+    
+    
+    
+    <div class="pr">$7.99</div>
+  </div>
+</article>
+<article class="card">
+  <div class="ph"><img src="../img/kids.webp" width="800" height="800" loading="lazy" decoding="async" alt="1 pc Drumstick with Fries"></div>
+  <div class="cb">
+    <h4>1 pc Drumstick <small>with Fries</small></h4>
+    
+    
+    
+    <div class="pr">$6.99</div>
+  </div>
+</article></div></section>
+<section class="cat" id="m-soon"><header class="cat-head"><h3>Coming Soon</h3></header><h3 class="sub-h">Roast Chicken</h3><div class="cards two-up"><article class="card soon">
+  <div class="ph"><img src="../img/roast.webp" width="800" height="800" loading="lazy" decoding="async" alt="Roast Chicken"><span class="stamp">Coming soon</span></div>
+  <div class="cb">
+    <h4>Roast Chicken</h4>
+    <p class="d">Includes sauces.</p>
+    
+    
+    <div class="pr">$25.99</div>
+  </div>
+</article>
+<article class="card soon">
+  <div class="ph"><img src="../img/roast.webp" width="800" height="800" loading="lazy" decoding="async" alt="Roast Chicken with 1/2 Sheet tray Rice plate"><span class="stamp">Coming soon</span></div>
+  <div class="cb">
+    <h4>Roast Chicken <small>with 1/2 Sheet tray Rice plate</small></h4>
+    <p class="d">Includes coleslaw, chutney and yogurt raita.</p>
+    
+    
+    <div class="pr">$35.99</div>
+  </div>
+</article></div>
+<h3 class="sub-h">BBQ</h3><div class="cards one"><article class="card soon wide"><div class="ph"><img src="../img/bbq.webp" width="800" height="800" loading="lazy" decoding="async" alt="BBQ"><span class="stamp">Coming soon</span></div><div class="cb"><h4>BBQ</h4><p class="d">Watch this space.</p></div></article></div></section>
+  </div>
+</section>
+
+<section class="block" id="about">
+  <div class="wrap about">
+    <div class="rv">
+      <span class="eyebrow">About us</span>
+      <h2>Good food brings <mark>people together.</mark></h2>
+      <p>AL BAIK Chicken N Pizza brings the flavours people love under one roof on Stockton Boulevard: crispy fried chicken and wings, freshly made pizzas, burgers, seekh kabab, wraps and salads. Everything on the menu is halal, and everything is made for sharing.</p>
+      <div class="pillars">
+        <div><b>Halal</b><span>Every item, no exceptions</span></div>
+        <div><b>Fresh</b><span>Pizzas hand-tossed to order</span></div>
+        <div><b>Family</b><span>Kids meals, buckets for the table</span></div>
+      </div>
+    </div>
+    <div class="collage rv" aria-hidden="true">
+      <img class="c1" src="../img/pz-cheezy.webp" alt="" width="800" height="800" loading="lazy">
+      <img class="c2" src="../img/fried-chicken.webp" alt="" width="800" height="800" loading="lazy">
+      <img class="c3" src="../img/wrap-tikka.webp" alt="" width="800" height="800" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="block" id="visit">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Find us</span><h2>Come say hi</h2></div>
+    </div>
+    <div class="visit rv">
+      <div class="map"><iframe title="Map to AL BAIK Chicken N Pizza" src="https://www.google.com/maps?q=6680%20Stockton%20Blvd%20Ste%204%2C%20Sacramento%2C%20CA%2095823&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+      <div class="vcard">
+        <h3>AL BAIK Chicken N Pizza</h3>
+        <address>6680 Stockton Blvd, Suite 4<br>Sacramento, CA 95823<br><a href="tel:+19166806803">(916) 680-6803</a></address>
+        <ul class="hours" id="hours">
+          <li data-d="1"><span>Monday</span><b>11:00 AM – 10:00 PM</b></li>
+          <li data-d="2"><span>Tuesday</span><b>11:00 AM – 10:00 PM</b></li>
+          <li data-d="3"><span>Wednesday</span><b>11:00 AM – 10:00 PM</b></li>
+          <li data-d="4"><span>Thursday</span><b>11:00 AM – 10:00 PM</b></li>
+          <li data-d="5"><span>Friday</span><b>11:00 AM – 10:00 PM</b></li>
+          <li data-d="6"><span>Saturday</span><b>11:00 AM – 10:00 PM</b></li>
+          <li data-d="0"><span>Sunday</span><b>11:00 AM – 10:00 PM</b></li>
+        </ul>
+        <div class="cta">
+          <a class="btn btn-red" href="https://www.google.com/maps/dir/?api=1&destination=6680+Stockton+Blvd+Ste+4,+Sacramento,+CA+95823" target="_blank" rel="noopener">Directions</a>
+          <a class="btn btn-line" href="tel:+19166806803">Call</a>
+          <a class="btn btn-line" href="https://g.page/r/Cdc7o9kfFrf2EBM/review" target="_blank" rel="noopener">Review us on Google</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="franchise">
+  <div class="fr rv">
+    <div>
+      <span class="eyebrow">Albaik's expansion</span>
+      <h2>Bring AL BAIK to your city.</h2>
+      <p>We are looking for partners to open the next AL BAIK. Tell us about yourself and the city you have in mind.</p>
+    </div>
+    <div class="cta">
+      <a class="btn btn-ink" href="mailto:albaikchickenpizza@gmail.com?subject=Franchise%20interest">Ask about franchising</a>
+      <a class="btn btn-line" href="tel:+19166806803">(916) 680-6803</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img class="fl" src="../img/logo.svg" alt="AL BAIK Chicken N Pizza" width="180" height="98">
+        <div>6680 Stockton Blvd, Suite 4<br>Sacramento, CA 95823</div>
+        <div class="halal"><img src="../img/halal.png" alt="" width="34" height="34"><span>100% Halal</span></div>
+      </div>
+      <div><h4>Menu</h4><ul><li><a href="#m-chicken">Fried chicken</a></li><li><a href="#m-pizza">Pizza</a></li><li><a href="#m-burgers">Burgers</a></li><li><a href="#m-kabab">Kabab &amp; wraps</a></li><li><a href="#deals">Deals</a></li></ul></div>
+      <div><h4>Order</h4><ul><li><a href="https://albaikpizzaca.com" target="_blank" rel="noopener">Order online</a></li><li><a href="tel:+19166806803">(916) 680-6803</a></li><li><a href="https://www.google.com/maps/dir/?api=1&destination=6680+Stockton+Blvd+Ste+4,+Sacramento,+CA+95823" target="_blank" rel="noopener">Directions</a></li><li><a href="https://g.page/r/Cdc7o9kfFrf2EBM/review" target="_blank" rel="noopener">Leave a review</a></li></ul></div>
+      <div><h4>Follow</h4><ul><li><a href="https://www.instagram.com/albaikchickenpizza/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/profile.php?id=61593075483800" target="_blank" rel="noopener">Facebook</a></li><li><a href="#franchise">Franchising</a></li></ul></div>
+    </div>
+    <div class="copy"><span>© 2026 AL BAIK Chicken N Pizza. All rights reserved.</span><span>Open daily 11 AM – 10 PM</span></div>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-line" href="tel:+19166806803">Call</a>
+  <a class="btn btn-red" href="https://albaikpizzaca.com" target="_blank" rel="noopener">Order online</a>
+</div>
+
+<script>
+(function(){
+  var top=document.getElementById('top');
+  addEventListener('scroll',function(){top.classList.toggle('solid',scrollY>40)},{passive:true});
+  try{
+    var now=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'}));
+    var m=now.getHours()*60+now.getMinutes(), open=m>=660&&m<1320;
+    var st=document.getElementById('status'); st.classList.toggle('closed',!open);
+    st.lastElementChild.textContent=open?'Open now · until 10 PM':'Closed · opens 11 AM';
+    var li=document.querySelector('#hours li[data-d="'+now.getDay()+'"]'); if(li) li.classList.add('today');
+  }catch(e){}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+    var links=[].slice.call(document.querySelectorAll('#cats a'));
+    var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){var on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('on',on);if(on)a.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'})})}})},{rootMargin:'-40% 0px -55% 0px'});
+    document.querySelectorAll('.cat').forEach(function(s){io2.observe(s)});
+  }else{document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')})}
+})();
+</script>
+</body>
+</html>
