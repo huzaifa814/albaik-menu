@@ -6,9 +6,9 @@ window.ALBAIK_MENU = [
     name: "Crispy Fried Chicken",
     note: "Regular or Nashville Hot. Side options: Fries or Coleslaw",
     items: [
-      { id: "fc1", name: "4pcs Chicken with 1 side", price: 12.99, options: [{ name: "Style", choices: ["Regular", "Nashville Hot"] }, { name: "Side", choices: ["Fries", "Coleslaw"] }] },
+      { id: "fc1", name: "4pcs Chicken with 1 side", price: 12.99, img: "fc1", musttry: true, options: [{ name: "Style", choices: ["Regular", "Nashville Hot"] }, { name: "Side", choices: ["Fries", "Coleslaw"] }] },
       { id: "fc2", name: "8pcs Chicken Bucket with 1 side", price: 24.99, options: [{ name: "Style", choices: ["Regular", "Nashville Hot"] }, { name: "Side", choices: ["Fries", "Coleslaw"] }] },
-      { id: "fc3", name: "12pcs Chicken Bucket with 1 side", price: 29.99, options: [{ name: "Style", choices: ["Regular", "Nashville Hot"] }, { name: "Side", choices: ["Fries", "Coleslaw"] }] },
+      { id: "fc3", name: "12pcs Chicken Bucket with 1 side", price: 34.99, options: [{ name: "Style", choices: ["Regular", "Nashville Hot"] }, { name: "Side", choices: ["Fries", "Coleslaw"] }] },
       { id: "fc4", name: "20pcs Chicken Bucket with 2 sides", price: 45.99, options: [{ name: "Style", choices: ["Regular", "Nashville Hot"] }, { name: "Side 1", choices: ["Fries", "Coleslaw"] }, { name: "Side 2", choices: ["Fries", "Coleslaw"] }] },
       { id: "fc5", name: "3pcs Chicken Tenders with 1 side", price: 9.99, options: [{ name: "Style", choices: ["Regular", "Nashville Hot"] }, { name: "Side", choices: ["Fries", "Coleslaw"] }] }
     ]
@@ -29,7 +29,7 @@ window.ALBAIK_MENU = [
     name: "Kids Meal",
     note: "Comes with fries",
     items: [
-      { id: "km1", name: "2 pcs Chicken Tenders with Fries", price: 7.99 },
+      { id: "km1", name: "2 pcs Chicken Tenders with Fries", price: 7.99, img: "km1" },
       { id: "km2", name: "Cheez Burger with Fries", price: 7.99 },
       { id: "km3", name: "1 pc Drumstick with Fries", price: 6.99 }
     ]
@@ -46,8 +46,8 @@ window.ALBAIK_MENU = [
     ],
     items: [
       { id: "p1", name: "Beef Supreme", desc: "Tomato sauce, mozzarella cheese, beef pepperoni, mushrooms, onions, peppers, Italian sausage." },
-      { id: "p2", name: "Beef Pepperoni", desc: "Tomato sauce, mozzarella cheese, beef pepperoni." },
-      { id: "p5", name: "Meat Lovers", desc: "Tomato sauce, mozzarella cheese, beef pepperoni, ground beef, beef bacon." },
+      { id: "p2", name: "Beef Pepperoni", desc: "Tomato sauce, mozzarella cheese, beef pepperoni.", img: "p2" },
+      { id: "p5", name: "Meat Lovers", desc: "Tomato sauce, mozzarella cheese, beef pepperoni, ground beef, beef salami, beef bacon.", img: "p5" },
       { id: "p6", name: "Beef Combination", desc: "Tomato sauce, mozzarella cheese, beef pepperoni, Italian sausage, mushrooms, onions, olives, bell peppers." },
       { id: "p7", name: "Hawaiian", desc: "Tomato sauce, mozzarella cheese, beef bacon, pineapple." },
       { id: "p8", name: "Veggie Lovers", desc: "Tomato sauce, mozzarella cheese, fresh mushrooms, sliced red onions, peppers, olives, tomatoes, pickles." },
@@ -56,9 +56,10 @@ window.ALBAIK_MENU = [
       { id: "p12", name: "BBQ Chicken", desc: "BBQ sauce, mozzarella cheese, onions, tomatoes, BBQ chicken, beef bacon." },
       { id: "p13", name: "Buffalo Chicken", desc: "Garlic sauce, mozzarella cheese, onions, jalapenos, buffalo chicken.", spicy: true },
       { id: "p14", name: "Triple Chicken", desc: "Garlic sauce, mozzarella cheese, BBQ chicken, buffalo chicken, spicy chicken.", spicy: true },
-      { id: "p15", name: "Achari Chicken", desc: "Garlic sauce, mozzarella cheese, onions, jalapenos, achari chicken.", spicy: true },
-      { id: "p17", name: "Tikka Chicken", desc: "Tikka masala sauce, tandoori chicken, mozzarella cheese, mushrooms, onions, bell peppers, garlic, garnished with cilantro." },
-      { id: "p18", name: "Butter Chicken", desc: "Butter sauce, mozzarella cheese, onions, tomatoes, garlic, butter chicken, garnished with cilantro." }
+      { id: "p15", name: "Achari Chicken", desc: "Garlic sauce, mozzarella cheese, onions, jalapenos, achari chicken.", spicy: true, img: "p15", musttry: true },
+      { id: "p17", name: "Chicken Tikka", desc: "Tikka masala sauce, tandoori chicken, mozzarella cheese, mushrooms, onions, bell peppers, garlic, garnished with cilantro.", img: "p17" },
+      { id: "p19", name: "Tandoori Chicken", desc: "Tandoori sauce, mozzarella cheese, onions, tomatoes, garlic, tandoori chicken, garnished with cilantro.", img: "p19" },
+      { id: "p18", name: "Butter Chicken", desc: "Butter sauce, mozzarella cheese, onions, tomatoes, garlic, butter chicken, garnished with cilantro.", img: "p18" }
     ]
   },
   {
@@ -85,7 +86,7 @@ window.ALBAIK_MENU = [
     name: "Breadsticks",
     items: [
       { id: "b1", name: "Chicken Breadsticks", price: 10.99 },
-      { id: "b2", name: "Garlic Cheezy Breadsticks", price: 10.99 },
+      { id: "b2", name: "Garlic Cheezy Breadsticks", price: 10.99, img: "b2" },
       { id: "b3", name: "Gyro Lamb Breadsticks", price: 10.99 },
       { id: "b4", name: "Beef Breadsticks", price: 10.99 }
     ]
@@ -95,10 +96,10 @@ window.ALBAIK_MENU = [
     name: "Burgers",
     note: "Comes with fries",
     items: [
-      { id: "bg1", name: "Chicken Zinger Burger", price: 9.99 },
-      { id: "bg2", name: "Nashville Hot Zinger Burger", price: 9.99, spicy: true },
-      { id: "bg3", name: "Beef Burger", price: 9.99 },
-      { id: "bg4", name: "Double Patty Beef Burger", price: 12.99 }
+      { id: "bg1", name: "Chicken Zinger Burger (Crispy Chicken Sandwich)", price: 11.99, img: "bg1", musttry: true },
+      { id: "bg2", name: "Nashville Hot Zinger Burger", price: 11.99, spicy: true },
+      { id: "bg3", name: "Beef Burger", price: 11.99 },
+      { id: "bg4", name: "Double Patty Beef Burger", price: 12.99, img: "bg4" }
     ]
   },
   {
@@ -117,27 +118,29 @@ window.ALBAIK_MENU = [
     items: [
       { id: "sl1", name: "Coleslaw Regular", price: 3.99 },
       { id: "sl2", name: "Coleslaw Medium", price: 5.99 },
-      { id: "sl4", name: "Chicken Caesar Salad", price: 8.99 }
+      { id: "sl4", name: "Chicken Caesar Salad", price: 8.99, img: "sl4" }
     ]
   },
   {
     id: "kabob",
     name: "Kabab",
     note: "1 stick",
+    soon: true,
     items: [
-      { id: "k10", name: "Chicken Seekh Kabab", price: 9.99 },
-      { id: "k11", name: "Beef Seekh Kabab", price: 9.99 }
+      { id: "k10", name: "Chicken Seekh Kabab", price: 11.99 },
+      { id: "k11", name: "Beef Seekh Kabab", price: 11.99 }
     ]
   },
   {
     id: "wraps",
     name: "Wraps",
     items: [
-      { id: "wr1", name: "Beef Kabob Wrap", price: 9.99 },
-      { id: "wr2", name: "Chicken Tandoori Kabob Wrap", price: 9.99 },
-      { id: "wr3", name: "Chicken Tikka Kabob Wrap", price: 9.99 },
-      { id: "wr4", name: "Gyro & Lamb Wrap", price: 9.99 },
-      { id: "wr5", name: "Haryali Chicken Kabob Wrap", price: 9.99 }
+      { id: "wr1", name: "Beef Kabob Wrap", price: 11.99 },
+      { id: "wr2", name: "Chicken Tandoori Kabob Wrap", price: 11.99 },
+      { id: "wr3", name: "Chicken Tikka Kabob Wrap", price: 11.99 },
+      { id: "wr4", name: "Gyro & Lamb Wrap", price: 11.99 },
+      { id: "wr5", name: "Haryali Chicken Kabob Wrap", price: 11.99 },
+      { id: "wr6", name: "Chicken Zinger Wrap", price: 11.99, img: "wr6" }
     ]
   },
   {

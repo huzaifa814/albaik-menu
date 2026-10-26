@@ -49,6 +49,9 @@ window.ALBAIK_CONFIG = {
   // Shows the "100% Halal" badge in the header. Set to false to hide it.
   halal: true,
 
+  // Extra words on that badge, e.g. "Hand slaughtered". Leave "" for just "100% HALAL".
+  halalNote: "Hand slaughtered",
+
   // Opening hours. 24-hour clock, ["open", "close"] per day, or null for a day
   // you are closed. The site works out "Open now" or "Closed" from these and
   // shows it in the header - so keep them right, and set them here only once.

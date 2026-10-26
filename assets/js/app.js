@@ -320,16 +320,22 @@
           ? '<span class="price">' + money(it.price) + "</span>"
           : '<span class="price">' + money(section.sizes[0].price) + '<span class="from">from</span></span>';
 
-        html += '<button class="card reveal' + (it.soldout ? " soldout" : "") +
+        html += '<button class="card reveal' + (it.img ? " haspic" : "") + (it.soldout ? " soldout" : "") +
           '" type="button" data-item="' + it.id + '">' +
-          '<span class="dot"></span>' +
+          // a dish with its own photo shows it; everything else keeps the gold dot.
+          // the price rides inside the photo, so it sits 12px off the bottom
+          // whatever shape that photo is
+          (it.img
+            ? '<span class="thumb"><img src="assets/img/dish/' + it.img + '.webp" alt="" loading="lazy" decoding="async">' + priceHtml + "</span>"
+            : '<span class="dot"></span>') +
           '<span class="body">' +
             '<span class="name">' + esc(it.name) +
               (it.spicy ? '<span class="spicy" title="Spicy" role="img" aria-label="Spicy">' + PEPPER + "</span>" : "") +
+              (it.musttry ? '<span class="musttry">Must try</span>' : "") +
               (it.soldout ? '<span class="sold">Sold out</span>' : "") + "</span>" +
             (it.desc ? '<span class="desc">' + esc(it.desc) + "</span>" : "") +
           "</span>" +
-          priceHtml +
+          (it.img ? "" : priceHtml) +
         "</button>";
       });
 
@@ -405,8 +411,10 @@
     if (DRAFT) (item.options || []).forEach(function (g) { DRAFT.options[g.name] = g.choices[0]; });
 
     var hero = $("#itemHeroImg");
-    hero.src = "assets/img/" + section.id + ".webp";
-    hero.alt = section.name;
+    // the dish's own photo if we have one, otherwise the section banner
+    hero.src = item.img ? "assets/img/dish/" + item.img + ".webp"
+                        : "assets/img/" + section.id + ".webp";
+    hero.alt = item.img ? item.name : section.name;
 
     $("#itemKicker").textContent = section.name + (section.soon ? "  -  Coming soon" : "");
     $("#itemTitle").textContent = item.name;
@@ -837,7 +845,10 @@
     map.hidden = true;
   }
 
-  if (CFG.halal) $("#halalBadge").hidden = false;
+  if (CFG.halal) {
+    $("#halalBadge").hidden = false;
+    if (CFG.halalNote) $("#halalNote").textContent = "· " + CFG.halalNote;
+  }
 
   // Toast, when it is live, takes the whole job - cart included.
   if (CFG.orderUrl) {

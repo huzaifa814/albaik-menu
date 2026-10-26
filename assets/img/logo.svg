@@ -13,6 +13,7 @@
       <stop offset="100%" stop-color="#b96f06"/>
     </linearGradient>
   </defs>
+  <g id="fit-k-clip" transform="translate(57.071,37.844) scale(0.89073)">
 
   <g transform="skewX(-11)">
 
@@ -41,4 +42,5 @@
     <path d="M -320 -26 Q 0 132 320 -46 Q 0 78 -320 -26 Z" fill="#ee2a17" transform="translate(0,14)"/>
     <path d="M -320 -34 Q 0 124 320 -54 Q 0 62 -320 -34 Z" fill="url(#gold)"/>
   </g>
+</g>
 </svg>
