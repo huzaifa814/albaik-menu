@@ -51,7 +51,7 @@ window.ALBAIK_MENU = [
       { id: "p6", name: "Beef Combination", desc: "Tomato sauce, mozzarella cheese, beef pepperoni, Italian sausage, mushrooms, onions, olives, bell peppers." },
       { id: "p7", name: "Hawaiian", desc: "Tomato sauce, mozzarella cheese, beef bacon, pineapple." },
       { id: "p8", name: "Veggie Lovers", desc: "Tomato sauce, mozzarella cheese, fresh mushrooms, sliced red onions, peppers, olives, tomatoes, pickles." },
-      { id: "p9", name: "Gyro Lamb", desc: "White sauce, mozzarella cheese, gyro lamb, onions, jalapeno, pineapple, garlic, cilantro." },
+      { id: "p9", name: "Gyro Lamb", desc: "Tandoori sauce, mozzarella cheese, gyro lamb, onions, jalapeno, pineapple, garlic, cilantro." },
       { id: "p11", name: "Chicken Supreme", desc: "Tomato sauce, mozzarella cheese, mushrooms, onions, peppers, grilled chicken." },
       { id: "p12", name: "BBQ Chicken", desc: "BBQ sauce, mozzarella cheese, onions, tomatoes, BBQ chicken, beef bacon." },
       { id: "p13", name: "Buffalo Chicken", desc: "Garlic sauce, mozzarella cheese, onions, jalapenos, buffalo chicken.", spicy: true },
