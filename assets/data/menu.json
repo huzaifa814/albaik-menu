@@ -496,6 +496,37 @@
     ]
   },
   {
+    "id": "shakes",
+    "name": "Shakes",
+    "items": [
+      {
+        "id": "sk1",
+        "name": "Vanilla Shake",
+        "price": 6.99
+      },
+      {
+        "id": "sk2",
+        "name": "Strawberry Shake",
+        "price": 6.99
+      },
+      {
+        "id": "sk3",
+        "name": "Red Velvet Shake",
+        "price": 6.99
+      },
+      {
+        "id": "sk4",
+        "name": "Chocolate Brownie Shake",
+        "price": 6.99
+      },
+      {
+        "id": "sk5",
+        "name": "Oreo Shake",
+        "price": 6.99
+      }
+    ]
+  },
+  {
     "id": "kabob",
     "name": "Kabab",
     "note": "1 stick",
