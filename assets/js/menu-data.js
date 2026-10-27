@@ -157,5 +157,13 @@ window.ALBAIK_MENU = [
     name: "BBQ",
     soon: true,
     items: []
+  },
+  {
+    id: "drinks",
+    name: "Drinks",
+    soon: true,
+    items: [
+      { id: "d1", name: "Chai", price: 2.49 }
+    ]
   }
 ];
