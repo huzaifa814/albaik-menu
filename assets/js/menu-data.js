@@ -57,7 +57,7 @@ window.ALBAIK_MENU = [
       { id: "p13", name: "Buffalo Chicken", desc: "Garlic sauce, mozzarella cheese, onions, jalapenos, buffalo chicken.", spicy: true },
       { id: "p14", name: "Triple Chicken", desc: "Garlic sauce, mozzarella cheese, BBQ chicken, buffalo chicken, spicy chicken.", spicy: true },
       { id: "p15", name: "Achari Chicken", desc: "Garlic sauce, mozzarella cheese, onions, jalapenos, achari chicken.", spicy: true, img: "p15", musttry: true },
-      { id: "p17", name: "Chicken Tikka", desc: "Tikka masala sauce, tandoori chicken, mozzarella cheese, mushrooms, onions, bell peppers, garlic, garnished with cilantro.", img: "p17" },
+      { id: "p17", name: "Chicken Tikka", desc: "Tikka masala sauce, tikka masala chicken, mozzarella cheese, mushrooms, onions, bell peppers, garlic, garnished with cilantro.", img: "p17" },
       { id: "p19", name: "Tandoori Chicken", desc: "Tandoori sauce, mozzarella cheese, onions, tomatoes, garlic, tandoori chicken, garnished with cilantro.", img: "p19" },
       { id: "p18", name: "Butter Chicken", desc: "Butter sauce, mozzarella cheese, onions, tomatoes, garlic, butter chicken, garnished with cilantro.", img: "p18" }
     ]
