@@ -252,6 +252,7 @@
       <button class="btn" id="unlock">Sign in</button>
       <div id="gateMsg"></div>
       <button class="link" id="toSetup">First time on this device? Set it up</button>
+      <button class="link" id="toChpw">Change the password</button>
     </div>
 
     <!-- one-time setup -->
@@ -294,6 +295,41 @@
           Scoped that way the token can only edit this one menu repo. It cannot touch
           any other repo or the GitHub account. If it ever leaks, revoke it on that
           same page and set up again.
+        </div>
+      </div>
+    </div>
+
+    <!-- change the password, keeping the same token -->
+    <div id="chpw" hidden>
+      <h1>Change password</h1>
+      <p class="sub">The GitHub token stays exactly as it is</p>
+
+      <div class="field">
+        <label for="cEmail">Email</label>
+        <input type="email" id="cEmail" autocomplete="username" placeholder="albaikchickenpizza@gmail.com">
+      </div>
+      <div class="field">
+        <label for="cOld">Current password</label>
+        <input type="password" id="cOld" autocomplete="current-password">
+      </div>
+      <div class="field">
+        <label for="cNew">New password</label>
+        <input type="password" id="cNew" autocomplete="new-password" placeholder="at least 10 characters">
+      </div>
+      <div class="field">
+        <label for="cNew2">Repeat new password</label>
+        <input type="password" id="cNew2" autocomplete="new-password">
+      </div>
+      <button class="btn" id="doChpw">Change it</button>
+      <div id="chpwMsg"></div>
+      <button class="link" id="toSignin2">Back to sign in</button>
+
+      <div class="msg info" style="margin-top:18px">
+        <div class="help">
+          This changes the password <b>on this device only</b>. The token is unlocked
+          with the old password and locked again with the new one - it never leaves
+          this page and is never shown, so nobody has to handle it. Every other
+          device keeps its own password until it is changed there too.
         </div>
       </div>
     </div>
@@ -775,8 +811,7 @@
        running code it fetches - so it prices every order from this JSON copy.
        It ships in the same commit, or the till would go on charging the old
        price for up to a week without anyone noticing. */
-    files.push({ path: "assets/data/menu.json", content: JSON.stringify(MENU, null, 2) + "
-" });
+    files.push({ path: "assets/data/menu.json", content: JSON.stringify(MENU, null, 2) + "\n" });
     var cfgJs = null;
     var hoursChanged = list.some(function (c) { return c.hours; });
 
@@ -871,6 +906,53 @@
 
   $("#toSetup").onclick = function () { $("#signin").hidden = true; $("#setup").hidden = false; };
   $("#toSignin").onclick = function () { $("#setup").hidden = true; $("#signin").hidden = false; };
+
+  $("#toChpw").onclick = function () {
+    var s = saved();
+    $("#cEmail").value = s ? s.email : "";
+    $("#chpwMsg").innerHTML = "";
+    $("#signin").hidden = true; $("#chpw").hidden = false;
+  };
+  $("#toSignin2").onclick = function () { $("#chpw").hidden = true; $("#signin").hidden = false; };
+
+  /* Change the password without the token ever being handled in the open: unwrap
+     it with the old password, wrap it again with the new one. Same token, new
+     lock. That is the whole operation - no GitHub, nothing to copy or paste. */
+  $("#doChpw").onclick = function () {
+    var m = $("#chpwMsg");
+    function fail(t) { m.innerHTML = '<div class="msg err"></div>'; m.firstChild.textContent = t; }
+
+    var s = saved();
+    if (!s) return fail("This device has not been set up yet, so there is no password to change.");
+
+    var email = $("#cEmail").value.trim().toLowerCase();
+    var oldPw = $("#cOld").value, p1 = $("#cNew").value, p2 = $("#cNew2").value;
+    if (email !== String(s.email).toLowerCase()) return fail("Wrong email or password.");
+    if (!oldPw) return fail("Enter the current password.");
+    if (p1.length < 10) return fail("Use a new password of at least 10 characters. This is the only thing protecting the token.");
+    if (p1 !== p2) return fail("The two new passwords are not the same.");
+    if (p1 === oldPw) return fail("The new password is the same as the current one.");
+
+    m.innerHTML = '<div class="msg info"><span class="spin"></span>Changing...</div>';
+    /* the two failures are told apart on purpose: a wrong password must not read
+       as a broken page, and a broken page must not read as a wrong password */
+    open_(s.box, oldPw).then(null, function () {
+      return Promise.reject(new Error("WRONGPW"));
+    }).then(function (tok) {
+      return seal(tok, p1);
+    }).then(function (box) {
+      localStorage.setItem(STORE, JSON.stringify({ email: s.email, box: box }));
+      m.innerHTML = '<div class="msg ok">Done. Use the new password from now on.</div>';
+      $("#cOld").value = $("#cNew").value = $("#cNew2").value = "";
+    }).catch(function (e) {
+      fail(e && e.message === "WRONGPW"
+        ? "Wrong email or password."
+        : "Could not change the password. Nothing was altered - try again.");
+    });
+  };
+
+  $("#cNew2").addEventListener("keydown", function (e) { if (e.key === "Enter") $("#doChpw").click(); });
+
 
   $("#doSetup").onclick = function () {
     var m = $("#setupMsg");
