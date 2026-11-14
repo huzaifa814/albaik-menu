@@ -373,6 +373,7 @@
         "name": "Pizza Pocket",
         "price": 12.99,
         "img": "pp1",
+        "vid": "pp1",
         "options": [
           {
             "name": "Flavor",
@@ -500,7 +501,8 @@
         "id": "f4",
         "name": "Loaded Fries",
         "price": 7.99,
-        "img": "f4"
+        "img": "f4",
+        "vid": "f4"
       }
     ]
   },

@@ -86,7 +86,7 @@ window.ALBAIK_MENU = [
     name: "Pizza Pocket",
     note: "Beef Pepperoni, Cheezy, Gyro Lamb, Meat Lovers or Triple Chicken",
     items: [
-      { id: "pp1", name: "Pizza Pocket", price: 12.99, img: "pp1", options: [{ name: "Flavor", choices: ["Beef Pepperoni", "Cheezy", "Gyro Lamb", "Meat Lovers", "Triple Chicken"] }] }
+      { id: "pp1", name: "Pizza Pocket", price: 12.99, img: "pp1", vid: "pp1", options: [{ name: "Flavor", choices: ["Beef Pepperoni", "Cheezy", "Gyro Lamb", "Meat Lovers", "Triple Chicken"] }] }
     ]
   },
   {
@@ -118,7 +118,7 @@ window.ALBAIK_MENU = [
       { id: "f1", name: "Small Fries", price: 2.99, options: [{ name: "Flavor", choices: ["Original", "Peri peri", "Lemon Pepper"] }] },
       { id: "f2", name: "Medium Fries", price: 3.99, options: [{ name: "Flavor", choices: ["Original", "Peri peri", "Lemon Pepper"] }] },
       { id: "f3", name: "Large Fries", price: 4.99, options: [{ name: "Flavor", choices: ["Original", "Peri peri", "Lemon Pepper"] }] },
-      { id: "f4", name: "Loaded Fries", price: 7.99, img: "f4" }
+      { id: "f4", name: "Loaded Fries", price: 7.99, img: "f4", vid: "f4" }
     ]
   },
   {

@@ -410,11 +410,28 @@
     } : null;
     if (DRAFT) (item.options || []).forEach(function (g) { DRAFT.options[g.name] = g.choices[0]; });
 
-    var hero = $("#itemHeroImg");
+    var hero = $("#itemHeroImg"), heroVid = $("#itemHeroVid");
     // the dish's own photo if we have one, otherwise the section banner
     hero.src = item.img ? "assets/img/dish/" + item.img + ".webp"
                         : "assets/img/" + section.id + ".webp";
     hero.alt = item.img ? item.name : section.name;
+
+    /* A dish that has its own clip plays it where the still would be. The
+       still is the poster, so the box is never empty while the file loads,
+       and preload="none" means nothing is fetched until a sheet opens.
+       Muted and playsinline or iOS will not autoplay; if it refuses anyway
+       the poster is already the right picture, so nothing looks broken. */
+    if (item.vid) {
+      heroVid.poster = hero.src;
+      var want = "assets/vid/" + item.vid + ".mp4";
+      if (heroVid.getAttribute("src") !== want) heroVid.setAttribute("src", want);
+      hero.hidden = true; heroVid.hidden = false;
+      var playing = heroVid.play();
+      if (playing && playing.catch) playing.catch(function () {});
+    } else {
+      stopHeroVideo();
+      heroVid.hidden = true; hero.hidden = false;
+    }
 
     $("#itemKicker").textContent = section.name + (section.soon ? "  -  Coming soon" : "");
     $("#itemTitle").textContent = item.name;
@@ -518,7 +535,18 @@
     if (el) el.textContent = money(unitPrice(f.item, f.section, DRAFT.size) * DRAFT.qty);
   }
 
+  /* Out of sight is not out of mind: a looping clip left playing behind a
+     closed sheet keeps burning battery and data. */
+  function stopHeroVideo() {
+    var v = $("#itemHeroVid");
+    if (!v || !v.getAttribute("src")) return;
+    v.pause();
+    v.removeAttribute("src");
+    v.load();
+  }
+
   function closeItem() {
+    stopHeroVideo();
     $("#itemBackdrop").hidden = true;
     DRAFT = null;
     if ($("#cartBackdrop").hidden && $("#ticketBackdrop").hidden) document.body.style.overflow = "";
