@@ -364,6 +364,31 @@
     "items": []
   },
   {
+    "id": "pizza-pocket",
+    "name": "Pizza Pocket",
+    "note": "Beef Pepperoni, Cheezy, Gyro Lamb, Meat Lovers or Triple Chicken",
+    "items": [
+      {
+        "id": "pp1",
+        "name": "Pizza Pocket",
+        "price": 12.99,
+        "img": "pp1",
+        "options": [
+          {
+            "name": "Flavor",
+            "choices": [
+              "Beef Pepperoni",
+              "Cheezy",
+              "Gyro Lamb",
+              "Meat Lovers",
+              "Triple Chicken"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "breadsticks",
     "name": "Breadsticks",
     "items": [
@@ -470,6 +495,12 @@
             ]
           }
         ]
+      },
+      {
+        "id": "f4",
+        "name": "Loaded Fries",
+        "price": 7.99,
+        "img": "f4"
       }
     ]
   },

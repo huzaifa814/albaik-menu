@@ -530,6 +530,11 @@ body.has-order .foot{padding-bottom:86px}
 /* the sheet's own footer: quantity beside the action */
 .sheet-foot{display:flex;align-items:center;gap:10px;margin-top:20px}
 .sheet-foot .ghost{margin-top:0}
+/* a note in the footer shares the row with the button; .ghost asks for 100%
+   width, which squeezed the note to one word per line. Only size the button
+   to its content when a note is actually beside it. */
+.sheet-foot .footwhy + .ghost,
+.sheet-foot .footwhy + .primary{width:auto;flex:0 0 auto}
 .footwhy{
   flex:1;margin:0;padding:12px 14px;border-radius:13px;
   background:rgba(255,255,255,.05);border:1px solid var(--hair);
